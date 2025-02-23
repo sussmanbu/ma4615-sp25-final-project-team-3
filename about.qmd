@@ -16,6 +16,11 @@ The members of this team are below.
 Rodrigo is an undergraduate Econ and Math senior.
 [Github](https://github.com/jrodrigo-o)
 
+## Yiqi Jin
+
+Yiqi is an undergraduate Econ and Math Junior.
+[Github](https://github.com/YiqiJin17)
+
 ## Dan Sussman
 
 Dan is a professor in the Math/Stat department and is the instructor for the course. [Github](https://github.com/dpmcsuss)
