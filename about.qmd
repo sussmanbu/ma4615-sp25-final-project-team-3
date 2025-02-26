@@ -21,6 +21,9 @@ Rodrigo is an undergraduate Econ and Math senior.
 Yiqi is an undergraduate Econ and Math Junior.
 [Github](https://github.com/YiqiJin17)
 
+## Anshi Mittal
+Anshi is an undergraduate Data Science Junior
+
 ## Dan Sussman
 
 Dan is a professor in the Math/Stat department and is the instructor for the course. [Github](https://github.com/dpmcsuss)
