@@ -1,0 +1,79 @@
+---
+title: "Blog Post 1"
+author: ""
+date: "2025-03-03"
+date-modified: "2025-03-03"
+draft: FALSE
+---
+
+First Dataset:
+
+The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. 
+
+This dataset can be used to examine the racial disparities in land ownership and how they may persist in terms of property size and urban-rural distribution. Historically, the US has confined minority groups to urban areas because of past segregation policies and limits their ability to acquire larger sets of land because of systemic racism. Since land and homeownership are major contributors to generational wealth, the dataset can also explore how land distribution contributes to the racial wealth gap by reflecting from broad economic inequities. 
+
+The IPUMS USA dataset accesses over 65,000 harmonized variables that cover a wide array of demographic, economic, social, and housing characteristics form 1790 to present data and compromises of billions of individual records and includes data from over 150 countries, but we will be focusing on Puerto Rico for research purposes. 
+
+The data will need to be manually selected and downloaded depending on the year and variables we want to focus on for analyzing trends. This can also serve as a challenge since we will need to have a clear understanding of the question we are trying to answer and be considerate about the variables we want to select. 
+
+Finally, this data set will aim to answer questions such as the following: How does land ownership differ between urban and rural areas? Do racial disparities persist in property size and location? How does land distribution contribute to the racial wealth gap? What historical trends exist in land ownership in Puerto Rico?
+
+Source: [IPUMS](https://usa.ipums.org/usa-action/variables/acrehous#description_section)
+
+------------------------------------------------------------------------------------------------------
+
+Second Dataset:
+
+1.Data is from
+
+[Data-gov](https://catalog.data.gov/dataset/death-rates-for-suicide-by-sex-race-hispanic-origin-and-age-united-states-020c1)
+
+2.Give any details you can in regards to the number of rows and number of columns for your data.
+
+The data consists of twelve columns and 6391 rows.
+
+3.Describe why and how the data was originally collected.
+
+It describes Death rates for suicide, by sex, race, Hispanic origin, and age: United States. It satisfied racial and health topics. We get it because it has enough sample size, and with race and sex variables inside, we want to discover the relationships of suicide death rate between different races and between male and female.
+
+4.Are you able to load/clean the data?
+
+Yes, The data variables do not have proper labels, and the variables for sex, race, and sex and race have been incorrectly combined (all placed in the same column). The data needs to be manually rearranged.
+
+5.What are the main questions you hope to address?
+
+Which race has the highest suicide rate? Which gender has a higher suicide rate? After combining gender and race, which race has the highest suicide rate for a single
+gender? Which has the lowest? Investigate the underlying reasons.
+
+6.What challenges do you foresee?
+
+The most difficult part is still processing the data. Splitting the combined "race and sex" into separate "race" and "sex" variables requires a significant amount of work.
+
+------------------------------------------------------------------------------------------------------
+
+Third Dataset:
+
+Exploring Racial Disparities Through Drug Overdose Data
+
+Understanding racial disparities in public health is essential for addressing systemic inequities. This dataset provides valuable insight into drug overdose death rates in the U.S., categorized by drug type, sex, age, race, and Hispanic origin. By analyzing this data, we can identify patterns in drug-related mortality and assess how different racial groups are affected.
+Drug Overdose Death Rates by Drug Type, Sex, Age, Race, and Hispanic Origin (United States)
+Source: [Data.gov](https://catalog.data.gov/dataset/drug-overdose-death-rates-by-drug-type-sex-age-race-and-hispanic-origin-united-states-3f72f)
+
+This dataset, maintained by the Centers for Disease Control and Prevention (CDC), compiles data from national mortality records and public health reports. It tracks overdose deaths across different racial and ethnic groups and includes key demographic variables. This information is critical for examining racial disparities in drug-related deaths and identifying trends over time.
+
+Dataset Details:
+Contains variables such as drug type, sex, age, race, and Hispanic origin.
+Tracks overdose rates over multiple years.
+Derived from official mortality and health data sources.
+
+Research Questions:
+How do drug overdose death rates vary among racial and ethnic groups?
+Are specific drug types more prevalent in certain communities?
+How do age and gender intersect with racial disparities in overdose rates?
+Have overdose rates changed significantly for particular racial groups over time?
+
+Potential Challenges:
+Some racial groups may have underreported or incomplete data, which could impact analysis.
+The dataset may require extensive cleaning before conducting meaningful statistical evaluations.
+Socioeconomic and healthcare access factors are not included in the dataset but could provide additional context for disparities in overdose rates.
+This dataset provides an opportunity to explore racial disparities in drug-related deaths and identify underlying trends that contribute to these disparities. Understanding these patterns is essential for informing public health policies and improving targeted interventions to reduce overdose fatalities in disproportionately affected communities.
