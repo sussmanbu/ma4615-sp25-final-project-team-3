@@ -1,7 +1,7 @@
 ---
 title: "Blog Post 3"
 author: ""
-date: "2025-03-"
+date: "2025-03-24"
 date-modified: "2025-03-24"
 draft: FALSE
 ---

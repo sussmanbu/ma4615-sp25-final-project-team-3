@@ -1,0 +1,21 @@
+---
+title: "Blog Post 4"
+author: ""
+date: "2025-03-31"
+date-modified: "2025-03-31"
+draft: FALSE
+---
+One of the most obvious trends in our data was the strong right-skew in housing prices, which we initially observed in Blog Post 3. To go deeper, we explored whether this trend was uniform across locations by analyzing median prices by zip code. We found large geographic variation, with some zip codes having dramatically higher median prices than others. This suggests that the overall skew may actually be masking meaningful disparities in affordability and land value between areas—making the trend more interesting than initially assumed. It also raised the possibility that structural factors, like historic zoning or disinvestment, could be influencing housing markets.
+We plan to explore further relationships between variables to explain the aforementioned impact of structural factors, uncovering patterns that go beyond simple price distributions. For example, we’re interested in how property size, location (urban vs. rural), and racial demographics may interact with housing prices. Understanding how these variables fit together will help us build models that reflect the intersectionality of housing access, affordability, and equity. By layering in more dimensions of the data, we can move toward a more nuanced analysis of housing inequality.
+To get a clearer picture of the typical housing market and prepare for future modeling, we log-transformed the price variable to reduce the influence of extreme values. This normalized the distribution and revealed that most homes fall within a tighter price band than the raw data suggests. This step not only deepens our understanding of the price distribution but also points to potential predictor variables—such as location or neighborhood characteristics—that we can explore more fully through modeling in future posts.
+
+Graph 1 describes the distribution of house records amongst all racial groups. It is heavily skewed with the white racial group showing majority in records. 
+
+Graph 2 describes the same as the chart above but shows the difference in range of household values between each racial group. 
+Graph 3 describes the distribution between racial groups and the value of their households depending on the market. It is split up into three categories (low, medium and high). 
+
+This study aims to analyze housing conditions among different racial groups, focusing on rent prices, geographic location, and homeownership status. By examining these factors, we seek to understand potential disparities in housing affordability and accessibility. While the original analysis did not include housing size, we incorporate square footage as an additional variable to better assess its impact on rent prices and overall housing conditions.
+
+To achieve this, we define several key response variables. First, rent price (continuous variable) serves as a primary indicator of housing affordability. Second, homeownership status (binary variable: Yes/No) allows us to explore differences in property ownership rates across racial groups. Additionally, housing quality (either continuous or categorical) provides insight into the standard of living, considering factors such as building conditions and available amenities. These variables are analyzed in relation to explanatory factors such as race, location, household income, education level, and market conditions.
+
+For statistical modeling, we employ linear regression to analyze rent prices and housing quality when treated as a continuous variable. Logistic regression is applied to predict homeownership probability based on demographic and economic factors. If housing quality is categorized, we use multinomial logistic regression to capture differences across multiple quality levels. By integrating these models, we aim to provide a comprehensive understanding of the racial disparities in housing affordability and quality.
