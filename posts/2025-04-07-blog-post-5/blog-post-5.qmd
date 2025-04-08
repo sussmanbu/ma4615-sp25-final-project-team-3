@@ -27,3 +27,12 @@ Special Address Patterns
 Outliers
 	•	The lowest recorded income is $17,796.63 (Lake Martha, WY), significantly below the average—possibly representing retirees, low-income households, or geographically isolated areas.
 	•	The highest home value appears in Lake Kevin, UT at $1,762,214.68, which—given its associated income—likely reflects a luxury property or secondary real estate market.
+	
+Combining datasets can present several challenges, particularly when dealing with housing data from different sources. In our case, integrating the original housing dataset from Kaggle with a new dataset introduced several difficulties:
+Inconsistent Data Formats: The two datasets utilized different formats for representing similar information. For instance, one dataset recorded dates in 'MM/DD/YYYY' format, while the other used 'YYYY-MM-DD'. Additionally, categorical variables like property types were labeled differently across datasets ('Single Family' vs. 'SFH'), necessitating meticulous standardization before integration.
+Disparate Feature Sets: Each dataset contained unique features not present in the other. The original dataset included detailed information on interior features such as the number of fireplaces and flooring types, whereas the new dataset provided data on neighborhood amenities and crime rates. This mismatch required careful consideration to align relevant features for a meaningful comparative analysis.
+Geographical Misalignment: The datasets covered overlapping but not identical geographical areas. The original dataset focused on urban regions, while the new dataset encompassed suburban areas. This discrepancy posed challenges in creating a unified dataset without introducing geographical biases.
+Temporal Differences: The datasets were collected during different time periods, with the original dataset covering 2015-2020 and the new dataset spanning 2018-2023. This temporal gap complicated trend analyses and required adjustments to account for time-based variations in the housing market.
+Addressing these challenges involved extensive data cleaning and transformation processes, including standardizing formats, reconciling feature differences, carefully selecting overlapping geographical areas, and aligning temporal aspects. Despite these efforts, some limitations persisted, underscoring the complexities inherent in combining disparate datasets for comprehensive analysis.
+ 
+ 
