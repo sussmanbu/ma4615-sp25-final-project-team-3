@@ -1,5 +1,131 @@
 [
   {
+    "objectID": "posts/2025-04-07-blog-post-5/blog-post-5.html",
+    "href": "posts/2025-04-07-blog-post-5/blog-post-5.html",
+    "title": "Blog Post 5",
+    "section": "",
+    "text": "https://www.kaggle.com/datasets/huyngohoang/housingcsv\nIncome Levels • Most addresses show annual incomes between $50,000 and $80,000, indicating that the sample group mainly consists of middle-class households. • There is noticeable regional variation in income, with coastal areas, military addresses (FPO/DPO), and locations near large cities tending to have higher median incomes. House Size • House sizes (estimated in square meters or square feet) typically fall between 5.0 and 8.5, with most values concentrated in the 6.0 to 7.5 range. • Larger homes tend to be found in the Midwest and rural areas (e.g., OK, PW, MO), possibly due to lower land costs. House Value vs. Income • In many cases, home values are roughly 20–30 times the annual income, aligning with typical U.S. housing market ratios. • For example, an income of $59,927.66 with a home value of $798,869.53 represents about a 13x multiple, suggesting affordable housing or strong purchasing power. • Conversely, in Taylorborough, OK, an income of $55,909.32 with a home value of $936,368.96 (about 17x) points to a higher housing cost burden. Population Density or Occupancy Metrics • Some locations like Lake Elizabeth, IN (6.17) and Janetbury, NM (8.09) show higher density, likely indicating urban or suburban environments. • In contrast, areas like Jacksonhaven, AZ (4.01) and Thomashaven, HI (6.62) show lower density, likely reflecting rural or less populated regions. Special Address Patterns • Multiple addresses start with FPO/DPO/USS/USNS, indicating military, diplomatic, or government-related residences. • These military-associated addresses tend to have income levels comparable to standard households, suggesting military families enjoy a middle-class lifestyle. Outliers • The lowest recorded income is $17,796.63 (Lake Martha, WY), significantly below the average—possibly representing retirees, low-income households, or geographically isolated areas. • The highest home value appears in Lake Kevin, UT at $1,762,214.68, which—given its associated income—likely reflects a luxury property or secondary real estate market.\nCombining datasets can present several challenges, particularly when dealing with housing data from different sources. In our case, integrating the original housing dataset from Kaggle with a new dataset introduced several difficulties: Inconsistent Data Formats: The two datasets utilized different formats for representing similar information. For instance, one dataset recorded dates in ‘MM/DD/YYYY’ format, while the other used ‘YYYY-MM-DD’. Additionally, categorical variables like property types were labeled differently across datasets (‘Single Family’ vs. ‘SFH’), necessitating meticulous standardization before integration. Disparate Feature Sets: Each dataset contained unique features not present in the other. The original dataset included detailed information on interior features such as the number of fireplaces and flooring types, whereas the new dataset provided data on neighborhood amenities and crime rates. This mismatch required careful consideration to align relevant features for a meaningful comparative analysis. Geographical Misalignment: The datasets covered overlapping but not identical geographical areas. The original dataset focused on urban regions, while the new dataset encompassed suburban areas. This discrepancy posed challenges in creating a unified dataset without introducing geographical biases. Temporal Differences: The datasets were collected during different time periods, with the original dataset covering 2015-2020 and the new dataset spanning 2018-2023. This temporal gap complicated trend analyses and required adjustments to account for time-based variations in the housing market. Addressing these challenges involved extensive data cleaning and transformation processes, including standardizing formats, reconciling feature differences, carefully selecting overlapping geographical areas, and aligning temporal aspects. Despite these efforts, some limitations persisted, underscoring the complexities inherent in combining disparate datasets for comprehensive analysis."
+  },
+  {
+    "objectID": "posts/2025-03-24-blog-post-3/blog-post-3.html",
+    "href": "posts/2025-03-24-blog-post-3/blog-post-3.html",
+    "title": "Blog Post 3",
+    "section": "",
+    "text": "We began our project by loading a cleaned version of our housing dataset (housing_cleaned.rds) to enable efficient analysis. The original data was reviewed to ensure completeness and consistency, focusing on key variables like price and zipcode. We removed columns with substantial missing values and filtered out extreme outliers to ensure that summary statistics would be meaningful. The cleaned dataset was saved as dataset/cleaned_dataset.rds for consistent use throughout the project. To begin our exploratory data analysis, we examined the distribution of housing prices and found a heavily right-skewed pattern, indicating a concentration of homes under $1 million and a smaller number of high-end properties. This insight suggested that median price would be a better measure than the mean in summarizing the data. Alongside technical preparation, we considered the ethical implications of our work using the Urban Institute’s Principles for Advancing Equitable Data Practice. One principle that stood out was the importance of transparency. Our dataset lacks demographic variables such as income, race, or household characteristics, which limits our ability to make conclusions about affordability or equity across different populations. Recognizing and communicating these limitations is critical to avoid misinterpretation or misuse of our findings. Another key principle was justice, particularly the responsibility to present results in ways that are accessible and useful to the communities most affected by housing trends. We plan to share simplified summaries and visualizations to ensure our insights are meaningful beyond academic settings. While our dataset is manageable and structured, the absence of demographic context poses a risk of overlooking structural inequities embedded in housing data. Differences in home prices across neighborhoods may reflect broader systemic issues like zoning, investment disparities, or historical segregation—factors not directly visible in the current dataset. Acknowledging this, we remain committed to ethical analysis and reporting, clearly outlining what our data can and cannot explain. Going forward, we aim to integrate additional context where possible and continue to align our methods with equity-centered practices."
+  },
+  {
+    "objectID": "posts/2025-03-03-blog-post-1/blog-post-1.html",
+    "href": "posts/2025-03-03-blog-post-1/blog-post-1.html",
+    "title": "Blog Post 1",
+    "section": "",
+    "text": "First Dataset:\nThe importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups.\nThis dataset can be used to examine the racial disparities in land ownership and how they may persist in terms of property size and urban-rural distribution. Historically, the US has confined minority groups to urban areas because of past segregation policies and limits their ability to acquire larger sets of land because of systemic racism. Since land and homeownership are major contributors to generational wealth, the dataset can also explore how land distribution contributes to the racial wealth gap by reflecting from broad economic inequities.\nThe IPUMS USA dataset accesses over 65,000 harmonized variables that cover a wide array of demographic, economic, social, and housing characteristics form 1790 to present data and compromises of billions of individual records and includes data from over 150 countries, but we will be focusing on Puerto Rico for research purposes.\nThe data will need to be manually selected and downloaded depending on the year and variables we want to focus on for analyzing trends. This can also serve as a challenge since we will need to have a clear understanding of the question we are trying to answer and be considerate about the variables we want to select.\nFinally, this data set will aim to answer questions such as the following: How does land ownership differ between urban and rural areas? Do racial disparities persist in property size and location? How does land distribution contribute to the racial wealth gap? What historical trends exist in land ownership in Puerto Rico?\nSource: IPUMS\n\nSecond Dataset:\n1.Data is from\nData-gov\n2.Give any details you can in regards to the number of rows and number of columns for your data.\nThe data consists of twelve columns and 6391 rows.\n3.Describe why and how the data was originally collected.\nIt describes Death rates for suicide, by sex, race, Hispanic origin, and age: United States. It satisfied racial and health topics. We get it because it has enough sample size, and with race and sex variables inside, we want to discover the relationships of suicide death rate between different races and between male and female.\n4.Are you able to load/clean the data?\nYes, The data variables do not have proper labels, and the variables for sex, race, and sex and race have been incorrectly combined (all placed in the same column). The data needs to be manually rearranged.\n5.What are the main questions you hope to address?\nWhich race has the highest suicide rate? Which gender has a higher suicide rate? After combining gender and race, which race has the highest suicide rate for a single gender? Which has the lowest? Investigate the underlying reasons.\n6.What challenges do you foresee?\nThe most difficult part is still processing the data. Splitting the combined “race and sex” into separate “race” and “sex” variables requires a significant amount of work.\n\nThird Dataset:\nExploring Racial Disparities Through Drug Overdose Data\nUnderstanding racial disparities in public health is essential for addressing systemic inequities. This dataset provides valuable insight into drug overdose death rates in the U.S., categorized by drug type, sex, age, race, and Hispanic origin. By analyzing this data, we can identify patterns in drug-related mortality and assess how different racial groups are affected. Drug Overdose Death Rates by Drug Type, Sex, Age, Race, and Hispanic Origin (United States) Source: Data.gov\nThis dataset, maintained by the Centers for Disease Control and Prevention (CDC), compiles data from national mortality records and public health reports. It tracks overdose deaths across different racial and ethnic groups and includes key demographic variables. This information is critical for examining racial disparities in drug-related deaths and identifying trends over time.\nDataset Details: Contains variables such as drug type, sex, age, race, and Hispanic origin. Tracks overdose rates over multiple years. Derived from official mortality and health data sources.\nResearch Questions: How do drug overdose death rates vary among racial and ethnic groups? Are specific drug types more prevalent in certain communities? How do age and gender intersect with racial disparities in overdose rates? Have overdose rates changed significantly for particular racial groups over time?\nPotential Challenges: Some racial groups may have underreported or incomplete data, which could impact analysis. The dataset may require extensive cleaning before conducting meaningful statistical evaluations. Socioeconomic and healthcare access factors are not included in the dataset but could provide additional context for disparities in overdose rates. This dataset provides an opportunity to explore racial disparities in drug-related deaths and identify underlying trends that contribute to these disparities. Understanding these patterns is essential for informing public health policies and improving targeted interventions to reduce overdose fatalities in disproportionately affected communities."
+  },
+  {
+    "objectID": "posts/2023-12-20-examples/examples.html",
+    "href": "posts/2023-12-20-examples/examples.html",
+    "title": "Examples",
+    "section": "",
+    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
+  },
+  {
+    "objectID": "posts/2023-12-20-examples/examples.html#figure-sizing",
+    "href": "posts/2023-12-20-examples/examples.html#figure-sizing",
+    "title": "Examples",
+    "section": "",
+    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
+  },
+  {
+    "objectID": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
+    "href": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
+    "title": "First Team Meeting",
+    "section": "",
+    "text": "These are the steps that you will take today to get started on your project. Today, you will just be brainstorming, and then next week, you’ll get started on the main aspects of the project.\n\nStart by introducing yourselves to each other. I also recommend creating a private channel on Microsoft Teams with all your team members. This will be a place that you can communicate and share ideas, code, problems, etc.\nDiscuss what aspects of the project each of you are more or less excited about. These include\n\nCollecting, cleaning, and munging data ,\nStatistical Modeling,\nVisualization,\nWriting about analyses, and\nManaging and reviewing team work.\n\nBased on this, discuss where you feel your strengths and weaknesses might be.\nNext, start brainstorming questions you hope to answer as part of this project. This question should in some way be addressing issues around racial disparities. The questions you come up with should be at the level of the question we started with when exploring the HMDA data. (“Are there differences in the ease of securing a loan based on the race of the applicant?”) You’ll revise your questions a lot over the course of the project. Come up with a few questions that your group might be interested in exploring.\nBased on these questions, start looking around for data that might help you analyze this. If you are looking at U.S. based data, data.gov is a good source and if you are looking internationally, I recommend checking out the World Bank. Also, try Googling for data. Include “data set” or “dataset” in your query. You might even include “CSV” or some other format. Using “data” by itself in your query often doesn’t work too well. Spend some time searching for data and try to come up with at least three possible data sets. (For your first blog post, you’ll write short proposals about each of them that I’ll give feedback on.)\nCome up with a team name. Next week, I’ll provide the Github Classroom assignment that will be where you work on your final project and you’ll have to have your team name finalized by then. Your project will be hosted online at the website with a URL like sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME.\n\nNext time, you’ll get your final project website set up and write your first blog post."
+  },
+  {
+    "objectID": "Final Project.html",
+    "href": "Final Project.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "Test\n\nTest"
+  },
+  {
+    "objectID": "big_picture.html",
+    "href": "big_picture.html",
+    "title": "Big Picture",
+    "section": "",
+    "text": "This comes from the file big_picture.qmd.\nThink of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations."
+  },
+  {
+    "objectID": "big_picture.html#rubric-on-this-page",
+    "href": "big_picture.html#rubric-on-this-page",
+    "title": "Big Picture",
+    "section": "Rubric: On this page",
+    "text": "Rubric: On this page\n\nTitle\n\nYour big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.\n\nClarity of Explanation\n\nYou should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.\nEach figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.\n\nCreativity\n\nDo your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.\n\nInteractive component\n\nQuality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?\n\nThis page should be self-contained.\n\nNote: This page should have no code visible, i.e. use #| echo: FALSE."
+  },
+  {
+    "objectID": "big_picture.html#rubric-other-components",
+    "href": "big_picture.html#rubric-other-components",
+    "title": "Big Picture",
+    "section": "Rubric: Other components",
+    "text": "Rubric: Other components\n\nVideo Recording\nMake a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.\n\n\nRest of the Site\nFinally, here are important things to keep in mind for the rest of the site.\nThe main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Team 3 Final Project",
+    "section": "",
+    "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team 3. The members of this team are below."
+  },
+  {
+    "objectID": "about.html#rodrigo-otero",
+    "href": "about.html#rodrigo-otero",
+    "title": "Team 3 Final Project",
+    "section": "Rodrigo Otero",
+    "text": "Rodrigo Otero\nRodrigo is an undergraduate Econ and Math senior. Github"
+  },
+  {
+    "objectID": "about.html#yiqi-jin",
+    "href": "about.html#yiqi-jin",
+    "title": "Team 3 Final Project",
+    "section": "Yiqi Jin",
+    "text": "Yiqi Jin\nYiqi is an undergraduate Econ and Math Junior. Github"
+  },
+  {
+    "objectID": "about.html#anshi-mittal",
+    "href": "about.html#anshi-mittal",
+    "title": "Team 3 Final Project",
+    "section": "Anshi Mittal",
+    "text": "Anshi Mittal\nAnshi is an undergraduate Data Science Junior"
+  },
+  {
+    "objectID": "about.html#dan-sussman",
+    "href": "about.html#dan-sussman",
+    "title": "Team 3 Final Project",
+    "section": "Dan Sussman",
+    "text": "Dan Sussman\nDan is a professor in the Math/Stat department and is the instructor for the course. Github\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This comes from the file analysis.qmd.\nWe describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.\nThe audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.\nWhile the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.\nThe style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process."
+  },
+  {
+    "objectID": "analysis.html#note-on-attribution",
+    "href": "analysis.html#note-on-attribution",
+    "title": "Analysis",
+    "section": "Note on Attribution",
+    "text": "Note on Attribution\nIn general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.\nIf you are directly quoting from a source, please make that clear. You can show long quotes using &gt; like this\n&gt; To be or not to be.\n\nTo be or not to be."
+  },
+  {
+    "objectID": "analysis.html#rubric-on-this-page",
+    "href": "analysis.html#rubric-on-this-page",
+    "title": "Analysis",
+    "section": "Rubric: On this page",
+    "text": "Rubric: On this page\nYou will\n\nIntroduce what motivates your Data Analysis (DA)\n\nWhich variables and relationships are you most interested in?\nWhat questions are you interested in answering?\nProvide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.\n\nModeling and Inference\n\nThe page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.\nExplain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)\nDescribe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.\n\nExplain the flaws and limitations of your analysis\n\nAre there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?\n\nClarity Figures\n\nAre your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?\nEach figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)\nDefault lm output and plots are typically not acceptable.\n\nClarity of Explanations\n\nHow well do you explain each figure/result?\nDo you provide interpretations that suggest further analysis or explanations for observed phenomenon?\n\nOrganization and cleanliness.\n\nMake sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.\nThis page should be self-contained, i.e. provide a description of the relevant data."
+  },
+  {
     "objectID": "data.html",
     "href": "data.html",
     "title": "Data",
@@ -28,53 +154,11 @@
     "text": "Rubric: On this page\nYou will\n\nDescribe where/how to find data.\n\nYou must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.\nWhy was the data collected/curated? Who put it together? (This is important, if you don’t know why it was collected then that might not be a good dataset to look at.\n\nDescribe the different data files used and what each variable means.\n\nIf you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.\nUse figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.\n\nDescribe any cleaning you had to do for your data.\n\nYou must include a link to your clean_data.R file.\nRename variables and recode factors to make data more clear.\nAlso, describe any additional R packages you used outside of those covered in class.\nDescribe and show code for how you combined multiple data files and any cleaning that was necessary for that.\nSome repetition of what you do in your clean_data.R file is fine and encouraged if it helps explain what you did.\n\nOrganization, clarity, cleanliness of the page\n\nMake sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.\nThis page should be self-contained."
   },
   {
-    "objectID": "Final Project.html",
-    "href": "Final Project.html",
-    "title": "Untitled",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MA [46]15 Final Project",
     "section": "",
-    "text": "Test\n\nTest"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Team 3 Final Project",
-    "section": "",
-    "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team 3. The members of this team are below."
-  },
-  {
-    "objectID": "about.html#rodrigo-otero",
-    "href": "about.html#rodrigo-otero",
-    "title": "Team 3 Final Project",
-    "section": "Rodrigo Otero",
-    "text": "Rodrigo Otero\nRodrigo is an undergraduate Econ and Math senior. Github"
-  },
-  {
-    "objectID": "about.html#dan-sussman",
-    "href": "about.html#dan-sussman",
-    "title": "Team 3 Final Project",
-    "section": "Dan Sussman",
-    "text": "Dan Sussman\nDan is a professor in the Math/Stat department and is the instructor for the course. Github\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
-  },
-  {
-    "objectID": "posts/2023-12-20-examples/examples.html",
-    "href": "posts/2023-12-20-examples/examples.html",
-    "title": "Examples",
-    "section": "",
-    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
-  },
-  {
-    "objectID": "posts/2023-12-20-examples/examples.html#figure-sizing",
-    "href": "posts/2023-12-20-examples/examples.html#figure-sizing",
-    "title": "Examples",
-    "section": "",
-    "text": "Here are some examples of changing the size of a figure.\n\nplot(1:10)\n\n\n\n\n\n\n\n\n\nplot(1:10)\n\n\n\n\n\n\n\n\nWe can also specify column: screen and out-width: 100% so that the figure will fill the screen. plot in the svg vector graphics file format.\n\nlibrary(ggplot2)\nggplot(pressure, aes(x = temperature, y = pressure)) + geom_point()"
-  },
-  {
-    "objectID": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
-    "href": "posts/2023-10-13-first-team-meeting/first-team-meeting.html",
-    "title": "First Team Meeting",
-    "section": "",
-    "text": "These are the steps that you will take today to get started on your project. Today, you will just be brainstorming, and then next week, you’ll get started on the main aspects of the project.\n\nStart by introducing yourselves to each other. I also recommend creating a private channel on Microsoft Teams with all your team members. This will be a place that you can communicate and share ideas, code, problems, etc.\nDiscuss what aspects of the project each of you are more or less excited about. These include\n\nCollecting, cleaning, and munging data ,\nStatistical Modeling,\nVisualization,\nWriting about analyses, and\nManaging and reviewing team work.\n\nBased on this, discuss where you feel your strengths and weaknesses might be.\nNext, start brainstorming questions you hope to answer as part of this project. This question should in some way be addressing issues around racial disparities. The questions you come up with should be at the level of the question we started with when exploring the HMDA data. (“Are there differences in the ease of securing a loan based on the race of the applicant?”) You’ll revise your questions a lot over the course of the project. Come up with a few questions that your group might be interested in exploring.\nBased on these questions, start looking around for data that might help you analyze this. If you are looking at U.S. based data, data.gov is a good source and if you are looking internationally, I recommend checking out the World Bank. Also, try Googling for data. Include “data set” or “dataset” in your query. You might even include “CSV” or some other format. Using “data” by itself in your query often doesn’t work too well. Spend some time searching for data and try to come up with at least three possible data sets. (For your first blog post, you’ll write short proposals about each of them that I’ll give feedback on.)\nCome up with a team name. Next week, I’ll provide the Github Classroom assignment that will be where you work on your final project and you’ll have to have your team name finalized by then. Your project will be hosted online at the website with a URL like sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME.\n\nNext time, you’ll get your final project website set up and write your first blog post."
+    "text": "Final Project due May 5, 2024 at 11:59pm.\nThis comes from the index.qmd file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 5\n\n\n\n\n\n\n\n\n\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 4\n\n\n\n\n\n\n\n\n\n\n\nMar 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 3\n\n\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 2\n\n\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGeneral Tips\n\n\n\n\n\nSome small but important tips to follow. \n\n\n\n\n\nOct 4, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2023-10-15-getting-started/getting-started.html",
@@ -91,52 +175,17 @@
     "text": "Use the tidyverse!\nYou don’t have to tell me what kind of chart something is. For example, the below is not a useful start to a sentence.\n\n\nThe graph presents a horizontal bar chart …\n\n\nEach page should be largely standalone.\nSometimes small tables or even inline numbers are better than a figure.\nRedundant colors (e.g. bar charts where each bar is a different color that doesn’t signify anything) often don’t help.\nProvide some details on how much data was removed in your cleaning process.\nUse the tidyverse!\nImagine I’m an impatient boss. Show me only what is important and relevant.\nCleaning must be entirely in R\nDon’t say things like, well if only everyone did like so and so than everything would be better. There are many things hiding behind the data that would go to explain things. This is an example of a bad conclusion.\n\n\nThe world could benefit form modeling its education systems after Europe’s.\n\nIt is fine to talk about how the European system is better according to certain metrics, but don’t assume that can easily translate to other regions.\n\nDon’t talk about your “journey”. The blog posts tell the story of your journey. The main pages should focus on the data and your findings.\n\n\nUse the tidyverse!\nNo but seriously, when asking ChatGPT to do your project for you, make sure to tell it to use the tidyverse, not base R."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MA [46]15 Final Project",
+    "objectID": "posts/2025-03-17-blog-post-2/blog-post-2.html",
+    "href": "posts/2025-03-17-blog-post-2/blog-post-2.html",
+    "title": "Blog Post 2",
     "section": "",
-    "text": "Final Project due May 5, 2024 at 11:59pm.\nThis comes from the index.qmd file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeneral Tips\n\n\n\n\n\nSome small but important tips to follow. \n\n\n\n\n\nOct 4, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
+    "text": "The data comes from the IPUMS website, an individual-level population database containing information for U.S. Census Data for Social, Economic, and Health Research. This dataset can be used to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. Since land and homeownership are major contributors to generational wealth, the dataset can also explore how land distribution contributes to the racial wealth gap.\nThe process of finding this data was not very smooth, the data we downloaded through the website was very large, because it was very many valid variables, when processing the data even though unnecessary data had been removed, the data size was still 78.9mb, which was larger than 50mb, so the dataset could only be reduced. The current sample population is 3405811 rows, the table up to a million rows, sample does exist bias, such as the variable value, many 99999999, which is obviously due to some kind of statistical limitations, the highest is only 99999999, if you really follow this data to statistics, will certainly make the real value is small.\nThe IPUMS USA dataset is widely used in research and policymaking, providing microdata from U.S. censuses and the American Community Survey. Researchers have used it to study migration, labor markets, education, and housing trends, leveraging its longitudinal depth to track societal changes over time. Policymakers rely on IPUMS data to guide urban planning, zoning laws, economic policies, and social programs. For example, housing lot size trends inform infrastructure and land-use decisions. Past research has explored questions like how immigration patterns impact the economy, what drives educational disparities, and how employment trends respond to economic cycles. By offering rich demographic insights, the dataset continues to shape both academic studies and policy development."
   },
   {
-    "objectID": "analysis.html",
-    "href": "analysis.html",
-    "title": "Analysis",
+    "objectID": "posts/2025-03-31-blog-post-4/blog-post-4.html",
+    "href": "posts/2025-03-31-blog-post-4/blog-post-4.html",
+    "title": "Blog Post 4",
     "section": "",
-    "text": "This comes from the file analysis.qmd.\nWe describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.\nThe audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.\nWhile the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.\nThe style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process."
-  },
-  {
-    "objectID": "analysis.html#note-on-attribution",
-    "href": "analysis.html#note-on-attribution",
-    "title": "Analysis",
-    "section": "Note on Attribution",
-    "text": "Note on Attribution\nIn general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.\nIf you are directly quoting from a source, please make that clear. You can show long quotes using &gt; like this\n&gt; To be or not to be.\n\nTo be or not to be."
-  },
-  {
-    "objectID": "analysis.html#rubric-on-this-page",
-    "href": "analysis.html#rubric-on-this-page",
-    "title": "Analysis",
-    "section": "Rubric: On this page",
-    "text": "Rubric: On this page\nYou will\n\nIntroduce what motivates your Data Analysis (DA)\n\nWhich variables and relationships are you most interested in?\nWhat questions are you interested in answering?\nProvide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.\n\nModeling and Inference\n\nThe page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.\nExplain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)\nDescribe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.\n\nExplain the flaws and limitations of your analysis\n\nAre there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?\n\nClarity Figures\n\nAre your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?\nEach figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)\nDefault lm output and plots are typically not acceptable.\n\nClarity of Explanations\n\nHow well do you explain each figure/result?\nDo you provide interpretations that suggest further analysis or explanations for observed phenomenon?\n\nOrganization and cleanliness.\n\nMake sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.\nThis page should be self-contained, i.e. provide a description of the relevant data."
-  },
-  {
-    "objectID": "big_picture.html",
-    "href": "big_picture.html",
-    "title": "Big Picture",
-    "section": "",
-    "text": "This comes from the file big_picture.qmd.\nThink of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations."
-  },
-  {
-    "objectID": "big_picture.html#rubric-on-this-page",
-    "href": "big_picture.html#rubric-on-this-page",
-    "title": "Big Picture",
-    "section": "Rubric: On this page",
-    "text": "Rubric: On this page\n\nTitle\n\nYour big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.\n\nClarity of Explanation\n\nYou should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.\nEach figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.\n\nCreativity\n\nDo your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.\n\nInteractive component\n\nQuality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?\n\nThis page should be self-contained.\n\nNote: This page should have no code visible, i.e. use #| echo: FALSE."
-  },
-  {
-    "objectID": "big_picture.html#rubric-other-components",
-    "href": "big_picture.html#rubric-other-components",
-    "title": "Big Picture",
-    "section": "Rubric: Other components",
-    "text": "Rubric: Other components\n\nVideo Recording\nMake a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.\n\n\nRest of the Site\nFinally, here are important things to keep in mind for the rest of the site.\nThe main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template."
+    "text": "One of the most obvious trends in our data was the strong right-skew in housing prices, which we initially observed in Blog Post 3. To go deeper, we explored whether this trend was uniform across locations by analyzing median prices by zip code. We found large geographic variation, with some zip codes having dramatically higher median prices than others. This suggests that the overall skew may actually be masking meaningful disparities in affordability and land value between areas—making the trend more interesting than initially assumed. It also raised the possibility that structural factors, like historic zoning or disinvestment, could be influencing housing markets. We plan to explore further relationships between variables to explain the aforementioned impact of structural factors, uncovering patterns that go beyond simple price distributions. For example, we’re interested in how property size, location (urban vs. rural), and racial demographics may interact with housing prices. Understanding how these variables fit together will help us build models that reflect the intersectionality of housing access, affordability, and equity. By layering in more dimensions of the data, we can move toward a more nuanced analysis of housing inequality. To get a clearer picture of the typical housing market and prepare for future modeling, we log-transformed the price variable to reduce the influence of extreme values. This normalized the distribution and revealed that most homes fall within a tighter price band than the raw data suggests. This step not only deepens our understanding of the price distribution but also points to potential predictor variables—such as location or neighborhood characteristics—that we can explore more fully through modeling in future posts. Graph 1 describes the distribution of house records amongst all racial groups. It is heavily skewed with the white racial group showing majority in records. Graph 2 describes the same as the chart above but shows the difference in range of household values between each racial group. Graph 3 describes the distribution between racial groups and the value of their households depending on the market. It is split up into three categories (low, medium and high). This study aims to analyze housing conditions among different racial groups, focusing on rent prices, geographic location, and homeownership status. By examining these factors, we seek to understand potential disparities in housing affordability and accessibility. While the original analysis did not include housing size, we incorporate square footage as an additional variable to better assess its impact on rent prices and overall housing conditions. To achieve this, we define several key response variables. First, rent price (continuous variable) serves as a primary indicator of housing affordability. Second, homeownership status (binary variable: Yes/No) allows us to explore differences in property ownership rates across racial groups. Additionally, housing quality (either continuous or categorical) provides insight into the standard of living, considering factors such as building conditions and available amenities. These variables are analyzed in relation to explanatory factors such as race, location, household income, education level, and market conditions. For statistical modeling, we employ linear regression to analyze rent prices and housing quality when treated as a continuous variable. Logistic regression is applied to predict homeownership probability based on demographic and economic factors. If housing quality is categorized, we use multinomial logistic regression to capture differences across multiple quality levels. By integrating these models, we aim to provide a comprehensive understanding of the racial disparities in housing affordability and quality."
   }
 ]
