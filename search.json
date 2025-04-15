@@ -2,7 +2,7 @@
   {
     "objectID": "posts/2025-04-14-blog-post-6/blog-post-6.html",
     "href": "posts/2025-04-14-blog-post-6/blog-post-6.html",
-    "title": "Blog post 6",
+    "title": "Blog Post 6",
     "section": "",
     "text": "We campared the relationships between Area (sqft) of houses and price, they have strong positive linear relations, larger house is more expensive. We can also observed that most houses is smaller than 12000 sqrt, and less than one million. From the data perspective, there are significantly more cheaper and smaller houses.  From the chart ‘Price by Furnishing Status’, it’s clear that furnished houses are significantly more expensive, semi-furnished ones are moderate but have a lower bound similar to furnished houses, while unfurnished houses are noticeably cheaper. Perhaps semi-furnished could be a good choice.  From the chart ‘Price by Number of Bedrooms’, it’s clear that houses with one bedroom have a huge price gap compared to others. As the number of bedrooms increases (from 2 to 5), the price of the house increases as well. The price difference between houses with 3, 4, and 5 bedrooms isn’t very large, but for houses with 6 bedrooms, the price decreases, and it’s almost the same as the average price for 3-bedroom houses. This could be due to insufficient sample size, or it might suggest that houses with 6 bedrooms are not as practical compared to those with 4 or 5 bedrooms. We hypothesize that a 5-bedroom house with good furnishings is worth more than a 6-bedroom house.  From the ‘Price vs Parking Space’ chart, it’s evident that houses with 0, 1, and 2 parking spaces show a gradual increase in price, while houses with 3 parking spaces experience a decline. We hypothesize that, similar to the number of bedrooms chart, the reasons could be insufficient sample size or a lack of practicality  This graph compares the correlations between key variables, with darker colors representing stronger correlations. We can see that area and the number of bathrooms have the greatest influence on price, which is quite interesting—bedrooms, in contrast, have a weaker impact than bathrooms. This makes sense: luxury homes often have more bathrooms on each floor, sometimes even more than the number of bedrooms, while smaller houses typically have a one-to-one ratio between bathrooms and bedrooms. The relationship between bedrooms and bathrooms is also not particularly strong. The number of stories has the next highest impact on house price after area and bathrooms. The weak correlation between area and bedrooms suggests that luxury homes may include a wide range of spaces, and bedrooms are not densely packed."
   },
@@ -39,7 +39,7 @@
     "href": "index.html",
     "title": "MA [46]15 Final Project",
     "section": "",
-    "text": "Final Project due May 5, 2024 at 11:59pm.\nThis comes from the index.qmd file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlog post 6\n\n\n\n\n\n\n\n\n\n\n\nApr 14, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 4\n\n\n\n\n\n\n\n\n\n\n\nMar 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 3\n\n\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 2\n\n\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGeneral Tips\n\n\n\n\n\nSome small but important tips to follow. \n\n\n\n\n\nOct 4, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
+    "text": "Final Project due May 5, 2024 at 11:59pm.\nThis comes from the index.qmd file.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 6\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApr 14, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBlog Post 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGeneral Tips\n\n\n\n\n\nSome small but important tips to follow. \n\n\n\n\n\nOct 4, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nExamples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nGetting started\n\n\n\n\n\n\n\n\nDirections to set up your website and create your first post. \n\n\n\n\n\nFeb 23, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Team Meeting\n\n\n\n\n\n\n\n\nThis post details the steps you’ll take for your first team meeting. \n\n\n\n\n\nFeb 21, 2024\n\n\nDaniel Sussman\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "data.html",
@@ -93,35 +93,35 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Team 3 Final Project",
+    "title": "About",
     "section": "",
     "text": "This comes from the file about.qmd.\nThis is a website for the final project for MA[46]15 Data Science with R by Team 3. The members of this team are below."
   },
   {
     "objectID": "about.html#rodrigo-otero",
     "href": "about.html#rodrigo-otero",
-    "title": "Team 3 Final Project",
+    "title": "About",
     "section": "Rodrigo Otero",
     "text": "Rodrigo Otero\nRodrigo is an undergraduate Econ and Math senior. Github"
   },
   {
     "objectID": "about.html#yiqi-jin",
     "href": "about.html#yiqi-jin",
-    "title": "Team 3 Final Project",
+    "title": "About",
     "section": "Yiqi Jin",
     "text": "Yiqi Jin\nYiqi is an undergraduate Econ and Math Junior. Github"
   },
   {
     "objectID": "about.html#anshi-mittal",
     "href": "about.html#anshi-mittal",
-    "title": "Team 3 Final Project",
+    "title": "About",
     "section": "Anshi Mittal",
     "text": "Anshi Mittal\nAnshi is an undergraduate Data Science Junior"
   },
   {
     "objectID": "about.html#dan-sussman",
     "href": "about.html#dan-sussman",
-    "title": "Team 3 Final Project",
+    "title": "About",
     "section": "Dan Sussman",
     "text": "Dan Sussman\nDan is a professor in the Math/Stat department and is the instructor for the course. Github\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
   },
@@ -186,7 +186,7 @@
     "href": "posts/2025-03-24-blog-post-3/blog-post-3.html",
     "title": "Blog Post 3",
     "section": "",
-    "text": "We began our project by loading a cleaned version of our housing dataset (housing_cleaned.rds) to enable efficient analysis. The original data was reviewed to ensure completeness and consistency, focusing on key variables like price and zipcode. We removed columns with substantial missing values and filtered out extreme outliers to ensure that summary statistics would be meaningful. The cleaned dataset was saved as dataset/cleaned_dataset.rds for consistent use throughout the project. To begin our exploratory data analysis, we examined the distribution of housing prices and found a heavily right-skewed pattern, indicating a concentration of homes under $1 million and a smaller number of high-end properties. This insight suggested that median price would be a better measure than the mean in summarizing the data. Alongside technical preparation, we considered the ethical implications of our work using the Urban Institute’s Principles for Advancing Equitable Data Practice. One principle that stood out was the importance of transparency. Our dataset lacks demographic variables such as income, race, or household characteristics, which limits our ability to make conclusions about affordability or equity across different populations. Recognizing and communicating these limitations is critical to avoid misinterpretation or misuse of our findings. Another key principle was justice, particularly the responsibility to present results in ways that are accessible and useful to the communities most affected by housing trends. We plan to share simplified summaries and visualizations to ensure our insights are meaningful beyond academic settings. While our dataset is manageable and structured, the absence of demographic context poses a risk of overlooking structural inequities embedded in housing data. Differences in home prices across neighborhoods may reflect broader systemic issues like zoning, investment disparities, or historical segregation—factors not directly visible in the current dataset. Acknowledging this, we remain committed to ethical analysis and reporting, clearly outlining what our data can and cannot explain. Going forward, we aim to integrate additional context where possible and continue to align our methods with equity-centered practices."
+    "text": "We began our project by loading a cleaned version of our housing dataset (housing_cleaned.rds) to enable efficient analysis. The original data was reviewed to ensure completeness and consistency, focusing on key variables like price and zipcode. We removed columns with substantial missing values and filtered out extreme outliers to ensure that summary statistics would be meaningful. The cleaned dataset was saved as dataset/cleaned_dataset.rds for consistent use throughout the project. To begin our exploratory data analysis, we examined the distribution of housing prices and found a heavily right-skewed pattern, indicating a concentration of homes under $1 million and a smaller number of high-end properties. This insight suggested that median price would be a better measure than the mean in summarizing the data.  Alongside technical preparation, we considered the ethical implications of our work using the Urban Institute’s Principles for Advancing Equitable Data Practice. One principle that stood out was the importance of transparency. Our dataset lacks demographic variables such as income, race, or household characteristics, which limits our ability to make conclusions about affordability or equity across different populations. Recognizing and communicating these limitations is critical to avoid misinterpretation or misuse of our findings. Another key principle was justice, particularly the responsibility to present results in ways that are accessible and useful to the communities most affected by housing trends. We plan to share simplified summaries and visualizations to ensure our insights are meaningful beyond academic settings. While our dataset is manageable and structured, the absence of demographic context poses a risk of overlooking structural inequities embedded in housing data. Differences in home prices across neighborhoods may reflect broader systemic issues like zoning, investment disparities, or historical segregation—factors not directly visible in the current dataset. Acknowledging this, we remain committed to ethical analysis and reporting, clearly outlining what our data can and cannot explain. Going forward, we aim to integrate additional context where possible and continue to align our methods with equity-centered practices."
   },
   {
     "objectID": "posts/2025-04-07-blog-post-5/blog-post-5.html",
