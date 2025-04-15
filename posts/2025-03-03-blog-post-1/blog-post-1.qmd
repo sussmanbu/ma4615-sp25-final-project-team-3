@@ -1,9 +1,12 @@
 ---
 title: "Blog Post 1"
+subtitle: ""
 author: ""
 date: "2025-03-03"
+image-alt: ""
+categories: []
 date-modified: "2025-03-03"
-draft: FALSE
+draft: false
 ---
 
 First Dataset:

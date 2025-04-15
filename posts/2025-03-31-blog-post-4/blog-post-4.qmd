@@ -1,15 +1,12 @@
 ---
 title: "Blog Post 4"
+subtitle: ""
 author: ""
 date: "2025-03-31"
+image-alt: ""
+categories: []
 date-modified: "2025-03-31"
-draft: FALSE
-format:
-  html:
-    toc: true
-    toc-depth: 2
-    number-sections: true
-    theme: cosmo
+draft: false
 ---
 One of the most obvious trends in our data was the strong right-skew in housing prices, which we initially observed in Blog Post 3. To go deeper, we explored whether this trend was uniform across locations by analyzing median prices by zip code. We found large geographic variation, with some zip codes having dramatically higher median prices than others. This suggests that the overall skew may actually be masking meaningful disparities in affordability and land value between areas—making the trend more interesting than initially assumed. It also raised the possibility that structural factors, like historic zoning or disinvestment, could be influencing housing markets.
 We plan to explore further relationships between variables to explain the aforementioned impact of structural factors, uncovering patterns that go beyond simple price distributions. For example, we’re interested in how property size, location (urban vs. rural), and racial demographics may interact with housing prices. Understanding how these variables fit together will help us build models that reflect the intersectionality of housing access, affordability, and equity. By layering in more dimensions of the data, we can move toward a more nuanced analysis of housing inequality.

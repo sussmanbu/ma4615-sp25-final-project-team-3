@@ -1,17 +1,14 @@
 ---
-title: "Blog post 6"
+title: "Blog Post 6"
+subtitle: ""
 author: ""
 date: "2025-04-14"
+image-alt: ""
+categories: []
 date-modified: "2025-04-14"
 draft: false
-format:
-  html:
-    css: styles.css
-    toc: true
-    toc-depth: 2
-    number-sections: true
-    theme: cosmo
 ---
+
 We campared the relationships between Area (sqft) of houses and price, they have strong positive linear relations, larger house is more expensive. We can also observed that most houses is smaller than 12000 sqrt, and less than one million. From the data perspective, there are significantly more cheaper and smaller houses.
 ![](1.png)
 From the chart 'Price by Furnishing Status', it's clear that furnished houses are significantly more expensive, semi-furnished ones are moderate but have a lower bound similar to furnished houses, while unfurnished houses are noticeably cheaper. Perhaps semi-furnished could be a good choice.

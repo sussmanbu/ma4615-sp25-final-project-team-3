@@ -1,9 +1,12 @@
 ---
 title: "Blog Post 2"
+subtitle: ""
 author: ""
 date: "2025-03-17"
+image-alt: ""
+categories: []
 date-modified: "2025-03-17"
-draft: FALSE
+draft: false
 ---
 
 1. The data comes from the IPUMS website, an individual-level population database containing information for U.S. Census Data for Social, Economic, and Health Research. This dataset can be used to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups.  Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. Since land and homeownership are major contributors to generational wealth, the dataset can also explore how land distribution contributes to the racial wealth gap. 

@@ -1,11 +1,15 @@
 ---
 title: "Blog Post 5"
+subtitle: ""
 author: ""
 date: "2025-04-07"
+image-alt: ""
+categories: []
 date-modified: "2025-04-07"
-draft: FALSE
+draft: false
 ---
 
+We found a new data to compare with. 
 https://www.kaggle.com/datasets/huyngohoang/housingcsv
 
 Income Levels
