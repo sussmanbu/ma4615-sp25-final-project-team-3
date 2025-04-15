@@ -1,11 +1,12 @@
 ---
-title: "Blog-post-6"
+title: "Blog post 6"
 author: ""
 date: "2025-04-14"
 date-modified: "2025-04-14"
 draft: false
 format:
   html:
+    css: styles.css
     toc: true
     toc-depth: 2
     number-sections: true
