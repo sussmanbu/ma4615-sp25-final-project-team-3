@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="">
-<meta name="dcterms.date" content="2025-03-31">
+<meta name="dcterms.date" content="2025-04-14">
 
-<title>Blog Post 4 – Team 3 Final Project</title>
+<title>Blog-post-6 – Team 3 Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Blog Post 4</h1>
+      <h1 class="title">Blog-post-6</h1>
                       </div>
   </div>
     
@@ -128,14 +128,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 31, 2025</p>
+        <p class="date">April 14, 2025</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">March 31, 2025</p>
+        <p class="date-modified">April 14, 2025</p>
       </div>
     </div>
       
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>One of the most obvious trends in our data was the strong right-skew in housing prices, which we initially observed in Blog Post 3. To go deeper, we explored whether this trend was uniform across locations by analyzing median prices by zip code. We found large geographic variation, with some zip codes having dramatically higher median prices than others. This suggests that the overall skew may actually be masking meaningful disparities in affordability and land value between areas—making the trend more interesting than initially assumed. It also raised the possibility that structural factors, like historic zoning or disinvestment, could be influencing housing markets. We plan to explore further relationships between variables to explain the aforementioned impact of structural factors, uncovering patterns that go beyond simple price distributions. For example, we’re interested in how property size, location (urban vs.&nbsp;rural), and racial demographics may interact with housing prices. Understanding how these variables fit together will help us build models that reflect the intersectionality of housing access, affordability, and equity. By layering in more dimensions of the data, we can move toward a more nuanced analysis of housing inequality. <img src="3.png" class="img-fluid"> To get a clearer picture of the typical housing market and prepare for future modeling, we log-transformed the price variable to reduce the influence of extreme values. This normalized the distribution and revealed that most homes fall within a tighter price band than the raw data suggests. This step not only deepens our understanding of the price distribution but also points to potential predictor variables—such as location or neighborhood characteristics—that we can explore more fully through modeling in future posts. Graph 1 describes the distribution of house records amongst all racial groups. It is heavily skewed with the white racial group showing majority in records. <img src="1.png" class="img-fluid"> Graph 2 describes the same as the chart above but shows the difference in range of household values between each racial group. Graph 3 describes the distribution between racial groups and the value of their households depending on the market. It is split up into three categories (low, medium and high). <img src="2.png" class="img-fluid"> This study aims to analyze housing conditions among different racial groups, focusing on rent prices, geographic location, and homeownership status. By examining these factors, we seek to understand potential disparities in housing affordability and accessibility. While the original analysis did not include housing size, we incorporate square footage as an additional variable to better assess its impact on rent prices and overall housing conditions. To achieve this, we define several key response variables. First, rent price (continuous variable) serves as a primary indicator of housing affordability. Second, homeownership status (binary variable: Yes/No) allows us to explore differences in property ownership rates across racial groups. Additionally, housing quality (either continuous or categorical) provides insight into the standard of living, considering factors such as building conditions and available amenities. These variables are analyzed in relation to explanatory factors such as race, location, household income, education level, and market conditions. For statistical modeling, we employ linear regression to analyze rent prices and housing quality when treated as a continuous variable. Logistic regression is applied to predict homeownership probability based on demographic and economic factors. If housing quality is categorized, we use multinomial logistic regression to capture differences across multiple quality levels. By integrating these models, we aim to provide a comprehensive understanding of the racial disparities in housing affordability and quality.</p>
+<p>We campared the relationships between Area (sqft) of houses and price, they have strong positive linear relations, larger house is more expensive. We can also observed that most houses is smaller than 12000 sqrt, and less than one million. From the data perspective, there are significantly more cheaper and smaller houses. <img src="1.png" class="img-fluid"> From the chart ‘Price by Furnishing Status’, it’s clear that furnished houses are significantly more expensive, semi-furnished ones are moderate but have a lower bound similar to furnished houses, while unfurnished houses are noticeably cheaper. Perhaps semi-furnished could be a good choice. <img src="2.png" class="img-fluid"> From the chart ‘Price by Number of Bedrooms’, it’s clear that houses with one bedroom have a huge price gap compared to others. As the number of bedrooms increases (from 2 to 5), the price of the house increases as well. The price difference between houses with 3, 4, and 5 bedrooms isn’t very large, but for houses with 6 bedrooms, the price decreases, and it’s almost the same as the average price for 3-bedroom houses. This could be due to insufficient sample size, or it might suggest that houses with 6 bedrooms are not as practical compared to those with 4 or 5 bedrooms. We hypothesize that a 5-bedroom house with good furnishings is worth more than a 6-bedroom house. <img src="3.png" class="img-fluid"> From the ‘Price vs Parking Space’ chart, it’s evident that houses with 0, 1, and 2 parking spaces show a gradual increase in price, while houses with 3 parking spaces experience a decline. We hypothesize that, similar to the number of bedrooms chart, the reasons could be insufficient sample size or a lack of practicality <img src="4.png" class="img-fluid"> This graph compares the correlations between key variables, with darker colors representing stronger correlations. We can see that area and the number of bathrooms have the greatest influence on price, which is quite interesting—bedrooms, in contrast, have a weaker impact than bathrooms. This makes sense: luxury homes often have more bathrooms on each floor, sometimes even more than the number of bedrooms, while smaller houses typically have a one-to-one ratio between bathrooms and bedrooms. The relationship between bedrooms and bathrooms is also not particularly strong. The number of stories has the next highest impact on house price after area and bathrooms. The weak correlation between area and bedrooms suggests that luxury homes may include a wide range of spaces, and bedrooms are not densely packed. <img src="5.png" class="img-fluid"></p>
 
 
 
