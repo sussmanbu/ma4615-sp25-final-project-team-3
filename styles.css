@@ -1,4 +1,5 @@
 /* css styles */
-.entry-title {
+h3.listing-title,
+a.listing-title {
   font-weight: bold !important;
 }
