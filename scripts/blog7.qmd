@@ -1,0 +1,49 @@
+---
+title: "Blog Post 7"
+subtitle: ""
+author: ""
+date: "2025-04-22"
+image-alt: ""
+categories: []
+date-modified: "2025-04-22"
+runtime: shiny
+draft: false
+---
+
+```{r setup}
+library(tidyverse)
+library(shiny)
+library(leaflet)
+
+housing_cleaned <- readRDS("C:/Users/24725/Documents/ma4615-sp25-final-project-team-3/housing_cleaned.rds") %>%
+  mutate(RACE = factor(RACE, levels = 1:9, labels = c(
+    "White",
+    "Black/African American",
+    "American Indian or Alaska Native",
+    "Chinese",
+    "Japanese",
+    "Other Asian or Pacific Islander",
+    "Other race, nec",
+    "Two major races",
+    "Three or more major races"
+  )))
+```
+
+```{r}
+selectInput("selected_race", "Choose a race:", choices = sort(unique(housing_cleaned$RACE)))
+```
+
+```{r, context="server"}
+renderPlot({
+  housing_cleaned %>%
+    filter(RACE == input$selected_race) %>%
+    ggplot(aes(x = FTOTINC, y = RACE)) +
+    geom_boxplot(fill = "skyblue", outlier.shape = NA) +
+    scale_x_log10() +
+    labs(title = paste("Income Distribution for Race:", input$selected_race),
+         x = "Total Household Income (log scale)",
+         y = "Race")
+})
+```
+
+
