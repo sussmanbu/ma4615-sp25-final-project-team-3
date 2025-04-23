@@ -1,0 +1,149 @@
+---
+title: "Blog Post 7"
+subtitle: ""
+author: ""
+date: "2025-04-22"
+image-alt: ""
+categories: []
+date-modified: "2025-04-22"
+runtime: shiny
+draft: false
+---
+
+```{r setup}
+library(tidyverse)
+library(shiny)
+library(leaflet)
+
+housing_cleaned <- readRDS("C:/Users/24725/Documents/ma4615-sp25-final-project-team-3/housing_cleaned.rds") %>%
+  mutate(RACE = factor(RACE, levels = 1:9, labels = c(
+    "White",
+    "Black/African American",
+    "American Indian or Alaska Native",
+    "Chinese",
+    "Japanese",
+    "Other Asian or Pacific Islander",
+    "Other race, nec",
+    "Two major races",
+    "Three or more major races"
+  )))
+```
+
+# Housing Data Overview
+
+Explore trends in rent, income, and home values across different states and years.
+
+---
+
+## Progress Reflection
+
+This week, we made substantial progress on the interactive component of our final project. The main feature we added is a boxplot visualization of household income across racial groups. This allows users to see big-picture trends in income inequality based on race. By using scale_y_log10(), we make sure outliers don’t dominate the plot and users can still explore subtle differences in the distributions.
+
+Importantly, the interactive includes a personal aspect. Users can filter the full dataset by race and state elsewhere in the project, and we plan to expand this to include personalized comparisons, where users can input their own income and compare it to medians by race or state. This helps people engage with the data on a personal level, rather than just looking at abstract charts.
+
+Next steps include adding a state-level map of rent burden and building more guidance into the interface—tooltips, hover labels, and prompts to help users discover insights they might not expect.
+
+
+---
+
+## Race-Based Income Distribution
+This visualization displays the distribution of total household income (FTOTINC) for a selected racial group using a horizontal boxplot. The race is selected via a dropdown menu, and the income values are shown on a logarithmic scale to accommodate skewed distributions and highlight relative differences. This plot helps reveal the spread, central tendency, and potential outliers of income within each racial category, supporting a clearer understanding of economic disparities across demographics.
+```{r}
+selectInput("selected_race", "Choose a race:", choices = sort(unique(housing_cleaned$RACE)))
+```
+
+```{r, context="server"}
+renderPlot({
+  housing_cleaned %>%
+    filter(RACE == input$selected_race) %>%
+    ggplot(aes(x = FTOTINC, y = RACE)) +
+    geom_boxplot(fill = "skyblue", outlier.shape = NA) +
+    scale_x_log10() +
+    labs(title = paste("Income Distribution for Race:", input$selected_race),
+         x = "Total Household Income (log scale)",
+         y = "Race")
+})
+```
+---
+
+## Massachusetts Housing Insights by Year and Race
+This Shiny application provides an interactive visualization of housing data in Massachusetts, focusing on average household income and home values across time and racial groups. Users can select a specific year to explore the overall average income and home values for that year, or choose a specific race group to compare economic indicators across demographic lines. The app offers clear visual summaries to help identify patterns and disparities in housing and income data.
+
+
+```{r}
+housing_data <- readRDS("C:/Users/24725/Documents/ma4615-sp25-final-project-team-3/housing_cleaned.rds") %>%
+  mutate(RACE = factor(RACE, levels = 1:9, labels = c(
+    "White",
+    "Black/African American",
+    "American Indian or Alaska Native",
+    "Chinese",
+    "Japanese",
+    "Other Asian or Pacific Islander",
+    "Other race, nec",
+    "Two major races",
+    "Three or more major races"
+  )))
+# Define UI
+ui <- fluidPage(
+   # App title
+   titlePanel("Massachusetts Housing Data Explorer"),
+   # Sidebar controls
+   sidebarLayout(
+       sidebarPanel(
+           sliderInput("year", "Select Year:",
+                       min = min(housing_data$YEAR, na.rm = TRUE),
+                       max = max(housing_data$YEAR, na.rm = TRUE),
+                       value = 2023,
+                       step = 1,
+                       sep = ""),
+           selectInput("race_group", "Select Race Group (Code):",
+                       choices = sort(unique(housing_data$RACE)),
+                       selected = 8)
+       ),
+       # Output plots
+       mainPanel(
+           h4("Average Home Value and Income by Year"),
+           plotOutput("valueIncomePlot"),
+           br(),
+           h4("Average Home Value and Income by Race"),
+           plotOutput("racePlot")
+       )
+   )
+)
+# Define server logic
+server <- function(input, output) {
+   # Chart 1: Average Home Value and Income for selected year
+   output$valueIncomePlot <- renderPlot({
+       filtered <- housing_data %>% filter(YEAR == input$year)
+       avg_income <- mean(filtered$FTOTINC[filtered$FTOTINC > 0], na.rm = TRUE)
+       avg_value <- mean(filtered$VALUEH[filtered$VALUEH > 0], na.rm = TRUE)
+       summary_df <- data.frame(
+           Category = c("Average Income", "Average Home Value"),
+           Value = c(avg_income, avg_value)
+       )
+       ggplot(summary_df, aes(x = Category, y = Value, fill = Category)) +
+           geom_bar(stat = "identity", width = 0.6) +
+           labs(title = paste("Averages in", input$year),
+                y = "USD", x = "") +
+           theme_minimal() +
+           theme(legend.position = "none")
+   })
+   # Chart 2: Average Home Value and Income by race group
+   output$racePlot <- renderPlot({
+       filtered_race <- housing_data %>% filter(RACE == input$race_group)
+       avg_income_race <- mean(filtered_race$FTOTINC[filtered_race$FTOTINC > 0], na.rm = TRUE)
+       avg_value_race <- mean(filtered_race$VALUEH[filtered_race$VALUEH > 0], na.rm = TRUE)
+       race_df <- data.frame(
+           Metric = c("Average Income", "Average Home Value"),
+           Value = c(avg_income_race, avg_value_race)
+       )
+       ggplot(race_df, aes(x = Metric, y = Value, fill = Metric)) +
+           geom_bar(stat = "identity", width = 0.6) +
+           labs(title = paste("Race Group", input$race_group, "— Income vs Home Value"),
+                y = "USD", x = "") +
+           theme_minimal() +
+           theme(legend.position = "none")
+   })
+}
+shinyApp(ui = ui, server = server)
+```
