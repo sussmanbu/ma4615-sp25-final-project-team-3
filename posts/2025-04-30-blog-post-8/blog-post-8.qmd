@@ -1,0 +1,59 @@
+---
+title: "Blog Post 8"
+subtitle: ""
+author: ""
+date: "2025-04-30"
+image-alt: ""
+categories: []
+date-modified: "2025-04-30"
+draft: false
+format: html
+---
+# Final Blog Post: Wrapping up the Project
+
+## Continuing Exploratory Data Analysis
+
+In Blog 5, we compared several key relationships:  
+- Price vs Area  
+- Price vs Furnishing Status  
+- Price vs Number of Bedrooms  
+- Price by Parking Space  
+- Correlation Matrix  
+
+We also analyzed House Value vs Race and the distribution of houses across races.
+
+To continue exploring the data, we plan to conduct deeper comparisons between variables in the **original dataset** and variables in the **new dataset** we attached. Specifically, we aim to:
+- Find more relationships across datasets.
+- Compare **Price of House vs Race** and contrast it with **House Value vs Race**.  
+  These are similar comparisons but from different datasets, and it is meaningful to see whether their patterns are consistent.  
+- Interpret findings by explaining why certain trends or strong correlations occur, and relate them to real-world economic and social contexts.
+
+By doing so, we will strengthen the robustness of our analysis and better reveal hidden connections between race, income, and housing characteristics.
+
+## Thesis Statement
+
+**Question Framed:**  
+How does Land Distribution contribute to the racial wealth gap in reflection of broad economic inequities?
+
+**Thesis:**  
+The significance in property characteristics and their associated values strongly correlates with racial demographics. Features such as larger area sizes, increased bedroom counts, greater availability of parking spaces, and better furnishing status are consistently associated with higher property values. However, these property attributes are not equally distributed across racial groups and demonstrate clear gaps between White homeowners and racial minority communities.
+
+Predominantly, White populations are known to live in the higher-value concentration of homes, indicating their ability to accumulate more substantial wealth. Conversely, minority racial groups disproportionately reside in lower-value properties, reflecting systemic barriers in accessing high-quality housing that sustain economic inequities. 
+
+The underrepresentation of minority groups in high-value properties directly limits their capacity for intergenerational wealth accumulation through homeownership, reinforcing existing economic divides. Thus, disparities in housing characteristics such as area, number of bedrooms, and parking amenities not only reflect broader economic inequities but also actively sustain and widen the racial wealth gap by affecting minority communities' long-term financial stability and growth potential.
+
+## Polishing Visualizations and Tables
+
+To improve our visualizations and tables, we are focusing on both aesthetics and clarity:
+
+### Visualization Improvements
+- Use the **`ggpubr`** package to give plots a clean and professional look.
+- Apply **`ggarrange()`** to line up multiple plots for better side-by-side comparison.
+- Add clear **titles**, **captions**, and **annotations** to highlight key patterns such as differences in housing prices or income across races.
+- When relevant, use **`stat_compare_means()`** to directly display statistical significance on the plots.
+
+### Table Improvements
+- Use the **`gt`** package to create clean, well-labeled tables with bold headers and effective formatting.
+- For larger datasets (e.g., income by race or home values over time), explore **interactive tables** using **`DT`** or **`reactable`** packages to allow users to explore the data dynamically.
+  
+Overall, our goal is to ensure all visual materials are polished, intuitive, and accessible to a wide audience while reinforcing our thesis clearly and effectively.
