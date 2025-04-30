@@ -3,82 +3,11 @@ title: Data
 description: We describe the sources of our data and the cleaning process.
 toc: true
 draft: false
-editor: Yiqi Jin
 ---
 
-![](images/data-import-cheatsheet-thumbs.png)
-
+![](images/town-2430571_1280.jpg)
 
 This comes from the file `data.qmd`.
-
-Your first steps in this project will be to find data to work on.
-
-I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
-
-
-Initially, you will study _one dataset_ but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable.
-Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
-
-
-## What makes a good data set?
-
-* Data you are interested in and care about.
-* Data where there are a lot of potential questions that you can explore.
-* A data set that isn't completely cleaned already.
-* Multiple sources for data that you can combine.
-* Some type of time and/or location component.
-
-
-## Where to keep data?
-
-
-Below 50mb: In `dataset` folder
-
-Above 50mb: In `dataset-ignore` folder which you will have to create manually. This folder will be ignored by `git` so you'll have to manually sync these files across your team.
-
-### Sharing your data
-
-
-For small datasets (<50mb), you can use the `dataset` folder that is tracked by github. Stage and commit the files just like you would any other file.
-
-For larger datasets, you'll need to create a new folder in the project root directory named `dataset-ignore`. This will be ignored by git (based off the `.gitignore` file in the project root directory) which will help you avoid issues with Github's size limits. Your team will have to manually make sure the data files in `dataset-ignore` are synced across team members.
-
-Your [clean_data.R](/scripts/clean_data.R) file in the `scripts` folder is the file where you will import the raw data that you download, clean it, and write `.rds` file(s) (using `write_rds`) that you'll load in your analysis page. If desirable, you can have multiple scripts that produce different derived data sets, just make sure to link to them on this page.
-
-You should never use absolute paths (eg. `/Users/danielsussman/path/to/project/` or `C:\MA415\\Final_Project\`).
-Instead, use the `here` function from the [`here` package](https://here.r-lib.org/articles/here.html) to avoid path problems.
-
-### Clean data script
-
-The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them.
-This file might create a derivative data set that you then use for your subsequent analysis.
-Note that you don't need to run this script from every post/page.
-Instead, you can load in the results of this script, which will usually be `.rds` files. In your data page you'll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes.
-To link to this file, you can use `[cleaning script](/scripts/clean_data.R)` wich appears as [cleaning script](/scripts/clean_data.R). 
-
-----
-
-## Rubric: On this page
-
-You will
-
-* Describe where/how to find data.
-  * You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
-  * Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
-* Describe the different data files used and what each variable means. 
-  * If you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.
-  * Use figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.
-* Describe any cleaning you had to do for your data.
-  * You *must* include a link to your `clean_data.R` file.
-  * Rename variables and recode factors to make data more clear.
-  * Also, describe any additional R packages you used outside of those covered in class.
-  * Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
-  * Some repetition of what you do in your `clean_data.R` file is fine and encouraged if it helps explain what you did.
-* Organization, clarity, cleanliness of the page
-  * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
-  * This page should be self-contained.
-
-
 
 ## Data Source
 
@@ -104,22 +33,22 @@ This dataset allows us to explore how individual housing characteristics correla
 
 ---
 
-### Variables used in Data Set 1
+## Variable Description
+
+### Data Set 1: IPUMS USA (ACS 2023)
 
 We focus on variables relevant to housing and income:
 
 - `YEAR`: Survey year (2023 for all observations).
 - `STATEICP`: State identifier based on IPUMS codes.
-- `ACREHOUS`: Lot size where the housing unit is located (1 = less than 1 acre, 2 = 1 acre or more).
+- `ACREHOUS`: Lot size where the housing unit is located (1 = less than 10 acres, 2 = 10 acres or more).
 - `VALUEH`: Estimated market value of owner-occupied housing units (in USD).
 - `RACE`: Broad race category of the respondent.
 - `FTOTINC`: Total family income, including all sources (in USD).
 
 > Note: The variable `RENT` was removed during data cleaning, as it was nearly always zero and not relevant for our analysis of owner-occupied housing units.
 
-## Variable Description
-
-We selected a subset of variables from the IPUMS data that are relevant to income and housing. The table below summarizes each variable and its key characteristics:
+#### IPUMS Variable Summary Table
 
 | Variable | Description | Values / Notes |
 |----------|-------------|----------------|
@@ -132,7 +61,7 @@ We selected a subset of variables from the IPUMS data that are relevant to incom
 
 We did not rename variables but recoded `ACREHOUS` into a binary indicator to simplify analysis.
 
-### RACE Codes
+#### RACE Codes
 
 The `RACE` variable uses the following codes (abridged):
 
@@ -145,8 +74,37 @@ The `RACE` variable uses the following codes (abridged):
 - 8 = Two major races  
 - 9 = Three or more major races
 
+---
+
+### Data Set 2: Housing Prices (Kaggle)
+
+The second dataset, from Kaggle, focuses on individual housing attributes and sale prices. These variables were used to model and analyze market-driven home values.
+
+#### Kaggle Variable Summary Table
+
+| Variable         | Description                                      | Values / Notes                         |
+|------------------|--------------------------------------------------|----------------------------------------|
+| `price`          | Sale price of the house                         | In INR                                 |
+| `area`           | Living area of the house                        | In square feet                         |
+| `bedrooms`       | Number of bedrooms                              | Integer                                |
+| `bathrooms`      | Number of bathrooms                             | Integer                                |
+| `stories`        | Number of floors                                | Integer                                |
+| `mainroad`       | Whether the house is on a main road             | 1 = yes, 0 = no                        |
+| `guestroom`      | Presence of a guest room                        | 1 = yes, 0 = no                        |
+| `basement`       | Presence of a basement                          | 1 = yes, 0 = no                        |
+| `hotwaterheating`| Presence of hot water heating                   | 1 = yes, 0 = no                        |
+| `airconditioning`| Presence of air conditioning                    | 1 = yes, 0 = no                        |
+| `parking`        | Number of parking spaces                        | Integer                                |
+| `prefarea`       | Whether in a preferred area                     | 1 = yes, 0 = no                        |
+| `furnishingstatus`| Furnishing level                               | `"furnished"`, `"semi-furnished"`, `"unfurnished"` |
+
+All yes/no variables were recoded into binary numeric values during data cleaning.
+
 
 ## Data Cleaning
+> Note: The two datasets were not merged. Each dataset was analyzed separately, as they serve different analytical purposes—IPUMS provides demographic-level insights, while the Kaggle dataset offers property-level pricing data.
+
+### Data Set 1: IPUMS USA (ACS 2023)
 
 The full data cleaning process is documented in our [cleaning script](/scripts/housing_clean.R). We used `dplyr` to filter, recode, and remove unnecessary variables from the raw dataset.
 
@@ -166,4 +124,60 @@ The following steps were taken:
 The cleaned dataset was saved as an `.rds` file and is used throughout the analysis.
 
 We used the `dplyr` package from the `tidyverse` for all transformations.
+---
 
+### Data Set 2: Housing Prices (Kaggle)
+
+The Kaggle housing dataset was cleaned using our [cleaning script](/scripts/housing_kaggle_clean.R). This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:
+
+- **Converted categorical yes/no variables** to binary numeric values (`1 = yes`, `0 = no`) for:
+  - `mainroad`, `guestroom`, `basement`, `hotwaterheating`, `airconditioning`, `prefarea`
+
+- **Converted `furnishingstatus`** into a categorical factor with three levels:
+  - `"furnished"`, `"semi-furnished"`, and `"unfurnished"`
+
+- **Selected variables** relevant to housing price prediction:
+  - `price`, `area`, `bedrooms`, `bathrooms`, `stories`, `mainroad`, `guestroom`, `basement`, `hotwaterheating`, `airconditioning`, `parking`, `prefarea`, `furnishingstatus`
+
+The cleaned dataset was saved as `second_housing_cleaned.rds` and used in all downstream modeling and visualizations.
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+
+housing_cleaned <- readRDS("dataset/housing_cleaned.rds")
+second_housing_cleaned <- readRDS("dataset/second_housing_cleaned.rds")
+```
+
+## Visualizing Key Variables
+
+To better understand the structure of each dataset, we visualize the distribution of key numeric variables from both sources.
+
+### Data Set 1: Distribution of Self-Reported Housing Value (IPUMS)
+The following histogram shows the distribution of housing values reported by respondents in the IPUMS ACS data. These values are self-reported and may reflect owner perception rather than market assessments.
+```{r}
+library(ggplot2)
+
+ggplot(housing_cleaned, aes(x = VALUEH)) +
+  geom_histogram(bins = 50, fill = "steelblue", color = "white") +
+  labs(
+    title = "Distribution of Owner-Reported Housing Values (IPUMS ACS)",
+    x = "Housing Value (USD)",
+    y = "Number of Households"
+  ) +
+  theme_minimal()
+```
+As the plot shows, most owner-reported home values cluster below $500,000. The distribution is heavily right-skewed, with a long tail of higher-value properties—some even exceeding $1 million.
+
+### Data Set 2: Distribution of Housing Prices (Kaggle)
+This histogram displays the distribution of housing prices in the Kaggle dataset. These are actual sale prices and reflect market transactions rather than survey responses.
+```{r}
+ggplot(second_housing_cleaned, aes(x = price)) +
+  geom_histogram(bins = 50, fill = "darkgreen", color = "white") +
+  labs(
+    title = "Distribution of Housing Sale Prices (Kaggle Dataset)",
+    x = "Sale Price (INR)",
+    y = "Number of Properties"
+  ) +
+  theme_minimal()
+```
+This distribution is also right-skewed. Most homes sell between 3 to 7 million INR, but there is a notable number of high-end sales above 10 million INR. The shape of this distribution suggests a heterogeneous housing market, which aligns with expectations for real-world property prices.
