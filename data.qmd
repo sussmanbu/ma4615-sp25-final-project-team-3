@@ -82,6 +82,8 @@ You will
 
 ## Data Source
 
+### Data Set 1: IPUMS USA (Primary Dataset)
+
 The dataset used in this project comes from [IPUMS USA](https://usa.ipums.org/usa/), maintained by the Minnesota Population Center at the University of Minnesota. IPUMS provides harmonized microdata from the U.S. Census and American Community Survey (ACS), enabling consistent analysis across time and population groups.
 
 We use data from the **2023 American Community Survey (ACS, 1-Year Sample)**, which includes detailed individual and household-level information on demographics, income, and housing characteristics across the United States.
@@ -90,8 +92,19 @@ We use data from the **2023 American Community Survey (ACS, 1-Year Sample)**, wh
 - **Data provider**: Minnesota Population Center, University of Minnesota  
 - **Purpose of collection**: To inform public policy, federal resource allocation, and academic research by providing annual data on the U.S. population.
 
+### Data Set 2: Housing Prices (Kaggle)
 
-### Variables used in this project
+The second dataset used in this project comes from [Kaggle](https://www.kaggle.com/datasets/yasserh/housing-prices-dataset), and contains housing sale prices and property-level attributes from a U.S. housing market. It is often used for machine learning and regression exercises, and provides detailed housing features that complement our demographic-based IPUMS data.
+
+This dataset allows us to explore how individual housing characteristics correlate with price, and can be used to contrast market-based housing valuation with self-reported housing values in the ACS data.
+
+- **Data access**: [Kaggle Housing Prices Dataset](https://www.kaggle.com/datasets/yasserh/housing-prices-dataset)  
+- **Data provider**: Yasser Hatab via Kaggle  
+- **Purpose of collection**: To predict housing prices based on physical features of the house, useful for regression, modeling, and comparative analysis with IPUMS-based household-level housing value.
+
+---
+
+### Variables used in Data Set 1
 
 We focus on variables relevant to housing and income:
 
@@ -103,4 +116,54 @@ We focus on variables relevant to housing and income:
 - `FTOTINC`: Total family income, including all sources (in USD).
 
 > Note: The variable `RENT` was removed during data cleaning, as it was nearly always zero and not relevant for our analysis of owner-occupied housing units.
+
+## Variable Description
+
+We selected a subset of variables from the IPUMS data that are relevant to income and housing. The table below summarizes each variable and its key characteristics:
+
+| Variable | Description | Values / Notes |
+|----------|-------------|----------------|
+| YEAR | Survey year | All are 2023 |
+| STATEICP | State code (IPUMS format) | 1–82, e.g., 01 = Connecticut |
+| ACREHOUS | Lot size (binary after recoding) | 0 = <10 acres, 1 = ≥10 acres |
+| VALUEH | Value of owned home (USD) | Excludes top-coded 9999999 |
+| RACE | Broad race category | Integer codes (see below) |
+| FTOTINC | Total family income (USD) | Excludes 0 and 9999999 |
+
+We did not rename variables but recoded `ACREHOUS` into a binary indicator to simplify analysis.
+
+### RACE Codes
+
+The `RACE` variable uses the following codes (abridged):
+
+- 1 = White  
+- 2 = Black or African American  
+- 3 = American Indian or Alaska Native  
+- 4 = Chinese  
+- 5 = Japanese  
+- 6 = Other Asian or Pacific Islander  
+- 8 = Two major races  
+- 9 = Three or more major races
+
+
+## Data Cleaning
+
+The full data cleaning process is documented in our [cleaning script](/scripts/housing_clean.R). We used `dplyr` to filter, recode, and remove unnecessary variables from the raw dataset.
+
+The following steps were taken:
+
+- We removed all observations with invalid or topcoded values:
+  - `STATEICP > 82` (invalid state codes)
+  - `ACREHOUS == 0` (unknown lot size)
+  - `VALUEH == 9999999` and `FTOTINC == 9999999` (topcoded values)
+- We removed unused or uninformative variables:
+  - `RENT`, which was almost entirely zeros and not relevant to our analysis
+  - `RACED`, a more detailed race variable we chose not to use
+- We recoded `ACREHOUS` to a binary variable:
+  - `1` (less than 1 acre) was recoded to `0`
+  - `2` (1 acre or more) was recoded to `1`
+
+The cleaned dataset was saved as an `.rds` file and is used throughout the analysis.
+
+We used the `dplyr` package from the `tidyverse` for all transformations.
 
