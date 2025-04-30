@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -121,13 +155,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-makes-a-good-data-set" id="toc-what-makes-a-good-data-set" class="nav-link active" data-scroll-target="#what-makes-a-good-data-set">What makes a good data set?</a></li>
-  <li><a href="#where-to-keep-data" id="toc-where-to-keep-data" class="nav-link" data-scroll-target="#where-to-keep-data">Where to keep data?</a>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link active" data-scroll-target="#data-source">Data Source</a>
   <ul class="collapse">
-  <li><a href="#sharing-your-data" id="toc-sharing-your-data" class="nav-link" data-scroll-target="#sharing-your-data">Sharing your data</a></li>
-  <li><a href="#clean-data-script" id="toc-clean-data-script" class="nav-link" data-scroll-target="#clean-data-script">Clean data script</a></li>
+  <li><a href="#data-set-1-ipums-usa-primary-dataset" id="toc-data-set-1-ipums-usa-primary-dataset" class="nav-link" data-scroll-target="#data-set-1-ipums-usa-primary-dataset">Data Set 1: IPUMS USA (Primary Dataset)</a></li>
+  <li><a href="#data-set-2-housing-prices-kaggle" id="toc-data-set-2-housing-prices-kaggle" class="nav-link" data-scroll-target="#data-set-2-housing-prices-kaggle">Data Set 2: Housing Prices (Kaggle)</a></li>
   </ul></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
+  <li><a href="#variable-description" id="toc-variable-description" class="nav-link" data-scroll-target="#variable-description">Variable Description</a>
+  <ul class="collapse">
+  <li><a href="#data-set-1-ipums-usa-acs-2023" id="toc-data-set-1-ipums-usa-acs-2023" class="nav-link" data-scroll-target="#data-set-1-ipums-usa-acs-2023">Data Set 1: IPUMS USA (ACS 2023)</a></li>
+  <li><a href="#data-set-2-housing-prices-kaggle-1" id="toc-data-set-2-housing-prices-kaggle-1" class="nav-link" data-scroll-target="#data-set-2-housing-prices-kaggle-1">Data Set 2: Housing Prices (Kaggle)</a></li>
+  </ul></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a>
+  <ul class="collapse">
+  <li><a href="#data-set-1-ipums-usa-acs-2023-1" id="toc-data-set-1-ipums-usa-acs-2023-1" class="nav-link" data-scroll-target="#data-set-1-ipums-usa-acs-2023-1">Data Set 1: IPUMS USA (ACS 2023)</a></li>
+  <li><a href="#data-set-2-housing-prices-kaggle-2" id="toc-data-set-2-housing-prices-kaggle-2" class="nav-link" data-scroll-target="#data-set-2-housing-prices-kaggle-2">Data Set 2: Housing Prices (Kaggle)</a></li>
+  </ul></li>
+  <li><a href="#visualizing-key-variables" id="toc-visualizing-key-variables" class="nav-link" data-scroll-target="#visualizing-key-variables">Visualizing Key Variables</a>
+  <ul class="collapse">
+  <li><a href="#data-set-1-distribution-of-self-reported-housing-value-ipums" id="toc-data-set-1-distribution-of-self-reported-housing-value-ipums" class="nav-link" data-scroll-target="#data-set-1-distribution-of-self-reported-housing-value-ipums">Data Set 1: Distribution of Self-Reported Housing Value (IPUMS)</a></li>
+  <li><a href="#data-set-2-distribution-of-housing-prices-kaggle" id="toc-data-set-2-distribution-of-housing-prices-kaggle" class="nav-link" data-scroll-target="#data-set-2-distribution-of-housing-prices-kaggle">Data Set 2: Distribution of Housing Prices (Kaggle)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -158,68 +205,317 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
+<p><img src="images/town-2430571_1280.jpg" class="img-fluid"></p>
 <p>This comes from the file <code>data.qmd</code>.</p>
-<p>Your first steps in this project will be to find data to work on.</p>
-<p>I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.</p>
-<p>Initially, you will study <em>one dataset</em> but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable. Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.</p>
-<section id="what-makes-a-good-data-set" class="level2">
-<h2 class="anchored" data-anchor-id="what-makes-a-good-data-set">What makes a good data set?</h2>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<section id="data-set-1-ipums-usa-primary-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-1-ipums-usa-primary-dataset">Data Set 1: IPUMS USA (Primary Dataset)</h3>
+<p>The dataset used in this project comes from <a href="https://usa.ipums.org/usa/">IPUMS USA</a>, maintained by the Minnesota Population Center at the University of Minnesota. IPUMS provides harmonized microdata from the U.S. Census and American Community Survey (ACS), enabling consistent analysis across time and population groups.</p>
+<p>We use data from the <strong>2023 American Community Survey (ACS, 1-Year Sample)</strong>, which includes detailed individual and household-level information on demographics, income, and housing characteristics across the United States.</p>
 <ul>
-<li>Data you are interested in and care about.</li>
-<li>Data where there are a lot of potential questions that you can explore.</li>
-<li>A data set that isn’t completely cleaned already.</li>
-<li>Multiple sources for data that you can combine.</li>
-<li>Some type of time and/or location component.</li>
+<li><strong>Data access</strong>: <a href="https://usa.ipums.org/usa-action/samples">IPUMS USA Extract System</a><br>
+</li>
+<li><strong>Data provider</strong>: Minnesota Population Center, University of Minnesota<br>
+</li>
+<li><strong>Purpose of collection</strong>: To inform public policy, federal resource allocation, and academic research by providing annual data on the U.S. population.</li>
 </ul>
 </section>
-<section id="where-to-keep-data" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-keep-data">Where to keep data?</h2>
-<p>Below 50mb: In <code>dataset</code> folder</p>
-<p>Above 50mb: In <code>dataset-ignore</code> folder which you will have to create manually. This folder will be ignored by <code>git</code> so you’ll have to manually sync these files across your team.</p>
-<section id="sharing-your-data" class="level3">
-<h3 class="anchored" data-anchor-id="sharing-your-data">Sharing your data</h3>
-<p>For small datasets (&lt;50mb), you can use the <code>dataset</code> folder that is tracked by github. Stage and commit the files just like you would any other file.</p>
-<p>For larger datasets, you’ll need to create a new folder in the project root directory named <code>dataset-ignore</code>. This will be ignored by git (based off the <code>.gitignore</code> file in the project root directory) which will help you avoid issues with Github’s size limits. Your team will have to manually make sure the data files in <code>dataset-ignore</code> are synced across team members.</p>
-<p>Your <a href=".\scripts/clean_data.R">clean_data.R</a> file in the <code>scripts</code> folder is the file where you will import the raw data that you download, clean it, and write <code>.rds</code> file(s) (using <code>write_rds</code>) that you’ll load in your analysis page. If desirable, you can have multiple scripts that produce different derived data sets, just make sure to link to them on this page.</p>
-<p>You should never use absolute paths (eg. <code>/Users/danielsussman/path/to/project/</code> or <code>C:\MA415\\Final_Project\</code>). Instead, use the <code>here</code> function from the <a href="https://here.r-lib.org/articles/here.html"><code>here</code> package</a> to avoid path problems.</p>
-</section>
-<section id="clean-data-script" class="level3">
-<h3 class="anchored" data-anchor-id="clean-data-script">Clean data script</h3>
-<p>The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them. This file might create a derivative data set that you then use for your subsequent analysis. Note that you don’t need to run this script from every post/page. Instead, you can load in the results of this script, which will usually be <code>.rds</code> files. In your data page you’ll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes. To link to this file, you can use <code>[cleaning script](/scripts/clean_data.R)</code> wich appears as <a href=".\scripts/clean_data.R">cleaning script</a>.</p>
+<section id="data-set-2-housing-prices-kaggle" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-2-housing-prices-kaggle">Data Set 2: Housing Prices (Kaggle)</h3>
+<p>The second dataset used in this project comes from <a href="https://www.kaggle.com/datasets/yasserh/housing-prices-dataset">Kaggle</a>, and contains housing sale prices and property-level attributes from a U.S. housing market. It is often used for machine learning and regression exercises, and provides detailed housing features that complement our demographic-based IPUMS data.</p>
+<p>This dataset allows us to explore how individual housing characteristics correlate with price, and can be used to contrast market-based housing valuation with self-reported housing values in the ACS data.</p>
+<ul>
+<li><strong>Data access</strong>: <a href="https://www.kaggle.com/datasets/yasserh/housing-prices-dataset">Kaggle Housing Prices Dataset</a><br>
+</li>
+<li><strong>Data provider</strong>: Yasser Hatab via Kaggle<br>
+</li>
+<li><strong>Purpose of collection</strong>: To predict housing prices based on physical features of the house, useful for regression, modeling, and comparative analysis with IPUMS-based household-level housing value.</li>
+</ul>
 <hr>
 </section>
 </section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
+<section id="variable-description" class="level2">
+<h2 class="anchored" data-anchor-id="variable-description">Variable Description</h2>
+<section id="data-set-1-ipums-usa-acs-2023" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-1-ipums-usa-acs-2023">Data Set 1: IPUMS USA (ACS 2023)</h3>
+<p>We focus on variables relevant to housing and income:</p>
 <ul>
-<li>Describe where/how to find data.
+<li><code>YEAR</code>: Survey year (2023 for all observations).</li>
+<li><code>STATEICP</code>: State identifier based on IPUMS codes.</li>
+<li><code>ACREHOUS</code>: Lot size where the housing unit is located (1 = less than 10 acres, 2 = 10 acres or more).</li>
+<li><code>VALUEH</code>: Estimated market value of owner-occupied housing units (in USD).</li>
+<li><code>RACE</code>: Broad race category of the respondent.</li>
+<li><code>FTOTINC</code>: Total family income, including all sources (in USD).</li>
+</ul>
+<blockquote class="blockquote">
+<p>Note: The variable <code>RENT</code> was removed during data cleaning, as it was nearly always zero and not relevant for our analysis of owner-occupied housing units.</p>
+</blockquote>
+<section id="ipums-variable-summary-table" class="level4">
+<h4 class="anchored" data-anchor-id="ipums-variable-summary-table">IPUMS Variable Summary Table</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Values / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>YEAR</td>
+<td>Survey year</td>
+<td>All are 2023</td>
+</tr>
+<tr class="even">
+<td>STATEICP</td>
+<td>State code (IPUMS format)</td>
+<td>1–82, e.g., 01 = Connecticut</td>
+</tr>
+<tr class="odd">
+<td>ACREHOUS</td>
+<td>Lot size (binary after recoding)</td>
+<td>0 = &lt;10 acres, 1 = ≥10 acres</td>
+</tr>
+<tr class="even">
+<td>VALUEH</td>
+<td>Value of owned home (USD)</td>
+<td>Excludes top-coded 9999999</td>
+</tr>
+<tr class="odd">
+<td>RACE</td>
+<td>Broad race category</td>
+<td>Integer codes (see below)</td>
+</tr>
+<tr class="even">
+<td>FTOTINC</td>
+<td>Total family income (USD)</td>
+<td>Excludes 0 and 9999999</td>
+</tr>
+</tbody>
+</table>
+<p>We did not rename variables but recoded <code>ACREHOUS</code> into a binary indicator to simplify analysis.</p>
+</section>
+<section id="race-codes" class="level4">
+<h4 class="anchored" data-anchor-id="race-codes">RACE Codes</h4>
+<p>The <code>RACE</code> variable uses the following codes (abridged):</p>
 <ul>
-<li>You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.</li>
-<li>Why was the data collected/curated? Who put it together? (This is important, if you don’t know why it was collected then that might not be a good dataset to look at.</li>
+<li>1 = White<br>
+</li>
+<li>2 = Black or African American<br>
+</li>
+<li>3 = American Indian or Alaska Native<br>
+</li>
+<li>4 = Chinese<br>
+</li>
+<li>5 = Japanese<br>
+</li>
+<li>6 = Other Asian or Pacific Islander<br>
+</li>
+<li>8 = Two major races<br>
+</li>
+<li>9 = Three or more major races</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="data-set-2-housing-prices-kaggle-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-2-housing-prices-kaggle-1">Data Set 2: Housing Prices (Kaggle)</h3>
+<p>The second dataset, from Kaggle, focuses on individual housing attributes and sale prices. These variables were used to model and analyze market-driven home values.</p>
+<section id="kaggle-variable-summary-table" class="level4">
+<h4 class="anchored" data-anchor-id="kaggle-variable-summary-table">Kaggle Variable Summary Table</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 46%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Values / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>price</code></td>
+<td>Sale price of the house</td>
+<td>In INR</td>
+</tr>
+<tr class="even">
+<td><code>area</code></td>
+<td>Living area of the house</td>
+<td>In square feet</td>
+</tr>
+<tr class="odd">
+<td><code>bedrooms</code></td>
+<td>Number of bedrooms</td>
+<td>Integer</td>
+</tr>
+<tr class="even">
+<td><code>bathrooms</code></td>
+<td>Number of bathrooms</td>
+<td>Integer</td>
+</tr>
+<tr class="odd">
+<td><code>stories</code></td>
+<td>Number of floors</td>
+<td>Integer</td>
+</tr>
+<tr class="even">
+<td><code>mainroad</code></td>
+<td>Whether the house is on a main road</td>
+<td>1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td><code>guestroom</code></td>
+<td>Presence of a guest room</td>
+<td>1 = yes, 0 = no</td>
+</tr>
+<tr class="even">
+<td><code>basement</code></td>
+<td>Presence of a basement</td>
+<td>1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td><code>hotwaterheating</code></td>
+<td>Presence of hot water heating</td>
+<td>1 = yes, 0 = no</td>
+</tr>
+<tr class="even">
+<td><code>airconditioning</code></td>
+<td>Presence of air conditioning</td>
+<td>1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td><code>parking</code></td>
+<td>Number of parking spaces</td>
+<td>Integer</td>
+</tr>
+<tr class="even">
+<td><code>prefarea</code></td>
+<td>Whether in a preferred area</td>
+<td>1 = yes, 0 = no</td>
+</tr>
+<tr class="odd">
+<td><code>furnishingstatus</code></td>
+<td>Furnishing level</td>
+<td><code>"furnished"</code>, <code>"semi-furnished"</code>, <code>"unfurnished"</code></td>
+</tr>
+</tbody>
+</table>
+<p>All yes/no variables were recoded into binary numeric values during data cleaning.</p>
+</section>
+</section>
+</section>
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
+<blockquote class="blockquote">
+<p>Note: The two datasets were not merged. Each dataset was analyzed separately, as they serve different analytical purposes—IPUMS provides demographic-level insights, while the Kaggle dataset offers property-level pricing data.</p>
+</blockquote>
+<section id="data-set-1-ipums-usa-acs-2023-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-1-ipums-usa-acs-2023-1">Data Set 1: IPUMS USA (ACS 2023)</h3>
+<p>The full data cleaning process is documented in our <a href=".\scripts/housing_clean.R">cleaning script</a>. We used <code>dplyr</code> to filter, recode, and remove unnecessary variables from the raw dataset.</p>
+<p>The following steps were taken:</p>
+<ul>
+<li>We removed all observations with invalid or topcoded values:
+<ul>
+<li><code>STATEICP &gt; 82</code> (invalid state codes)</li>
+<li><code>ACREHOUS == 0</code> (unknown lot size)</li>
+<li><code>VALUEH == 9999999</code> and <code>FTOTINC == 9999999</code> (topcoded values)</li>
 </ul></li>
-<li>Describe the different data files used and what each variable means.
+<li>We removed unused or uninformative variables:
 <ul>
-<li>If you have many variables then only describe the most relevant ones, possibly grouping together variables that are similar, and summarize the rest.</li>
-<li>Use figures or tables to help explain the data. For example, showing a histogram or bar chart for a particularly important variable can provide a quick overview of the values that variable tends to take.</li>
+<li><code>RENT</code>, which was almost entirely zeros and not relevant to our analysis</li>
+<li><code>RACED</code>, a more detailed race variable we chose not to use</li>
 </ul></li>
-<li>Describe any cleaning you had to do for your data.
+<li>We recoded <code>ACREHOUS</code> to a binary variable:
 <ul>
-<li>You <em>must</em> include a link to your <code>clean_data.R</code> file.</li>
-<li>Rename variables and recode factors to make data more clear.</li>
-<li>Also, describe any additional R packages you used outside of those covered in class.</li>
-<li>Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.</li>
-<li>Some repetition of what you do in your <code>clean_data.R</code> file is fine and encouraged if it helps explain what you did.</li>
-</ul></li>
-<li>Organization, clarity, cleanliness of the page
-<ul>
-<li>Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.</li>
-<li>This page should be self-contained.</li>
+<li><code>1</code> (less than 1 acre) was recoded to <code>0</code></li>
+<li><code>2</code> (1 acre or more) was recoded to <code>1</code></li>
 </ul></li>
 </ul>
+<p>The cleaned dataset was saved as an <code>.rds</code> file and is used throughout the analysis.</p>
+<p>We used the <code>dplyr</code> package from the <code>tidyverse</code> for all transformations.</p>
+<hr>
+</section>
+<section id="data-set-2-housing-prices-kaggle-2" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-2-housing-prices-kaggle-2">Data Set 2: Housing Prices (Kaggle)</h3>
+<p>The Kaggle housing dataset was cleaned using our <a href=".\scripts/housing_kaggle_clean.R">cleaning script</a>. This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:</p>
+<ul>
+<li><strong>Converted categorical yes/no variables</strong> to binary numeric values (<code>1 = yes</code>, <code>0 = no</code>) for:
+<ul>
+<li><code>mainroad</code>, <code>guestroom</code>, <code>basement</code>, <code>hotwaterheating</code>, <code>airconditioning</code>, <code>prefarea</code></li>
+</ul></li>
+<li><strong>Converted <code>furnishingstatus</code></strong> into a categorical factor with three levels:
+<ul>
+<li><code>"furnished"</code>, <code>"semi-furnished"</code>, and <code>"unfurnished"</code></li>
+</ul></li>
+<li><strong>Selected variables</strong> relevant to housing price prediction:
+<ul>
+<li><code>price</code>, <code>area</code>, <code>bedrooms</code>, <code>bathrooms</code>, <code>stories</code>, <code>mainroad</code>, <code>guestroom</code>, <code>basement</code>, <code>hotwaterheating</code>, <code>airconditioning</code>, <code>parking</code>, <code>prefarea</code>, <code>furnishingstatus</code></li>
+</ul></li>
+</ul>
+<p>The cleaned dataset was saved as <code>second_housing_cleaned.rds</code> and used in all downstream modeling and visualizations.</p>
+</section>
+</section>
+<section id="visualizing-key-variables" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-key-variables">Visualizing Key Variables</h2>
+<p>To better understand the structure of each dataset, we visualize the distribution of key numeric variables from both sources.</p>
+<section id="data-set-1-distribution-of-self-reported-housing-value-ipums" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-1-distribution-of-self-reported-housing-value-ipums">Data Set 1: Distribution of Self-Reported Housing Value (IPUMS)</h3>
+<p>The following histogram shows the distribution of housing values reported by respondents in the IPUMS ACS data. These values are self-reported and may reflect owner perception rather than market assessments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(housing_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> VALUEH)) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Owner-Reported Housing Values (IPUMS ACS)"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Housing Value (USD)"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Households"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As the plot shows, most owner-reported home values cluster below $500,000. The distribution is heavily right-skewed, with a long tail of higher-value properties—some even exceeding $1 million.</p>
+</section>
+<section id="data-set-2-distribution-of-housing-prices-kaggle" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-2-distribution-of-housing-prices-kaggle">Data Set 2: Distribution of Housing Prices (Kaggle)</h3>
+<p>This histogram displays the distribution of housing prices in the Kaggle dataset. These are actual sale prices and reflect market transactions rather than survey responses.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(second_housing_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"darkgreen"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Housing Sale Prices (Kaggle Dataset)"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sale Price (INR)"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Properties"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This distribution is also right-skewed. Most homes sell between 3 to 7 million INR, but there is a notable number of high-end sales above 10 million INR. The shape of this distribution suggests a heterogeneous housing market, which aligns with expectations for real-world property prices.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
