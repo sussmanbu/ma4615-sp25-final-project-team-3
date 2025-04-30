@@ -3,6 +3,7 @@ title: Data
 description: We describe the sources of our data and the cleaning process.
 toc: true
 draft: false
+editor: Yiqi Jin
 ---
 
 ![](images/data-import-cheatsheet-thumbs.png)
@@ -76,3 +77,30 @@ You will
 * Organization, clarity, cleanliness of the page
   * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
   * This page should be self-contained.
+
+
+
+## Data Source
+
+The dataset used in this project comes from [IPUMS USA](https://usa.ipums.org/usa/), maintained by the Minnesota Population Center at the University of Minnesota. IPUMS provides harmonized microdata from the U.S. Census and American Community Survey (ACS), enabling consistent analysis across time and population groups.
+
+We use data from the **2023 American Community Survey (ACS, 1-Year Sample)**, which includes detailed individual and household-level information on demographics, income, and housing characteristics across the United States.
+
+- **Data access**: [IPUMS USA Extract System](https://usa.ipums.org/usa-action/samples)  
+- **Data provider**: Minnesota Population Center, University of Minnesota  
+- **Purpose of collection**: To inform public policy, federal resource allocation, and academic research by providing annual data on the U.S. population.
+
+
+### Variables used in this project
+
+We focus on variables relevant to housing and income:
+
+- `YEAR`: Survey year (2023 for all observations).
+- `STATEICP`: State identifier based on IPUMS codes.
+- `ACREHOUS`: Lot size where the housing unit is located (1 = less than 1 acre, 2 = 1 acre or more).
+- `VALUEH`: Estimated market value of owner-occupied housing units (in USD).
+- `RACE`: Broad race category of the respondent.
+- `FTOTINC`: Total family income, including all sources (in USD).
+
+> Note: The variable `RENT` was removed during data cleaning, as it was nearly always zero and not relevant for our analysis of owner-occupied housing units.
+
