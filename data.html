@@ -421,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <section id="data-set-1-ipums-usa-acs-2023-1" class="level3">
 <h3 class="anchored" data-anchor-id="data-set-1-ipums-usa-acs-2023-1">Data Set 1: IPUMS USA (ACS 2023)</h3>
-<p>The full data cleaning process is documented in our <a href=".\scripts/housing_clean.R">cleaning script</a>. We used <code>dplyr</code> to filter, recode, and remove unnecessary variables from the raw dataset.</p>
+<p>The IPUMS data cleaning process is documented in our <a href=".\scripts/housing_clean.R">cleaning script</a>. We used <code>dplyr</code> to filter, recode, and remove unnecessary variables from the raw dataset.</p>
 <p>The following steps were taken:</p>
 <ul>
 <li>We removed all observations with invalid or topcoded values:
@@ -447,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-set-2-housing-prices-kaggle-2" class="level3">
 <h3 class="anchored" data-anchor-id="data-set-2-housing-prices-kaggle-2">Data Set 2: Housing Prices (Kaggle)</h3>
-<p>The Kaggle housing dataset was cleaned using our <a href=".\scripts/housing_kaggle_clean.R">cleaning script</a>. This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:</p>
+<p>The Kaggle housing dataset was cleaned using our <a href=".\scripts/housing_clean2.R">cleaning script</a>. This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:</p>
 <ul>
 <li><strong>Converted categorical yes/no variables</strong> to binary numeric values (<code>1 = yes</code>, <code>0 = no</code>) for:
 <ul>

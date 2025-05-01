@@ -133,6 +133,20 @@
     "text": "Anshi Mittal\nAnshi is an undergraduate Data Science Junior"
   },
   {
+    "objectID": "about.html#vinay-goyal",
+    "href": "about.html#vinay-goyal",
+    "title": "About",
+    "section": "Vinay Goyal",
+    "text": "Vinay Goyal\nVinay is an undergraduate Econ and Math student"
+  },
+  {
+    "objectID": "about.html#zheng-zhang",
+    "href": "about.html#zheng-zhang",
+    "title": "About",
+    "section": "Zheng Zhang",
+    "text": "Zheng Zhang\nZheng is an undergraduate Ecin and Math Senior"
+  },
+  {
     "objectID": "about.html#dan-sussman",
     "href": "about.html#dan-sussman",
     "title": "About",
@@ -186,7 +200,7 @@
     "href": "data.html#data-cleaning",
     "title": "Data",
     "section": "Data Cleaning",
-    "text": "Data Cleaning\n\nNote: The two datasets were not merged. Each dataset was analyzed separately, as they serve different analytical purposes—IPUMS provides demographic-level insights, while the Kaggle dataset offers property-level pricing data.\n\n\nData Set 1: IPUMS USA (ACS 2023)\nThe full data cleaning process is documented in our cleaning script. We used dplyr to filter, recode, and remove unnecessary variables from the raw dataset.\nThe following steps were taken:\n\nWe removed all observations with invalid or topcoded values:\n\nSTATEICP &gt; 82 (invalid state codes)\nACREHOUS == 0 (unknown lot size)\nVALUEH == 9999999 and FTOTINC == 9999999 (topcoded values)\n\nWe removed unused or uninformative variables:\n\nRENT, which was almost entirely zeros and not relevant to our analysis\nRACED, a more detailed race variable we chose not to use\n\nWe recoded ACREHOUS to a binary variable:\n\n1 (less than 1 acre) was recoded to 0\n2 (1 acre or more) was recoded to 1\n\n\nThe cleaned dataset was saved as an .rds file and is used throughout the analysis.\nWe used the dplyr package from the tidyverse for all transformations.\n\n\n\nData Set 2: Housing Prices (Kaggle)\nThe Kaggle housing dataset was cleaned using our cleaning script. This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:\n\nConverted categorical yes/no variables to binary numeric values (1 = yes, 0 = no) for:\n\nmainroad, guestroom, basement, hotwaterheating, airconditioning, prefarea\n\nConverted furnishingstatus into a categorical factor with three levels:\n\n\"furnished\", \"semi-furnished\", and \"unfurnished\"\n\nSelected variables relevant to housing price prediction:\n\nprice, area, bedrooms, bathrooms, stories, mainroad, guestroom, basement, hotwaterheating, airconditioning, parking, prefarea, furnishingstatus\n\n\nThe cleaned dataset was saved as second_housing_cleaned.rds and used in all downstream modeling and visualizations."
+    "text": "Data Cleaning\n\nNote: The two datasets were not merged. Each dataset was analyzed separately, as they serve different analytical purposes—IPUMS provides demographic-level insights, while the Kaggle dataset offers property-level pricing data.\n\n\nData Set 1: IPUMS USA (ACS 2023)\nThe IPUMS data cleaning process is documented in our cleaning script. We used dplyr to filter, recode, and remove unnecessary variables from the raw dataset.\nThe following steps were taken:\n\nWe removed all observations with invalid or topcoded values:\n\nSTATEICP &gt; 82 (invalid state codes)\nACREHOUS == 0 (unknown lot size)\nVALUEH == 9999999 and FTOTINC == 9999999 (topcoded values)\n\nWe removed unused or uninformative variables:\n\nRENT, which was almost entirely zeros and not relevant to our analysis\nRACED, a more detailed race variable we chose not to use\n\nWe recoded ACREHOUS to a binary variable:\n\n1 (less than 1 acre) was recoded to 0\n2 (1 acre or more) was recoded to 1\n\n\nThe cleaned dataset was saved as an .rds file and is used throughout the analysis.\nWe used the dplyr package from the tidyverse for all transformations.\n\n\n\nData Set 2: Housing Prices (Kaggle)\nThe Kaggle housing dataset was cleaned using our cleaning script. This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:\n\nConverted categorical yes/no variables to binary numeric values (1 = yes, 0 = no) for:\n\nmainroad, guestroom, basement, hotwaterheating, airconditioning, prefarea\n\nConverted furnishingstatus into a categorical factor with three levels:\n\n\"furnished\", \"semi-furnished\", and \"unfurnished\"\n\nSelected variables relevant to housing price prediction:\n\nprice, area, bedrooms, bathrooms, stories, mainroad, guestroom, basement, hotwaterheating, airconditioning, parking, prefarea, furnishingstatus\n\n\nThe cleaned dataset was saved as second_housing_cleaned.rds and used in all downstream modeling and visualizations."
   },
   {
     "objectID": "data.html#visualizing-key-variables",
