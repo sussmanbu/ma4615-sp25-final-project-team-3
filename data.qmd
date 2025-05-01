@@ -106,7 +106,7 @@ All yes/no variables were recoded into binary numeric values during data cleanin
 
 ### Data Set 1: IPUMS USA (ACS 2023)
 
-The full data cleaning process is documented in our [cleaning script](/scripts/housing_clean.R). We used `dplyr` to filter, recode, and remove unnecessary variables from the raw dataset.
+The IPUMS data cleaning process is documented in our [cleaning script](/scripts/housing_clean.R). We used `dplyr` to filter, recode, and remove unnecessary variables from the raw dataset.
 
 The following steps were taken:
 
@@ -128,7 +128,7 @@ We used the `dplyr` package from the `tidyverse` for all transformations.
 
 ### Data Set 2: Housing Prices (Kaggle)
 
-The Kaggle housing dataset was cleaned using our [cleaning script](/scripts/housing_kaggle_clean.R). This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:
+The Kaggle housing dataset was cleaned using our [cleaning script](/scripts/housing_clean2.R). This process involved transforming categorical variables and retaining only relevant columns for analysis. The main cleaning steps were:
 
 - **Converted categorical yes/no variables** to binary numeric values (`1 = yes`, `0 = no`) for:
   - `mainroad`, `guestroom`, `basement`, `hotwaterheating`, `airconditioning`, `prefarea`
