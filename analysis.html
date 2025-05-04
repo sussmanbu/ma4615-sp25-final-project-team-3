@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -184,20 +150,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#example-of-loading-data" id="toc-example-of-loading-data" class="nav-link active" data-scroll-target="#example-of-loading-data">Example of loading data</a></li>
-  <li><a href="#note-on-attribution" id="toc-note-on-attribution" class="nav-link" data-scroll-target="#note-on-attribution">Note on Attribution</a></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link active" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
+  <li><a href="#dataset-1---analysis" id="toc-dataset-1---analysis" class="nav-link" data-scroll-target="#dataset-1---analysis">Dataset 1 - Analysis</a>
   <ul class="collapse">
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
   <li><a href="#urban-vs.-rural-housing-value" id="toc-urban-vs.-rural-housing-value" class="nav-link" data-scroll-target="#urban-vs.-rural-housing-value">Urban vs.&nbsp;Rural Housing Value</a></li>
   <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
   </ul></li>
   <li><a href="#how-does-homeownership-and-racial-demographics-interact-with-housing-prices" id="toc-how-does-homeownership-and-racial-demographics-interact-with-housing-prices" class="nav-link" data-scroll-target="#how-does-homeownership-and-racial-demographics-interact-with-housing-prices">How does homeownership and racial demographics interact with housing prices?</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#geographic-disparities-in-housing-value" id="toc-geographic-disparities-in-housing-value" class="nav-link" data-scroll-target="#geographic-disparities-in-housing-value">Geographic Disparities in Housing Value</a></li>
   <li><a href="#interaction-between-homeownership-race-and-housing-prices" id="toc-interaction-between-homeownership-race-and-housing-prices" class="nav-link" data-scroll-target="#interaction-between-homeownership-race-and-housing-prices">Interaction between Homeownership, Race, and Housing Prices</a></li>
   <li><a href="#affordability-burden-by-race" id="toc-affordability-burden-by-race" class="nav-link" data-scroll-target="#affordability-burden-by-race">Affordability Burden by Race</a></li>
+  <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a></li>
+  <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics">Model Diagnostics</a></li>
   <li><a href="#overall-analysis" id="toc-overall-analysis" class="nav-link" data-scroll-target="#overall-analysis">Overall Analysis</a></li>
   </ul></li>
   <li><a href="#dataset-2---analysis" id="toc-dataset-2---analysis" class="nav-link" data-scroll-target="#dataset-2---analysis">Dataset 2 - Analysis</a>
@@ -205,7 +173,8 @@ window.Quarto = {
   <li><a href="#motivation-research-questions" id="toc-motivation-research-questions" class="nav-link" data-scroll-target="#motivation-research-questions">Motivation &amp; Research Questions</a></li>
   <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a></li>
   <li><a href="#statistical-modeling" id="toc-statistical-modeling" class="nav-link" data-scroll-target="#statistical-modeling">Statistical Modeling</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  <li><a href="#model-diagnostics-1" id="toc-model-diagnostics-1" class="nav-link" data-scroll-target="#model-diagnostics-1">Model Diagnostics</a></li>
+  <li><a href="#interpretation-1" id="toc-interpretation-1" class="nav-link" data-scroll-target="#interpretation-1">Interpretation</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
   </ul></li>
   </ul>
@@ -240,71 +209,6 @@ window.Quarto = {
 
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"></p>
 <p>This comes from the file <code>analysis.qmd</code>.</p>
-<p>We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.</p>
-<p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
-<p>While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.</p>
-<p>The style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process.</p>
-<section id="example-of-loading-data" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-loading-data">Example of loading data</h3>
-<p>The code below shows an example of loading the loan refusal data set (which you should delete at some point).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyverse' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyr' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'purrr' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'stringr' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'forcats' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'lubridate' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">getwd</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/24725/Documents/ma4615-sp25-final-project-team-3"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"dataset/loan_refusal_clean.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="note-on-attribution" class="level2">
-<h2 class="anchored" data-anchor-id="note-on-attribution">Note on Attribution</h2>
-<p>In general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.</p>
-<p>If you are directly quoting from a source, please make that clear. You can show long quotes using <code>&gt;</code> like this</p>
-<pre><code>&gt; To be or not to be.</code></pre>
-<blockquote class="blockquote">
-<p>To be or not to be.</p>
-</blockquote>
-<hr>
-</section>
 <section id="rubric-on-this-page" class="level2">
 <h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
 <p>You will</p>
@@ -343,11 +247,15 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="dataset-1---analysis" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-1---analysis">Dataset 1 - Analysis</h2>
 <section id="motivation" class="level3">
 <h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
 <p>The main purpose of the study is to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. By comparing the distribution between land and characteristics of homeownership, the result can help to identify the factors that are major contributors to generational wealth, therefore enhancing the understanding and influence of the racial wealth gap.</p>
+</section>
+<section id="data-source" class="level3">
+<h3 class="anchored" data-anchor-id="data-source">Data Source</h3>
+<p>This analysis is based on microdata from the IPUMS USA 2023 American Community Survey (ACS, 1-Year Sample), accessed via the IPUMS extract system. The dataset includes household-level demographic and housing characteristics, harmonized for research purposes.</p>
 </section>
 <section id="urban-vs.-rural-housing-value" class="level3">
 <h3 class="anchored" data-anchor-id="urban-vs.-rural-housing-value">Urban vs.&nbsp;Rural Housing Value</h3>
@@ -356,7 +264,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -372,17 +280,24 @@ window.Quarto = {
 </section>
 <section id="how-does-homeownership-and-racial-demographics-interact-with-housing-prices" class="level2">
 <h2 class="anchored" data-anchor-id="how-does-homeownership-and-racial-demographics-interact-with-housing-prices">How does homeownership and racial demographics interact with housing prices?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <section id="overview" class="level3">
 <h3 class="anchored" data-anchor-id="overview">Overview</h3>
-<p>The stacked-share bar chart shows, for each race category, the percentage distributed of homes owned across all three house value tiers (High, Medium, and Low). Because every bar sums to 100%, the focus is on how housing-wealth mixes differ within the homeowner population of each racial group.</p>
+<p>The stacked bar chart displays, for each racial group, the percentage distribution of owned homes across three housing value tiers: Low (≤$100K), Medium ($100K–$300K), and High (&gt;$300K). Each bar adds up to 100%, emphasizing how the composition of housing wealth differs within each racial category of homeowners. This visualization highlights disparities in access to high-value housing across racial lines.</p>
 </section>
-<section id="interaction-between-homeownership-race-and-housing-prices" class="level3">
-<h3 class="anchored" data-anchor-id="interaction-between-homeownership-race-and-housing-prices">Interaction between Homeownership, Race, and Housing Prices</h3>
-<p>Homeownership does not reflect racial equity. Asian homeowners are concentrated in high-value homes while Black and American-Indian homeowners are clustered in the lower-value segments, reflecting the racial wealth gap.</p>
-</section>
-<section id="affordability-burden-by-race" class="level3">
-<h3 class="anchored" data-anchor-id="affordability-burden-by-race">Affordability Burden by Race</h3>
-<p>To further investigate how home value relates to income, the following boxplot shows the affordability ratio—calculated as housing value divided by household income—by race. Interestingly, although Asian households appear to own more high-value homes, they also bear the highest affordability burden, with a median ratio of 3.82. In contrast, groups such as White and American Indian households show lower ratios, reflecting different cost burdens even amid price differences.</p>
+<section id="geographic-disparities-in-housing-value" class="level3">
+<h3 class="anchored" data-anchor-id="geographic-disparities-in-housing-value">Geographic Disparities in Housing Value</h3>
+<p>The housing market varies not only by race and income but also by geography. To visualize spatial inequality, we present maps of average housing value and racial disparities across U.S. states.</p>
+<section id="average-housing-value-by-state" class="level4">
+<h4 class="anchored" data-anchor-id="average-housing-value-by-state">Average Housing Value by State</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -392,10 +307,172 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>This choropleth map shows the average housing value by state. We observe that housing values are generally higher in coastal regions—particularly in California and parts of the Northeast. In contrast, much of the Midwest and South exhibit lower average home values, reflecting broader geographic disparities in real estate markets.</p>
+</section>
+<section id="racial-gap-in-average-housing-value" class="level4">
+<h4 class="anchored" data-anchor-id="racial-gap-in-average-housing-value">Racial Gap in Average Housing Value</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This map shows the average difference in housing values between White and Black homeowners across U.S. states. Positive values (shaded in yellow and orange) indicate that homes owned by White individuals are more valuable on average than those owned by Black individuals. States like Texas and Florida exhibit large positive gaps, while a few Northeastern states show small negative gaps. The variation highlights persistent racial disparities in housing wealth shaped by historical, geographic, and socioeconomic factors.</p>
+<p>Comparing the two maps reveals that high average housing values do not necessarily correlate with large racial disparities. For example, California stands out with the highest average housing value, yet its racial value gap is also among the largest. In contrast, some Midwestern states have moderate home values but relatively small racial differences.</p>
+</section>
+</section>
+<section id="interaction-between-homeownership-race-and-housing-prices" class="level3">
+<h3 class="anchored" data-anchor-id="interaction-between-homeownership-race-and-housing-prices">Interaction between Homeownership, Race, and Housing Prices</h3>
+<p>Homeownership does not reflect racial equity. Asian homeowners are concentrated in high-value homes while Black and American-Indian homeowners are clustered in the lower-value segments, reflecting the racial wealth gap.</p>
+</section>
+<section id="affordability-burden-by-race" class="level3">
+<h3 class="anchored" data-anchor-id="affordability-burden-by-race">Affordability Burden by Race</h3>
+<p>To further examine the relationship between home value and income, the boxplot below presents the affordability ratio—calculated as housing value divided by household income—by racial group. Notably, Asian homeowners exhibit the highest median affordability ratio (3.82), suggesting they carry the greatest relative cost burden despite owning more high-value homes. In contrast, White and American Indian households show lower median ratios, indicating relatively lower cost pressure even when housing prices vary across groups.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modeling-and-inference" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-and-inference">Modeling and Inference</h3>
+<p>To examine how income, race, and location affect home values, we fit a <strong>multiple log-linear regression model</strong> using <code>VALUEH</code> (housing value) as the dependent variable. The key explanatory variables include logged income (<code>log(FTOTINC)</code>), race (<code>factor(RACE)</code>), and location type (factor(ACREHOUS), &gt;10 acres indicator).</p>
+<section id="key-predictors" class="level4">
+<h4 class="anchored" data-anchor-id="key-predictors">Key Predictors</h4>
+<p>In addition to log household income, we include two categorical variables: race and house acreage. The race variable captures demographic differences across racial groups using dummy indicators. The <code>ACREHOUS</code> variable indicates whether the property has <strong>more than 10 acres of land</strong>, which may reflect rural-style housing or large-lot ownership, potentially influencing home value independently of income.</p>
+</section>
+<section id="model-specification" class="level4">
+<h4 class="anchored" data-anchor-id="model-specification">Model Specification</h4>
+<p>We estimate the following log-log model:</p>
+<p><span class="math display">\[
+\log(\text{VALUEH}_i) = \beta_0 + \beta_1 \log(\text{FTOTINC}_i) + \gamma \cdot \text{RACE}_i + \delta \cdot \text{ACREHOUS}_i + \varepsilon_i
+\]</span></p>
+<p>This specification captures the elasticity of income, racial differences, and the premium (or discount) associated with owning more than 10 acres of land.</p>
+</section>
+<section id="key-results" class="level4">
+<h4 class="anchored" data-anchor-id="key-results">Key Results</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 7%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Estimate</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>log(FTOTINC)</td>
+<td>0.438</td>
+<td>A 1% increase in income is associated with a <strong>0.44%</strong> increase in housing value.</td>
+</tr>
+<tr class="even">
+<td>Black/African American</td>
+<td>-0.158</td>
+<td>Homes owned by Black households are on average <strong>~15.8% less valuable</strong> than those of White households.</td>
+</tr>
+<tr class="odd">
+<td>American Indian or Alaska Native</td>
+<td>-0.423</td>
+<td>Homes owned by American Indian/Alaska Native households are <strong>~34.4% less valuable</strong> than White households.</td>
+</tr>
+<tr class="even">
+<td>Chinese</td>
+<td>0.702</td>
+<td>Chinese households own homes that are <strong>~101% more valuable</strong> than White households.</td>
+</tr>
+<tr class="odd">
+<td>Japanese</td>
+<td>0.732</td>
+<td>Japanese households own homes <strong>~109% more valuable</strong> than White households.</td>
+</tr>
+<tr class="even">
+<td>Other Asian or Pacific Islander</td>
+<td>0.421</td>
+<td>These households own homes <strong>~52.3% more valuable</strong> than White households.</td>
+</tr>
+<tr class="odd">
+<td>Other race, nec</td>
+<td>0.017</td>
+<td>Slightly higher, but economically negligible difference vs.&nbsp;White households.</td>
+</tr>
+<tr class="even">
+<td>Two major races</td>
+<td>0.059</td>
+<td>Homes owned by two-race households are <strong>~6.1% more valuable</strong> than those of White households.</td>
+</tr>
+<tr class="odd">
+<td>Three or more major races</td>
+<td>0.261</td>
+<td>Households identifying with three or more races own homes <strong>~29.8% more valuable</strong>.</td>
+</tr>
+<tr class="even">
+<td>Acreage &gt; 10 acres (vs ≤10 acres)</td>
+<td>-0.031</td>
+<td>Homes on large plots (&gt;10 acres) are about <strong>3.1% less valuable</strong>, holding other factors constant.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model fit</strong>: R² = 0.1673 (adj. R² = 0.1672). Although income, race, and land size significantly predict housing value, the modest R² indicates that important housing features and geographic context—such as neighborhood characteristics or housing quality—are likely needed to better explain variation in home values.</p>
+<p>To interpret the coefficients as percent changes: <span class="math display">\[
+\% \text{Change} = (e^{\beta} - 1) \times 100
+\]</span></p>
+</section>
+<section id="interpretation" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation">Interpretation</h4>
+<p>Income remains a strong predictor of housing value, but racial differences persist even after adjusting for financial status. For instance, Black and American Indian households own significantly lower-valued homes than Whites with the same income. Conversely, several Asian subgroups show significantly higher valuations.</p>
+<p>This reinforces the idea that <strong>systemic disparities</strong> in housing markets are not merely economic, but also tied to <strong>demographic and geographic inequities</strong>.</p>
+</section>
+</section>
+<section id="model-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="model-diagnostics">Model Diagnostics</h3>
+<section id="residuals-vs-fitted-hexbin" class="level4">
+<h4 class="anchored" data-anchor-id="residuals-vs-fitted-hexbin">Residuals vs Fitted (Hexbin)</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The residual plot using hexbin visualization shows a dense cluster of observations centered near zero residuals, particularly concentrated around fitted values between 12 and 13. This pattern suggests that the model is reasonably well specified for the bulk of the data. Although no strong curvature is observed, there is some mild funneling—wider spread at lower fitted values—which may hint at mild heteroskedasticity. Nonetheless, the overall structure supports the assumptions of linearity and approximate constant variance for most observations.</p>
+</section>
+<section id="limitations-and-assumptions" class="level4">
+<h4 class="anchored" data-anchor-id="limitations-and-assumptions">Limitations and Assumptions</h4>
+<p>While the multiple regression model includes income, race, and land acreage, it still has several <strong>limitations</strong>:</p>
+<ul>
+<li><strong>Omitted Variable Bias</strong>: Important housing characteristics (e.g., square footage, number of bedrooms, building age, location quality) are not included in the model. These unobserved factors could influence housing value and may confound the effects of income or race.</li>
+<li><strong>Measurement Error</strong>: Income and housing value variables may be subject to reporting errors or top-coding, especially at high values, which can bias the estimated coefficients.</li>
+<li><strong>Simplified Land Classification</strong>: The <code>ACREHOUS</code> variable distinguishes only whether the property exceeds 10 acres, which is an imperfect proxy for urban versus rural housing. More detailed geographic data (e.g., census tract or ZIP code) could improve location-based modeling.</li>
+</ul>
+</section>
+<section id="future-extensions" class="level4">
+<h4 class="anchored" data-anchor-id="future-extensions">Future Extensions</h4>
+<p>A more complete model would include controls for <strong>amenities</strong>, <strong>race</strong>, <strong>urbanicity</strong>, and <strong>region</strong> to better capture the determinants of housing value. In future work, it may also be useful to explore <strong>interaction terms</strong>, such as <strong>income × race</strong>, to examine whether the effect of income on housing value differs across racial groups. Additionally, panel data or time-series data would allow researchers to better identify <strong>causal</strong> (rather than purely associative) effects.</p>
+</section>
 </section>
 <section id="overall-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="overall-analysis">Overall Analysis</h3>
-<p>Within the homeowner population, the distribution of house values is uneven across racial categories. Asian sub-groups (Chinese, Japanese, Other Asian/Pacific Islander) concentrate most heavily in the high-value tier, whereas Black and American-Indian homeowners show larger proportions in medium and low tiers. Whites and the “Other Race” and “NA” categories sit in between, with roughly half of their homes in the high-value range. Thus, the chart depicts a clear range in housing value shares that aligns with the societal expectations of race, from skewed, expensive properties to a more balanced or lower-valued mix across certain racial groups.</p>
+<p>This study reveals a clear racial divide in homeownership patterns across the U.S. While Asian homeowners are disproportionately represented in the high-value tier, Black and American Indian homeowners are more often found in the lower or medium tiers. These disparities persist geographically, with some states showing both high average home values and large racial gaps. Affordability burdens further highlight inequality, as groups with higher-valued homes also bear heavier income-to-value ratios.</p>
+<p>Although the model shows that income, race, and land acreage significantly affect housing values, these variables explain only part of the variation. The regression results suggest that deeper structural differences—such as housing quality, local amenities, neighborhood segregation, or zoning policy—are likely at play. Future models incorporating additional housing attributes and interaction terms (e.g., income × race, income × region) will be essential for a more comprehensive understanding of equity in housing wealth.</p>
 </section>
 </section>
 <section id="dataset-2---analysis" class="level2">
@@ -409,6 +486,18 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</h3>
 <p><strong>Area and Price</strong><br>
 What we see: Price rises with area, but the cloud gets wider at larger sizes. That “fan‑shape” warns that area alone is far from sufficient; luxury fit‑outs and location are also at play.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>Furnishing Status</strong><br>
 Furnished homes cluster at the top of the price spectrum, semi‑furnished sit in the middle, and unfurnished trail behind. The median gap between furnished and unfurnished units is roughly two million (local currency), hinting at a strong convenience premium.</p>
 <p><strong>Bedrooms</strong><br>
@@ -420,12 +509,54 @@ Correlations among predictors stay below 0.60. That is low enough to keep varian
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
-<p><strong>Why a log‑linear model?</strong> - <strong>Heteroskedasticity</strong>: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range. - <strong>Interpretability</strong>: Coefficients on logged variables read as elasticities—handy for business decisions.</p>
+<p><strong>Why a log‑log model?</strong> - <strong>Heteroskedasticity</strong>: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range. - <strong>Interpretability</strong>: Coefficients on logged variables read as elasticities—handy for business decisions.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The log-log transformation reveals a near-linear trend, suggesting that a constant elasticity model is appropriate for capturing the relationship between area and price.</p>
+</section>
+<section id="model-diagnostics-1" class="level3">
+<h3 class="anchored" data-anchor-id="model-diagnostics-1">Model Diagnostics</h3>
+<section id="residuals-vs-fitted-plot" class="level4">
+<h4 class="anchored" data-anchor-id="residuals-vs-fitted-plot">Residuals vs Fitted Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The residuals are roughly symmetrically distributed around zero, with no visible curvature or fan-shaped patterns. This supports the assumption of linearity and homoskedasticity. A small spread (within ±1) indicates a tight fit between predicted and observed log-prices.</p>
+</section>
+<section id="q-q-plot" class="level4">
+<h4 class="anchored" data-anchor-id="q-q-plot">Q-Q Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Q-Q plot of residuals shows that most residuals lie along the 45-degree reference line, indicating approximate normality. Minor deviation at the tails is expected and does not severely violate model assumptions.</p>
+<p>Overall, these diagnostics suggest that the multiple linear regression model is well-specified and suitable for inference.</p>
 <p><strong>Model specification</strong><br>
 <span class="math display">\[
 \log(\text{price}) = \beta_0 + \beta_1 \log(\text{area}) + \beta_2 \cdot \text{bedrooms} + \beta_3 \cdot \text{bathrooms} + \beta_4 \cdot \text{stories} + \beta_5 \cdot \text{parking} + \beta_6 \cdot \text{semi-furnished} + \beta_7 \cdot \text{unfurnished} + \varepsilon
 \]</span> Baseline furnishing category = “furnished”.<br>
-Robust (Huber–White) standard errors used because the Durbin‑Watson test (DW = 1.18) flagged mild residual autocorrelation.</p>
+Robust (Huber–White) standard errors are used to guard against possible heteroskedasticity. A Durbin–Watson statistic of 1.18 suggests mild residual autocorrelation, although the model is not time-series in nature.</p>
 <p><strong>Key results (robust SEs)</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -498,8 +629,9 @@ Robust (Huber–White) standard errors used because the Durbin‑Watson test (DW
 </table>
 <p><strong>Model fit</strong>: R² = 0.60 (adj. R² = 0.60). VIF all &lt; 1.7, confirming low multicollinearity.</p>
 </section>
-<section id="interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
+</section>
+<section id="interpretation-1" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-1">Interpretation</h3>
 <ul>
 <li><strong>Elastic size premium</strong>: Doubling floor area (+100 %) raises price by ~ 31 % (because 1.00×0.39 = 0.39; e^0.39 ≈ 1.48). Returns to scale are therefore diminishing.</li>
 <li><strong>Quality of living spaces</strong>: One extra bathroom is worth roughly five bedrooms (20 % vs.&nbsp;4 %). Developers looking for affordable upgrades should prioritise bathroom count.</li>
