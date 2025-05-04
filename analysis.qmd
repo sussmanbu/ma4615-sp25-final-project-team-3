@@ -5,36 +5,10 @@ toc: true
 draft: false
 ---
 
-![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
+![](images/analysis_pic.jpg)
 
 This comes from the file `analysis.qmd`.
 
-## Rubric: On this page
-
-You will
-
--   Introduce what motivates your Data Analysis (DA)
-    -   Which variables and relationships are you most interested in?
-    -   What questions are you interested in answering?
-    -   Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.
--   Modeling and Inference
-    -   The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.
-    -   Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)
-    -   Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.
--   Explain the flaws and limitations of your analysis
-    -   Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?
--   Clarity Figures
-    -   Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?
-    -   Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)
-    -   Default `lm` output and plots are typically not acceptable.
--   Clarity of Explanations
-    -   How well do you explain each figure/result?
-    -   Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?
--   Organization and cleanliness.
-    -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
-    -   This page should be self-contained, i.e. provide a description of the relevant data.
-    
-    
 
 ```{r setup, include=FALSE}
 library(dplyr)
@@ -45,6 +19,7 @@ library(viridis)
 library(tidyr)
 library(ggplot2)
 library(reshape2)
+library(broom)
 
 housing_cleaned <- readRDS("dataset/housing_cleaned.rds")
 housing <- readRDS("dataset/second_housing_cleaned.rds")
@@ -136,6 +111,8 @@ ggplot(share_data, aes(x = race_group, y = share, fill = value_tier)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
+> Note: Each bar represents the **distribution of house value tiers *within* each racial group**, not across the full sample. This controls for unequal population sizes across races.
+
 ### Overview
 The stacked bar chart displays, for each racial group, the percentage distribution of owned homes across three housing value tiers: Low (≤$100K), Medium ($100K–$300K), and High (>$300K). Each bar adds up to 100%, emphasizing how the composition of housing wealth differs within each racial category of homeowners. This visualization highlights disparities in access to high-value housing across racial lines.
 
@@ -261,6 +238,18 @@ To examine how income, race, and location affect home values, we fit a **multipl
 #### Key Predictors
 
 In addition to log household income, we include two categorical variables: race and house acreage. The race variable captures demographic differences across racial groups using dummy indicators. The `ACREHOUS` variable indicates whether the property has **more than 10 acres of land**, which may reflect rural-style housing or large-lot ownership, potentially influencing home value independently of income.
+#### Model and Predictor Selection Rationale
+
+The decision to use a **multiple log-log regression model** stems from both the nature of the data and the economic interpretation desired. Housing values (`VALUEH`) and household income (`FTOTINC`) are both highly skewed, which can distort linear model assumptions. Taking the logarithm of these variables helps normalize the distributions, reduce heteroskedasticity, and allows the coefficients to be interpreted as **elasticities**—that is, percentage changes in housing value associated with percentage changes in income.
+
+The **predictor variables** were chosen based on theoretical relevance and empirical patterns:
+
+- **log(FTOTINC)**: Income is a fundamental driver of housing demand. Logging this variable improves model fit and enables percentage-based interpretation.
+- **RACE (factor)**: Racial disparities in housing access and value have been widely documented. Including race as a categorical predictor allows the model to measure differences in home value across demographic groups, even after adjusting for income.
+- **ACREHOUS (factor)**: The acreage indicator (whether a home sits on more than 10 acres) captures a meaningful dimension of housing context, land use, and market segmentation.
+
+This combination of variables aims to balance **parsimony** with **interpretability**, providing insights into both economic and structural determinants of housing value while avoiding unnecessary model complexity or overfitting.
+
 
 
 #### Model Specification
@@ -338,25 +327,26 @@ The residual plot using hexbin visualization shows a dense cluster of observatio
 
 
 
-#### Limitations and Assumptions
+### Limitations and Assumptions
 
 While the multiple regression model includes income, race, and land acreage, it still has several **limitations**:
 
-- **Omitted Variable Bias**: Important housing characteristics (e.g., square footage, number of bedrooms, building age, location quality) are not included in the model. These unobserved factors could influence housing value and may confound the effects of income or race.
-- **Measurement Error**: Income and housing value variables may be subject to reporting errors or top-coding, especially at high values, which can bias the estimated coefficients.
-- **Simplified Land Classification**: The `ACREHOUS` variable distinguishes only whether the property exceeds 10 acres, which is an imperfect proxy for urban versus rural housing. More detailed geographic data (e.g., census tract or ZIP code) could improve location-based modeling.
+- **Omitted Variable Bias**: Important housing characteristics (e.g., square footage, number of bedrooms, building age, neighborhood amenities, proximity to jobs/schools) are not included in the model. These omitted factors are likely correlated with both income and race, and may confound the estimated effects.
+- **Measurement Error**: Both `VALUEH` and `FTOTINC` may be subject to reporting error or top-coding in survey data, especially in the upper tail, which could attenuate the estimated relationships.
+- **Simplified Geographic Controls**: While the model could incorporate state fixed effects (`STATEICP`) to control for regional heterogeneity, our base specification only includes a coarse land classification (`ACREHOUS`) indicating whether a property exceeds 10 acres. This binary indicator does not fully capture urban–suburban–rural differences or local housing market dynamics.
+- **Linearity and Constant Variance Assumptions**: Although diagnostics suggest reasonable model fit, some residual heteroskedasticity remains. This suggests that relationships may be nonlinear or vary across subgroups.
 
+### Future Extensions
 
-#### Future Extensions
+A more complete model would include richer housing attributes (e.g., lot size, building condition, year built), as well as finer geographic controls (e.g., ZIP code, county, census tract). Including **state fixed effects** via `factor(STATEICP)` would better control for unobserved regional differences. It would also be informative to explore **interaction terms**, such as **income × race**, to test whether income translates into home value equally across demographic groups. Finally, using **panel data** or exploiting quasi-experimental variation could help uncover **causal** rather than associative relationships.
 
-A more complete model would include controls for **amenities**, **race**, **urbanicity**, and **region** to better capture the determinants of housing value. In future work, it may also be useful to explore **interaction terms**, such as **income × race**, to examine whether the effect of income on housing value differs across racial groups. Additionally, panel data or time-series data would allow researchers to better identify **causal** (rather than purely associative) effects.
 
 
 ### Overall Analysis
 This study reveals a clear racial divide in homeownership patterns across the U.S. While Asian homeowners are disproportionately represented in the high-value tier, Black and American Indian homeowners are more often found in the lower or medium tiers. These disparities persist geographically, with some states showing both high average home values and large racial gaps. Affordability burdens further highlight inequality, as groups with higher-valued homes also bear heavier income-to-value ratios. 
 
 Although the model shows that income, race, and land acreage significantly affect housing values, these variables explain only part of the variation. The regression results suggest that deeper structural differences—such as housing quality, local amenities, neighborhood segregation, or zoning policy—are likely at play. Future models incorporating additional housing attributes and interaction terms (e.g., income × race, income × region) will be essential for a more comprehensive understanding of equity in housing wealth.
-
+---
 
 
 ## Dataset 2 - Analysis
@@ -443,7 +433,8 @@ Correlations among predictors stay below 0.60. That is low enough to keep varian
 
 ### Statistical Modeling
 
-**Why a log‑log model?**
+#### Why a log‑log model?
+
 - **Heteroskedasticity**: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range.
 - **Interpretability**: Coefficients on logged variables read as elasticities—handy for business decisions.
 
@@ -468,28 +459,33 @@ model <- lm(
     relevel(furnishingstatus, ref = "furnished"),
   data = second_housing_cleaned
 )
+model_diag2 <- augment(model)
 
-
-fitted_vals <- fitted(model)
-resids <- resid(model)
-
-plot(fitted_vals, resids,
-     xlab = "Fitted values",
-     ylab = "Residuals",
-     main = "Residuals vs Fitted (custom)",
-     ylim = c(-1, 1),
-     pch = 20, col = "gray40")
-abline(h = 0, col = "red", lty = 2)
+# Residuals vs Fitted Plot
+ggplot(model_diag2, aes(.fitted, .resid)) +
+  geom_point(alpha = 0.4, color = "steelblue") +
+  geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
+  coord_cartesian(ylim = c(-1, 1)) +
+  labs(
+    title = "Residuals vs Fitted Values",
+    x = "Fitted Values",
+    y = "Residuals"
+  ) +
+  theme_minimal()
 ```
 The residuals are roughly symmetrically distributed around zero, with no visible curvature or fan-shaped patterns. This supports the assumption of linearity and homoskedasticity. A small spread (within ±1) indicates a tight fit between predicted and observed log-prices.
 
 #### Q-Q Plot
 ```{r echo=FALSE, warning=FALSE}
-qqnorm(resids,
-       main = "Q-Q Plot of Residuals",
-       pch = 20, col = "gray40")
-qqline(resids, col = "red", lty = 2)
-
+ggplot(model_diag2, aes(sample = .resid)) +
+  stat_qq(alpha = 0.4, color = "gray40") +
+  stat_qq_line(color = "red", linetype = "dashed") +
+  labs(
+    title = "Q-Q Plot of Residuals",
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  ) +
+  theme_minimal()
 ```
 The Q-Q plot of residuals shows that most residuals lie along the 45-degree reference line, indicating approximate normality. Minor deviation at the tails is expected and does not severely violate model assumptions.
 
@@ -524,10 +520,35 @@ Robust (Huber–White) standard errors are used to guard against possible hetero
 - **Furnishing’s impact**: Being unfurnished strips ~15 % off value, whereas “semi‑furnished” is statistically on par with “furnished.”
 - **Parking spots**: Each additional space fetches about 5 % more, in line with urban planners’ estimates of parking scarcity premiums.
 
-### Limitations
+### Limitations and Assumptions
 
-- **Location blind spot** – Latitude/longitude or neighbourhood IDs are missing; coefficients may be soaking up neighbourhood quality effects.
-- **Time snapshot** – Dataset is cross‑sectional; market cycles are ignored. A panel would allow repeat‑sales or fixed‑effects modelling.
-- **Measurement error** – “Furnishing status” is categorical; within‑group variation (e.g., high‑end vs. IKEA furniture) is invisible.
-- **Model diagnostics** – DW < 2 suggests some autocorrelation; robust SEs help, but a mixed model or clustering by postcode could improve inference.
+- **Missing Fine-Grained Geographic Controls**: The dataset lacks latitude/longitude or neighborhood-level identifiers (e.g., ZIP codes), limiting the ability to control for **local housing market effects**. As a result, some estimated coefficients may inadvertently capture unobserved neighborhood quality.
+- **Cross-Sectional Data**: The dataset represents a single point in time, ignoring temporal dynamics in housing markets. Without panel data, we cannot account for market cycles or unobserved household characteristics via fixed effects or repeat-sales models.
+- **Coarse Variable Definitions**: Variables like `furnishingstatus` are coarse and categorical; they do not capture within-category heterogeneity (e.g., luxury vs. basic furniture), potentially understating their influence.
+- **Model Assumptions**: The Durbin–Watson statistic < 2 indicates **potential residual autocorrelation**, which violates the OLS assumption of independent errors. Although robust standard errors are used, more advanced techniques (e.g., clustering by region or mixed-effects models) may yield more reliable inference.
+
+### Future Directions
+
+To deepen the analysis of housing price determinants, future work could incorporate more granular **location identifiers** (e.g., ZIP code, district) to control for local market variation and neighborhood effects. Including **additional structural attributes** such as year built, renovation status, or energy efficiency could improve explanatory power and reduce omitted variable bias.
+
+Moreover, interaction terms (e.g., `log(area) × furnishing status`, or `bedrooms × stories`) could help detect **nonlinearities and conditional effects**. To address potential residual correlation across homes within the same neighborhood, **multilevel models** or **clustering by region** would enhance statistical robustness.
+
+Finally, if panel data becomes available, **fixed-effects models** could be used to control for unobserved household or location-specific traits, enabling stronger causal inference about housing value drivers over time.
+
+
+
+## Cross-Dataset Summary
+
+This project used two complementary datasets to examine determinants of housing value in the United States.
+
+- The **IPUMS housing dataset** highlighted *sociodemographic disparities* in homeownership and property value. Even after controlling for income, racial differences in housing value remained substantial. Asian subgroups (particularly Chinese and Japanese) owned significantly higher-valued homes, while Black and American Indian households lagged behind, reflecting persistent structural inequalities.
+
+- The **Kaggle housing dataset**, on the other hand, emphasized *property-specific features* like square footage, number of bedrooms, bathrooms, and parking capacity. The correlation heatmap revealed that **area** and **number of bathrooms** are most strongly associated with price, suggesting that functional space and comfort play a key role in housing valuation.
+
+Together, these datasets reveal two sides of the housing market:  
+1. **Who** owns valuable homes is shaped by race, income, and geography.  
+2. **Why** homes are valued differently is largely explained by their structural features.
+
+Future work can combine both types of variables to create richer predictive models and more comprehensive policy insights.
+
 
