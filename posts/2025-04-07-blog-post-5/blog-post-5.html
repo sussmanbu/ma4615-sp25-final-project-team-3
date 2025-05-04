@@ -153,11 +153,87 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>We found a new data to compare with. https://www.kaggle.com/datasets/huyngohoang/housingcsv</p>
-<p>Income Levels • Most addresses show annual incomes between $50,000 and $80,000, indicating that the sample group mainly consists of middle-class households. • There is noticeable regional variation in income, with coastal areas, military addresses (FPO/DPO), and locations near large cities tending to have higher median incomes. House Size • House sizes (estimated in square meters or square feet) typically fall between 5.0 and 8.5, with most values concentrated in the 6.0 to 7.5 range. • Larger homes tend to be found in the Midwest and rural areas (e.g., OK, PW, MO), possibly due to lower land costs. House Value vs.&nbsp;Income • In many cases, home values are roughly 20–30 times the annual income, aligning with typical U.S. housing market ratios. • For example, an income of $59,927.66 with a home value of $798,869.53 represents about a 13x multiple, suggesting affordable housing or strong purchasing power. • Conversely, in Taylorborough, OK, an income of $55,909.32 with a home value of $936,368.96 (about 17x) points to a higher housing cost burden. Population Density or Occupancy Metrics • Some locations like Lake Elizabeth, IN (6.17) and Janetbury, NM (8.09) show higher density, likely indicating urban or suburban environments. • In contrast, areas like Jacksonhaven, AZ (4.01) and Thomashaven, HI (6.62) show lower density, likely reflecting rural or less populated regions. Special Address Patterns • Multiple addresses start with FPO/DPO/USS/USNS, indicating military, diplomatic, or government-related residences. • These military-associated addresses tend to have income levels comparable to standard households, suggesting military families enjoy a middle-class lifestyle. Outliers • The lowest recorded income is $17,796.63 (Lake Martha, WY), significantly below the average—possibly representing retirees, low-income households, or geographically isolated areas. • The highest home value appears in Lake Kevin, UT at $1,762,214.68, which—given its associated income—likely reflects a luxury property or secondary real estate market.</p>
-<p>Combining datasets can present several challenges, particularly when dealing with housing data from different sources. In our case, integrating the original housing dataset from Kaggle with a new dataset introduced several difficulties: Inconsistent Data Formats: The two datasets utilized different formats for representing similar information. For instance, one dataset recorded dates in ‘MM/DD/YYYY’ format, while the other used ‘YYYY-MM-DD’. Additionally, categorical variables like property types were labeled differently across datasets (‘Single Family’ vs.&nbsp;‘SFH’), necessitating meticulous standardization before integration. Disparate Feature Sets: Each dataset contained unique features not present in the other. The original dataset included detailed information on interior features such as the number of fireplaces and flooring types, whereas the new dataset provided data on neighborhood amenities and crime rates. This mismatch required careful consideration to align relevant features for a meaningful comparative analysis. Geographical Misalignment: The datasets covered overlapping but not identical geographical areas. The original dataset focused on urban regions, while the new dataset encompassed suburban areas. This discrepancy posed challenges in creating a unified dataset without introducing geographical biases. Temporal Differences: The datasets were collected during different time periods, with the original dataset covering 2015-2020 and the new dataset spanning 2018-2023. This temporal gap complicated trend analyses and required adjustments to account for time-based variations in the housing market. Addressing these challenges involved extensive data cleaning and transformation processes, including standardizing formats, reconciling feature differences, carefully selecting overlapping geographical areas, and aligning temporal aspects. Despite these efforts, some limitations persisted, underscoring the complexities inherent in combining disparate datasets for comprehensive analysis.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>We found a new data to compare with.<br>
+https://www.kaggle.com/datasets/huyngohoang/housingcsv</p>
+</section>
+<section id="income-levels" class="level2">
+<h2 class="anchored" data-anchor-id="income-levels">Income Levels</h2>
+<ul>
+<li>Most addresses show annual incomes between $50,000 and $80,000, indicating that the sample group mainly consists of middle-class households.<br>
+</li>
+<li>There is noticeable regional variation in income, with coastal areas, military addresses (FPO/DPO), and locations near large cities tending to have higher median incomes.</li>
+</ul>
+</section>
+<section id="house-size" class="level2">
+<h2 class="anchored" data-anchor-id="house-size">House Size</h2>
+<ul>
+<li>House sizes (estimated in square meters or square feet) typically fall between 5.0 and 8.5, with most values concentrated in the 6.0 to 7.5 range.<br>
+</li>
+<li>Larger homes tend to be found in the Midwest and rural areas (e.g., OK, PW, MO), possibly due to lower land costs.</li>
+</ul>
+</section>
+<section id="house-value-vs.-income" class="level2">
+<h2 class="anchored" data-anchor-id="house-value-vs.-income">House Value vs.&nbsp;Income</h2>
+<ul>
+<li>In many cases, home values are roughly 20–30 times the annual income, aligning with typical U.S. housing market ratios.<br>
+</li>
+<li>For example, an income of $59,927.66 with a home value of $798,869.53 represents about a 13x multiple, suggesting affordable housing or strong purchasing power.<br>
+</li>
+<li>Conversely, in Taylorborough, OK, an income of $55,909.32 with a home value of $936,368.96 (about 17x) points to a higher housing cost burden.</li>
+</ul>
+</section>
+<section id="population-density-or-occupancy-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="population-density-or-occupancy-metrics">Population Density or Occupancy Metrics</h2>
+<ul>
+<li>Some locations like Lake Elizabeth, IN (6.17) and Janetbury, NM (8.09) show higher density, likely indicating urban or suburban environments.<br>
+</li>
+<li>In contrast, areas like Jacksonhaven, AZ (4.01) and Thomashaven, HI (6.62) show lower density, likely reflecting rural or less populated regions.</li>
+</ul>
+</section>
+<section id="special-address-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="special-address-patterns">Special Address Patterns</h2>
+<ul>
+<li>Multiple addresses start with FPO/DPO/USS/USNS, indicating military, diplomatic, or government-related residences.<br>
+</li>
+<li>These military-associated addresses tend to have income levels comparable to standard households, suggesting military families enjoy a middle-class lifestyle.</li>
+</ul>
+</section>
+<section id="outliers" class="level2">
+<h2 class="anchored" data-anchor-id="outliers">Outliers</h2>
+<ul>
+<li>The lowest recorded income is $17,796.63 (Lake Martha, WY), significantly below the average—possibly representing retirees, low-income households, or geographically isolated areas.<br>
+</li>
+<li>The highest home value appears in Lake Kevin, UT at $1,762,214.68, which—given its associated income—likely reflects a luxury property or secondary real estate market.</li>
+</ul>
+</section>
+<section id="challenges-in-combining-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-in-combining-datasets">Challenges in Combining Datasets</h2>
+<p>Combining datasets can present several challenges, particularly when dealing with housing data from different sources. In our case, integrating the original housing dataset from Kaggle with a new dataset introduced several difficulties:</p>
+<section id="inconsistent-data-formats" class="level3">
+<h3 class="anchored" data-anchor-id="inconsistent-data-formats">Inconsistent Data Formats</h3>
+<p>The two datasets utilized different formats for representing similar information. For instance, one dataset recorded dates in ‘MM/DD/YYYY’ format, while the other used ‘YYYY-MM-DD’. Additionally, categorical variables like property types were labeled differently across datasets (‘Single Family’ vs.&nbsp;‘SFH’), necessitating meticulous standardization before integration.</p>
+</section>
+<section id="disparate-feature-sets" class="level3">
+<h3 class="anchored" data-anchor-id="disparate-feature-sets">Disparate Feature Sets</h3>
+<p>Each dataset contained unique features not present in the other. The original dataset included detailed information on interior features such as the number of fireplaces and flooring types, whereas the new dataset provided data on neighborhood amenities and crime rates. This mismatch required careful consideration to align relevant features for a meaningful comparative analysis.</p>
+</section>
+<section id="geographical-misalignment" class="level3">
+<h3 class="anchored" data-anchor-id="geographical-misalignment">Geographical Misalignment</h3>
+<p>The datasets covered overlapping but not identical geographical areas. The original dataset focused on urban regions, while the new dataset encompassed suburban areas. This discrepancy posed challenges in creating a unified dataset without introducing geographical biases.</p>
+</section>
+<section id="temporal-differences" class="level3">
+<h3 class="anchored" data-anchor-id="temporal-differences">Temporal Differences</h3>
+<p>The datasets were collected during different time periods, with the original dataset covering 2015–2020 and the new dataset spanning 2018–2023. This temporal gap complicated trend analyses and required adjustments to account for time-based variations in the housing market.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Addressing these challenges involved extensive data cleaning and transformation processes, including standardizing formats, reconciling feature differences, carefully selecting overlapping geographical areas, and aligning temporal aspects. Despite these efforts, some limitations persisted, underscoring the complexities inherent in combining disparate datasets for comprehensive analysis.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

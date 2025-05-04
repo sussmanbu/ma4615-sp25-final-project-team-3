@@ -150,8 +150,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link active" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  <li><a href="#dataset-1---analysis" id="toc-dataset-1---analysis" class="nav-link" data-scroll-target="#dataset-1---analysis">Dataset 1 - Analysis</a>
+  <li><a href="#dataset-1---analysis" id="toc-dataset-1---analysis" class="nav-link active" data-scroll-target="#dataset-1---analysis">Dataset 1 - Analysis</a>
   <ul class="collapse">
   <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
@@ -166,6 +165,8 @@ window.Quarto = {
   <li><a href="#affordability-burden-by-race" id="toc-affordability-burden-by-race" class="nav-link" data-scroll-target="#affordability-burden-by-race">Affordability Burden by Race</a></li>
   <li><a href="#modeling-and-inference" id="toc-modeling-and-inference" class="nav-link" data-scroll-target="#modeling-and-inference">Modeling and Inference</a></li>
   <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics">Model Diagnostics</a></li>
+  <li><a href="#limitations-and-assumptions" id="toc-limitations-and-assumptions" class="nav-link" data-scroll-target="#limitations-and-assumptions">Limitations and Assumptions</a></li>
+  <li><a href="#future-extensions" id="toc-future-extensions" class="nav-link" data-scroll-target="#future-extensions">Future Extensions</a></li>
   <li><a href="#overall-analysis" id="toc-overall-analysis" class="nav-link" data-scroll-target="#overall-analysis">Overall Analysis</a></li>
   </ul></li>
   <li><a href="#dataset-2---analysis" id="toc-dataset-2---analysis" class="nav-link" data-scroll-target="#dataset-2---analysis">Dataset 2 - Analysis</a>
@@ -175,8 +176,10 @@ window.Quarto = {
   <li><a href="#statistical-modeling" id="toc-statistical-modeling" class="nav-link" data-scroll-target="#statistical-modeling">Statistical Modeling</a></li>
   <li><a href="#model-diagnostics-1" id="toc-model-diagnostics-1" class="nav-link" data-scroll-target="#model-diagnostics-1">Model Diagnostics</a></li>
   <li><a href="#interpretation-1" id="toc-interpretation-1" class="nav-link" data-scroll-target="#interpretation-1">Interpretation</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#limitations-and-assumptions-1" id="toc-limitations-and-assumptions-1" class="nav-link" data-scroll-target="#limitations-and-assumptions-1">Limitations and Assumptions</a></li>
+  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions">Future Directions</a></li>
   </ul></li>
+  <li><a href="#cross-dataset-summary" id="toc-cross-dataset-summary" class="nav-link" data-scroll-target="#cross-dataset-summary">Cross-Dataset Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -207,46 +210,8 @@ window.Quarto = {
 </header>
 
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"></p>
+<p><img src="images/analysis_pic.jpg" class="img-fluid"></p>
 <p>This comes from the file <code>analysis.qmd</code>.</p>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
-<ul>
-<li>Introduce what motivates your Data Analysis (DA)
-<ul>
-<li>Which variables and relationships are you most interested in?</li>
-<li>What questions are you interested in answering?</li>
-<li>Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.</li>
-</ul></li>
-<li>Modeling and Inference
-<ul>
-<li>The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.</li>
-<li>Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)</li>
-<li>Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.</li>
-</ul></li>
-<li>Explain the flaws and limitations of your analysis
-<ul>
-<li>Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?</li>
-</ul></li>
-<li>Clarity Figures
-<ul>
-<li>Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?</li>
-<li>Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)</li>
-<li>Default <code>lm</code> output and plots are typically not acceptable.</li>
-</ul></li>
-<li>Clarity of Explanations
-<ul>
-<li>How well do you explain each figure/result?</li>
-<li>Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?</li>
-</ul></li>
-<li>Organization and cleanliness.
-<ul>
-<li>Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.</li>
-<li>This page should be self-contained, i.e.&nbsp;provide a description of the relevant data.</li>
-</ul></li>
-</ul>
-</section>
 <section id="dataset-1---analysis" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-1---analysis">Dataset 1 - Analysis</h2>
 <section id="motivation" class="level3">
@@ -289,6 +254,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>Note: Each bar represents the <strong>distribution of house value tiers <em>within</em> each racial group</strong>, not across the full sample. This controls for unequal population sizes across races.</p>
+</blockquote>
 <section id="overview" class="level3">
 <h3 class="anchored" data-anchor-id="overview">Overview</h3>
 <p>The stacked bar chart displays, for each racial group, the percentage distribution of owned homes across three housing value tiers: Low (≤$100K), Medium ($100K–$300K), and High (&gt;$300K). Each bar adds up to 100%, emphasizing how the composition of housing wealth differs within each racial category of homeowners. This visualization highlights disparities in access to high-value housing across racial lines.</p>
@@ -346,7 +314,15 @@ window.Quarto = {
 <p>To examine how income, race, and location affect home values, we fit a <strong>multiple log-linear regression model</strong> using <code>VALUEH</code> (housing value) as the dependent variable. The key explanatory variables include logged income (<code>log(FTOTINC)</code>), race (<code>factor(RACE)</code>), and location type (factor(ACREHOUS), &gt;10 acres indicator).</p>
 <section id="key-predictors" class="level4">
 <h4 class="anchored" data-anchor-id="key-predictors">Key Predictors</h4>
-<p>In addition to log household income, we include two categorical variables: race and house acreage. The race variable captures demographic differences across racial groups using dummy indicators. The <code>ACREHOUS</code> variable indicates whether the property has <strong>more than 10 acres of land</strong>, which may reflect rural-style housing or large-lot ownership, potentially influencing home value independently of income.</p>
+<p>In addition to log household income, we include two categorical variables: race and house acreage. The race variable captures demographic differences across racial groups using dummy indicators. The <code>ACREHOUS</code> variable indicates whether the property has <strong>more than 10 acres of land</strong>, which may reflect rural-style housing or large-lot ownership, potentially influencing home value independently of income. #### Model and Predictor Selection Rationale</p>
+<p>The decision to use a <strong>multiple log-log regression model</strong> stems from both the nature of the data and the economic interpretation desired. Housing values (<code>VALUEH</code>) and household income (<code>FTOTINC</code>) are both highly skewed, which can distort linear model assumptions. Taking the logarithm of these variables helps normalize the distributions, reduce heteroskedasticity, and allows the coefficients to be interpreted as <strong>elasticities</strong>—that is, percentage changes in housing value associated with percentage changes in income.</p>
+<p>The <strong>predictor variables</strong> were chosen based on theoretical relevance and empirical patterns:</p>
+<ul>
+<li><strong>log(FTOTINC)</strong>: Income is a fundamental driver of housing demand. Logging this variable improves model fit and enables percentage-based interpretation.</li>
+<li><strong>RACE (factor)</strong>: Racial disparities in housing access and value have been widely documented. Including race as a categorical predictor allows the model to measure differences in home value across demographic groups, even after adjusting for income.</li>
+<li><strong>ACREHOUS (factor)</strong>: The acreage indicator (whether a home sits on more than 10 acres) captures a meaningful dimension of housing context, land use, and market segmentation.</li>
+</ul>
+<p>This combination of variables aims to balance <strong>parsimony</strong> with <strong>interpretability</strong>, providing insights into both economic and structural determinants of housing value while avoiding unnecessary model complexity or overfitting.</p>
 </section>
 <section id="model-specification" class="level4">
 <h4 class="anchored" data-anchor-id="model-specification">Model Specification</h4>
@@ -455,24 +431,26 @@ window.Quarto = {
 </div>
 <p>The residual plot using hexbin visualization shows a dense cluster of observations centered near zero residuals, particularly concentrated around fitted values between 12 and 13. This pattern suggests that the model is reasonably well specified for the bulk of the data. Although no strong curvature is observed, there is some mild funneling—wider spread at lower fitted values—which may hint at mild heteroskedasticity. Nonetheless, the overall structure supports the assumptions of linearity and approximate constant variance for most observations.</p>
 </section>
-<section id="limitations-and-assumptions" class="level4">
-<h4 class="anchored" data-anchor-id="limitations-and-assumptions">Limitations and Assumptions</h4>
+</section>
+<section id="limitations-and-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-and-assumptions">Limitations and Assumptions</h3>
 <p>While the multiple regression model includes income, race, and land acreage, it still has several <strong>limitations</strong>:</p>
 <ul>
-<li><strong>Omitted Variable Bias</strong>: Important housing characteristics (e.g., square footage, number of bedrooms, building age, location quality) are not included in the model. These unobserved factors could influence housing value and may confound the effects of income or race.</li>
-<li><strong>Measurement Error</strong>: Income and housing value variables may be subject to reporting errors or top-coding, especially at high values, which can bias the estimated coefficients.</li>
-<li><strong>Simplified Land Classification</strong>: The <code>ACREHOUS</code> variable distinguishes only whether the property exceeds 10 acres, which is an imperfect proxy for urban versus rural housing. More detailed geographic data (e.g., census tract or ZIP code) could improve location-based modeling.</li>
+<li><strong>Omitted Variable Bias</strong>: Important housing characteristics (e.g., square footage, number of bedrooms, building age, neighborhood amenities, proximity to jobs/schools) are not included in the model. These omitted factors are likely correlated with both income and race, and may confound the estimated effects.</li>
+<li><strong>Measurement Error</strong>: Both <code>VALUEH</code> and <code>FTOTINC</code> may be subject to reporting error or top-coding in survey data, especially in the upper tail, which could attenuate the estimated relationships.</li>
+<li><strong>Simplified Geographic Controls</strong>: While the model could incorporate state fixed effects (<code>STATEICP</code>) to control for regional heterogeneity, our base specification only includes a coarse land classification (<code>ACREHOUS</code>) indicating whether a property exceeds 10 acres. This binary indicator does not fully capture urban–suburban–rural differences or local housing market dynamics.</li>
+<li><strong>Linearity and Constant Variance Assumptions</strong>: Although diagnostics suggest reasonable model fit, some residual heteroskedasticity remains. This suggests that relationships may be nonlinear or vary across subgroups.</li>
 </ul>
 </section>
-<section id="future-extensions" class="level4">
-<h4 class="anchored" data-anchor-id="future-extensions">Future Extensions</h4>
-<p>A more complete model would include controls for <strong>amenities</strong>, <strong>race</strong>, <strong>urbanicity</strong>, and <strong>region</strong> to better capture the determinants of housing value. In future work, it may also be useful to explore <strong>interaction terms</strong>, such as <strong>income × race</strong>, to examine whether the effect of income on housing value differs across racial groups. Additionally, panel data or time-series data would allow researchers to better identify <strong>causal</strong> (rather than purely associative) effects.</p>
-</section>
+<section id="future-extensions" class="level3">
+<h3 class="anchored" data-anchor-id="future-extensions">Future Extensions</h3>
+<p>A more complete model would include richer housing attributes (e.g., lot size, building condition, year built), as well as finer geographic controls (e.g., ZIP code, county, census tract). Including <strong>state fixed effects</strong> via <code>factor(STATEICP)</code> would better control for unobserved regional differences. It would also be informative to explore <strong>interaction terms</strong>, such as <strong>income × race</strong>, to test whether income translates into home value equally across demographic groups. Finally, using <strong>panel data</strong> or exploiting quasi-experimental variation could help uncover <strong>causal</strong> rather than associative relationships.</p>
 </section>
 <section id="overall-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="overall-analysis">Overall Analysis</h3>
 <p>This study reveals a clear racial divide in homeownership patterns across the U.S. While Asian homeowners are disproportionately represented in the high-value tier, Black and American Indian homeowners are more often found in the lower or medium tiers. These disparities persist geographically, with some states showing both high average home values and large racial gaps. Affordability burdens further highlight inequality, as groups with higher-valued homes also bear heavier income-to-value ratios.</p>
 <p>Although the model shows that income, race, and land acreage significantly affect housing values, these variables explain only part of the variation. The regression results suggest that deeper structural differences—such as housing quality, local amenities, neighborhood segregation, or zoning policy—are likely at play. Future models incorporating additional housing attributes and interaction terms (e.g., income × race, income × region) will be essential for a more comprehensive understanding of equity in housing wealth.</p>
+<hr>
 </section>
 </section>
 <section id="dataset-2---analysis" class="level2">
@@ -545,7 +523,12 @@ What we see: Price rises with area, but the cloud gets wider at larger sizes. Th
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
-<p><strong>Why a log‑log model?</strong> - <strong>Heteroskedasticity</strong>: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range. - <strong>Interpretability</strong>: Coefficients on logged variables read as elasticities—handy for business decisions.</p>
+<section id="why-a-loglog-model" class="level4">
+<h4 class="anchored" data-anchor-id="why-a-loglog-model">Why a log‑log model?</h4>
+<ul>
+<li><strong>Heteroskedasticity</strong>: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range.</li>
+<li><strong>Interpretability</strong>: Coefficients on logged variables read as elasticities—handy for business decisions.</li>
+</ul>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -559,6 +542,7 @@ What we see: Price rises with area, but the cloud gets wider at larger sizes. Th
 </div>
 </div>
 <p>The log-log transformation reveals a near-linear trend, suggesting that a constant elasticity model is appropriate for capturing the relationship between area and price.</p>
+</section>
 </section>
 <section id="model-diagnostics-1" class="level3">
 <h3 class="anchored" data-anchor-id="model-diagnostics-1">Model Diagnostics</h3>
@@ -675,17 +659,35 @@ Robust (Huber–White) standard errors are used to guard against possible hetero
 <li><strong>Parking spots</strong>: Each additional space fetches about 5 % more, in line with urban planners’ estimates of parking scarcity premiums.</li>
 </ul>
 </section>
-<section id="limitations" class="level3">
-<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
+<section id="limitations-and-assumptions-1" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-and-assumptions-1">Limitations and Assumptions</h3>
 <ul>
-<li><strong>Location blind spot</strong> – Latitude/longitude or neighbourhood IDs are missing; coefficients may be soaking up neighbourhood quality effects.</li>
-<li><strong>Time snapshot</strong> – Dataset is cross‑sectional; market cycles are ignored. A panel would allow repeat‑sales or fixed‑effects modelling.</li>
-<li><strong>Measurement error</strong> – “Furnishing status” is categorical; within‑group variation (e.g., high‑end vs.&nbsp;IKEA furniture) is invisible.</li>
-<li><strong>Model diagnostics</strong> – DW &lt; 2 suggests some autocorrelation; robust SEs help, but a mixed model or clustering by postcode could improve inference.</li>
+<li><strong>Missing Fine-Grained Geographic Controls</strong>: The dataset lacks latitude/longitude or neighborhood-level identifiers (e.g., ZIP codes), limiting the ability to control for <strong>local housing market effects</strong>. As a result, some estimated coefficients may inadvertently capture unobserved neighborhood quality.</li>
+<li><strong>Cross-Sectional Data</strong>: The dataset represents a single point in time, ignoring temporal dynamics in housing markets. Without panel data, we cannot account for market cycles or unobserved household characteristics via fixed effects or repeat-sales models.</li>
+<li><strong>Coarse Variable Definitions</strong>: Variables like <code>furnishingstatus</code> are coarse and categorical; they do not capture within-category heterogeneity (e.g., luxury vs.&nbsp;basic furniture), potentially understating their influence.</li>
+<li><strong>Model Assumptions</strong>: The Durbin–Watson statistic &lt; 2 indicates <strong>potential residual autocorrelation</strong>, which violates the OLS assumption of independent errors. Although robust standard errors are used, more advanced techniques (e.g., clustering by region or mixed-effects models) may yield more reliable inference.</li>
 </ul>
-
-
 </section>
+<section id="future-directions" class="level3">
+<h3 class="anchored" data-anchor-id="future-directions">Future Directions</h3>
+<p>To deepen the analysis of housing price determinants, future work could incorporate more granular <strong>location identifiers</strong> (e.g., ZIP code, district) to control for local market variation and neighborhood effects. Including <strong>additional structural attributes</strong> such as year built, renovation status, or energy efficiency could improve explanatory power and reduce omitted variable bias.</p>
+<p>Moreover, interaction terms (e.g., <code>log(area) × furnishing status</code>, or <code>bedrooms × stories</code>) could help detect <strong>nonlinearities and conditional effects</strong>. To address potential residual correlation across homes within the same neighborhood, <strong>multilevel models</strong> or <strong>clustering by region</strong> would enhance statistical robustness.</p>
+<p>Finally, if panel data becomes available, <strong>fixed-effects models</strong> could be used to control for unobserved household or location-specific traits, enabling stronger causal inference about housing value drivers over time.</p>
+</section>
+</section>
+<section id="cross-dataset-summary" class="level2">
+<h2 class="anchored" data-anchor-id="cross-dataset-summary">Cross-Dataset Summary</h2>
+<p>This project used two complementary datasets to examine determinants of housing value in the United States.</p>
+<ul>
+<li><p>The <strong>IPUMS housing dataset</strong> highlighted <em>sociodemographic disparities</em> in homeownership and property value. Even after controlling for income, racial differences in housing value remained substantial. Asian subgroups (particularly Chinese and Japanese) owned significantly higher-valued homes, while Black and American Indian households lagged behind, reflecting persistent structural inequalities.</p></li>
+<li><p>The <strong>Kaggle housing dataset</strong>, on the other hand, emphasized <em>property-specific features</em> like square footage, number of bedrooms, bathrooms, and parking capacity. The correlation heatmap revealed that <strong>area</strong> and <strong>number of bathrooms</strong> are most strongly associated with price, suggesting that functional space and comfort play a key role in housing valuation.</p></li>
+</ul>
+<p>Together, these datasets reveal two sides of the housing market:<br>
+1. <strong>Who</strong> owns valuable homes is shaped by race, income, and geography.<br>
+2. <strong>Why</strong> homes are valued differently is largely explained by their structural features.</p>
+<p>Future work can combine both types of variables to create richer predictive models and more comprehensive policy insights.</p>
+
+
 </section>
 
 </main> <!-- /main -->

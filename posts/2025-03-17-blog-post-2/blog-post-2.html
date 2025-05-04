@@ -153,13 +153,23 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<ol type="1">
-<li><p>The data comes from the IPUMS website, an individual-level population database containing information for U.S. Census Data for Social, Economic, and Health Research. This dataset can be used to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. Since land and homeownership are major contributors to generational wealth, the dataset can also explore how land distribution contributes to the racial wealth gap.</p></li>
-<li><p>The process of finding this data was not very smooth, the data we downloaded through the website was very large, because it was very many valid variables, when processing the data even though unnecessary data had been removed, the data size was still 78.9mb, which was larger than 50mb, so the dataset could only be reduced. The current sample population is 3405811 rows, the table up to a million rows, sample does exist bias, such as the variable value, many 99999999, which is obviously due to some kind of statistical limitations, the highest is only 99999999, if you really follow this data to statistics, will certainly make the real value is small.</p></li>
-<li><p>The IPUMS USA dataset is widely used in research and policymaking, providing microdata from U.S. censuses and the American Community Survey. Researchers have used it to study migration, labor markets, education, and housing trends, leveraging its longitudinal depth to track societal changes over time. Policymakers rely on IPUMS data to guide urban planning, zoning laws, economic policies, and social programs. For example, housing lot size trends inform infrastructure and land-use decisions. Past research has explored questions like how immigration patterns impact the economy, what drives educational disparities, and how employment trends respond to economic cycles. By offering rich demographic insights, the dataset continues to shape both academic studies and policy development.</p></li>
-</ol>
+<section id="data-source-and-research-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="data-source-and-research-motivation">Data Source and Research Motivation</h2>
+<p>The data comes from the IPUMS website, an individual-level population database containing information for U.S. Census Data for Social, Economic, and Health Research. This dataset can be used to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups.</p>
+<p>Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. Since land and homeownership are major contributors to generational wealth, the dataset can also explore how land distribution contributes to the racial wealth gap.</p>
+</section>
+<section id="data-collection-and-preprocessing-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="data-collection-and-preprocessing-challenges">Data Collection and Preprocessing Challenges</h2>
+<p>The process of finding this data was not very smooth. The data we downloaded through the website was very large, because it contained many valid variables. When processing the data, even though unnecessary data had been removed, the data size was still 78.9MB, which was larger than 50MB, so the dataset could only be reduced.</p>
+<p>The current sample population is 3,405,811 rows. The table has up to a million rows, and sample bias does exist. For example, in the variable values, many entries are coded as <code>99999999</code>, which is obviously due to some kind of statistical limitation. The highest is only <code>99999999</code>, so if you really follow this data for statistics, the real value would be underestimated.</p>
+</section>
+<section id="ipums-usa-in-research-and-policy" class="level2">
+<h2 class="anchored" data-anchor-id="ipums-usa-in-research-and-policy">IPUMS USA in Research and Policy</h2>
+<p>The IPUMS USA dataset is widely used in research and policymaking, providing microdata from U.S. censuses and the American Community Survey. Researchers have used it to study migration, labor markets, education, and housing trends, leveraging its longitudinal depth to track societal changes over time.</p>
+<p>Policymakers rely on IPUMS data to guide urban planning, zoning laws, economic policies, and social programs. For example, housing lot size trends inform infrastructure and land-use decisions. Past research has explored questions like how immigration patterns impact the economy, what drives educational disparities, and how employment trends respond to economic cycles. By offering rich demographic insights, the dataset continues to shape both academic studies and policy development.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
