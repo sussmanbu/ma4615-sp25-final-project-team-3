@@ -43,8 +43,11 @@ library(maps)
 library(tibble)
 library(viridis)
 library(tidyr)
+library(ggplot2)
+library(reshape2)
 
 housing_cleaned <- readRDS("dataset/housing_cleaned.rds")
+housing <- readRDS("dataset/second_housing_cleaned.rds")
 
 housing_cleaned <- housing_cleaned %>%
   mutate(
@@ -385,16 +388,56 @@ ggplot(second_housing_cleaned, aes(x = area, y = price)) +
   theme_minimal()
 ```
 
-**Furnishing Status**  
+**Furnishing Status** 
+```{r echo=FALSE, warning=FALSE}
+housing$furnishingstatus <- as.factor(housing$furnishingstatus)
+boxplot(price ~ furnishingstatus, data = housing,
+        col = c("lightblue", "lightgreen", "lightcoral"),
+        main = "Price by Furnishing Status",
+        xlab = "Furnishing Status",
+        ylab = "Price")
+```
 Furnished homes cluster at the top of the price spectrum, semi‑furnished sit in the middle, and unfurnished trail behind. The median gap between furnished and unfurnished units is roughly two million (local currency), hinting at a strong convenience premium.
 
 **Bedrooms**  
+```{r echo=FALSE, warning=FALSE}
+housing$bedrooms <- as.factor(housing$bedrooms)
+boxplot(price ~ bedrooms, data = housing,
+        col = rainbow(length(unique(housing$bedrooms))),
+        main = "Price by Number of Bedrooms",
+        xlab = "Number of Bedrooms",
+        ylab = "Price")
+```
 Median price increases steadily from one to five bedrooms, but dispersion within each group is large—evidence that bedroom count alone doesn’t guarantee luxury. For example, some three‑bedroom flats fetch more than four‑bedroom houses because of high‑end finishes.
 
 **Parking**  
+```{r echo=FALSE, warning=FALSE}
+housing$parking <- as.factor(housing$parking)
+boxplot(price ~ parking, data = housing,
+        col = heat.colors(length(unique(housing$parking))),
+        main = "Price by Number of Parking Spaces",
+        xlab = "Parking Spaces",
+        ylab = "Price")
+```
 Going from zero to one parking space lifts the median price by ≈ 15 %. A second space still adds value, but the incremental gain diminishes—suggesting diminishing marginal utility.
 
 **Correlation Check**  
+```{r echo=FALSE, warning=FALSE}
+numeric_vars <- housing[, c("price", "area", "bedrooms", "bathrooms", "stories", "parking")]
+numeric_vars <- as.data.frame(lapply(numeric_vars, as.numeric))
+cor_matrix <- cor(numeric_vars, use = "complete.obs")
+cor_melt <- melt(cor_matrix)
+ggplot(cor_melt, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "red", name = "value") +
+  labs(
+    title = "Correlation Matrix of Numeric Variables",
+    x = "Var1",
+    y = "Var2"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 Correlations among predictors stay below 0.60. That is low enough to keep variance‑inflation factors (VIF) below 2, so we can include all variables in one regression without worrying about unstable coefficients.
 
 
