@@ -68,3 +68,153 @@ You will
 -   Organization and cleanliness.
     -   Make sure to remove excessive warnings, hide all code, organize with sections or multiple pages, use bullets, etc.
     -   This page should be self-contained, i.e. provide a description of the relevant data.
+    
+    
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+
+housing_cleaned <- readRDS("dataset/housing_cleaned.rds")
+
+housing_cleaned <- housing_cleaned %>%
+  mutate(
+    location = ifelse(ACREHOUS == 0, "Urban", "Rural"),
+    race_group = case_when(
+      RACE == 1 ~ "White",
+      RACE == 2 ~ "Black",
+      RACE == 3 ~ "American Indian/Alaska Native",
+      RACE %in% c(4, 5, 6) ~ "Asian",
+      RACE == 8 ~ "Two Races",
+      RACE == 9 ~ "Three or More Races",
+      TRUE ~ "Other"
+    ),
+    afford_ratio = VALUEH / FTOTINC
+  )
+```
+
+## Analysis
+
+### Motivation 
+The main purpose of the study is to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. By comparing the distribution between land and characteristics of homeownership, the result can help to identify the factors that are major contributors to generational wealth, therefore enhancing the understanding and influence of the racial wealth gap.
+
+### Urban vs. Rural Housing Value
+The boxplot below illustrates housing values across racial groups, separated by urban and rural locations. It reveals that Asian households living in urban areas tend to occupy the highest-value homes, whereas American Indian and Black homeowners have more limited value ranges, especially in rural settings. This reinforces how geography and race intersect to shape home equity.
+
+```{r echo=FALSE, warning=FALSE}
+ggplot(housing_cleaned, aes(x = race_group, y = VALUEH, fill = location)) +
+  geom_boxplot(outlier.shape = NA) +
+  scale_y_log10() +
+  labs(title = "Housing Value by Race and Location Type",
+       x = "Race",
+       y = "Housing Value (log scale)",
+       fill = "Location") +
+  theme_minimal()
+```
+
+### Research Questions
+- How does homeownership and racial demographics interact with housing prices?
+- Does the association between housing quality and rent price vary by racial differences in neighborhood?
+
+## How does homeownership and racial demographics interact with housing prices?
+
+### Overview
+The stacked-share bar chart shows, for each race category, the percentage distributed of homes owned across all three house value tiers (High, Medium, and Low). Because every bar sums to 100%, the focus is on how housing-wealth mixes differ within the homeowner population of each racial group. 
+
+### Interaction between Homeownership, Race, and Housing Prices
+Homeownership does not reflect racial equity. Asian homeowners are concentrated in high-value homes while Black and American-Indian homeowners are clustered in the lower-value segments, reflecting the racial wealth gap.
+
+### Affordability Burden by Race
+To further investigate how home value relates to income, the following boxplot shows the affordability ratio—calculated as housing value divided by household income—by race. Interestingly, although Asian households appear to own more high-value homes, they also bear the highest affordability burden, with a median ratio of 3.82. In contrast, groups such as White and American Indian households show lower ratios, reflecting different cost burdens even amid price differences.
+
+```{r echo=FALSE, warning=FALSE}
+median_ratios <- housing_cleaned %>%
+  group_by(race_group) %>%
+  summarise(median_ratio = median(afford_ratio, na.rm = TRUE))
+
+ggplot(housing_cleaned, aes(x = race_group, y = afford_ratio)) +
+  geom_boxplot(outlier.shape = NA, fill = "darkorange") +
+  geom_text(data = median_ratios,
+            aes(x = race_group, y = median_ratio, label = round(median_ratio, 2)),
+            vjust = -0.5, size = 3.5) +
+  scale_y_log10() +
+  labs(title = "Affordability Ratio (Housing Value / Income) by Race",
+       x = "Race",
+       y = "Affordability Ratio (log scale)") +
+  theme_minimal()
+```
+
+### Overall Analysis
+Within the homeowner population, the distribution of house values is uneven across racial categories. Asian sub-groups (Chinese, Japanese, Other Asian/Pacific Islander) concentrate most heavily in the high-value tier, whereas Black and American-Indian homeowners show larger proportions in medium and low tiers. Whites and the “Other Race” and “NA” categories sit in between, with roughly half of their homes in the high-value range. Thus, the chart depicts a clear range in housing value shares that aligns with the societal expectations of race, from skewed, expensive properties to a more balanced or lower-valued mix across certain racial groups.
+
+
+
+## Dataset 2 - Analysis
+
+### Motivation & Research Questions
+Home prices have surged, yet buyers and policymakers still debate why some properties cost millions more than others.
+This study investigates three broad hypotheses:
+- **Size‐driven pricing** – Larger built‑up area should raise price, but by how much?
+- **Amenity premiums** – Features such as furnishing, bathrooms, parking, and extra stories may command additional value.
+- **Independence of effects** – Do those features each add value on their own, or are some simply proxies for one another (multicollinearity)?
+
+Answering these helps buyers budget efficiently and lets developers prioritise high‑value upgrades.
+
+### Exploratory Data Analysis (EDA)
+
+**Area and Price**  
+What we see: Price rises with area, but the cloud gets wider at larger sizes. That “fan‑shape” warns that area alone is far from sufficient; luxury fit‑outs and location are also at play.
+
+**Furnishing Status**  
+Furnished homes cluster at the top of the price spectrum, semi‑furnished sit in the middle, and unfurnished trail behind. The median gap between furnished and unfurnished units is roughly two million (local currency), hinting at a strong convenience premium.
+
+**Bedrooms**  
+Median price increases steadily from one to five bedrooms, but dispersion within each group is large—evidence that bedroom count alone doesn’t guarantee luxury. For example, some three‑bedroom flats fetch more than four‑bedroom houses because of high‑end finishes.
+
+**Parking**  
+Going from zero to one parking space lifts the median price by ≈ 15 %. A second space still adds value, but the incremental gain diminishes—suggesting diminishing marginal utility.
+
+**Correlation Check**  
+Correlations among predictors stay below 0.60. That is low enough to keep variance‑inflation factors (VIF) below 2, so we can include all variables in one regression without worrying about unstable coefficients.
+
+### Statistical Modeling
+
+**Why a log‑linear model?**
+- **Heteroskedasticity**: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range.
+- **Interpretability**: Coefficients on logged variables read as elasticities—handy for business decisions.
+
+**Model specification**  
+$$
+\log(\text{price}) = \beta_0 + \beta_1 \log(\text{area}) + \beta_2 \cdot \text{bedrooms} + \beta_3 \cdot \text{bathrooms} + \beta_4 \cdot \text{stories} + \beta_5 \cdot \text{parking} + \beta_6 \cdot \text{semi-furnished} + \beta_7 \cdot \text{unfurnished} + \varepsilon
+$$
+Baseline furnishing category = “furnished”.  
+Robust (Huber–White) standard errors used because the Durbin‑Watson test (DW = 1.18) flagged mild residual autocorrelation.
+
+**Key results (robust SEs)**
+
+| Variable       | β̂    | % impact           | 95 % CI           | Comment                                  |
+|----------------|-------|--------------------|-------------------|-------------------------------------------|
+| log(area)      | 0.39  | +0.39 % per +1 %   | 0.34–0.45         | Size matters, but less than proportional. |
+| Bedrooms       | 0.04  | +4 % per room      | 0.01–0.07         | Small yet significant.                    |
+| Bathrooms      | 0.18  | +20 % per bath     | 0.14–0.23         | Largest single‑room effect.               |
+| Stories        | 0.10  | +11 % per floor    | 0.08–0.13         | Two‑storey vs. one‑storey ≈ 11 % uplift.  |
+| Parking        | 0.05  | +5 % per spot      | 0.03–0.08         | Still valuable after controls.            |
+| Semi‑furnished | –0.02 | –2 %               | –0.07–0.03        | Not distinguishable from furnished.       |
+| Unfurnished    | –0.17 | –15 %              | –0.22– –0.11      | Clear discount.                           |
+
+**Model fit**: R² = 0.60 (adj. R² = 0.60). VIF all < 1.7, confirming low multicollinearity.
+
+### Interpretation
+
+- **Elastic size premium**: Doubling floor area (+100 %) raises price by ~ 31 % (because 1.00×0.39 = 0.39; e^0.39 ≈ 1.48). Returns to scale are therefore diminishing.
+- **Quality of living spaces**: One extra bathroom is worth roughly five bedrooms (20 % vs. 4 %). Developers looking for affordable upgrades should prioritise bathroom count.
+- **Furnishing’s impact**: Being unfurnished strips ~15 % off value, whereas “semi‑furnished” is statistically on par with “furnished.”
+- **Parking spots**: Each additional space fetches about 5 % more, in line with urban planners’ estimates of parking scarcity premiums.
+
+### Limitations
+
+- **Location blind spot** – Latitude/longitude or neighbourhood IDs are missing; coefficients may be soaking up neighbourhood quality effects.
+- **Time snapshot** – Dataset is cross‑sectional; market cycles are ignored. A panel would allow repeat‑sales or fixed‑effects modelling.
+- **Measurement error** – “Furnishing status” is categorical; within‑group variation (e.g., high‑end vs. IKEA furniture) is invisible.
+- **Model diagnostics** – DW < 2 suggests some autocorrelation; robust SEs help, but a mixed model or clustering by postcode could improve inference.
+

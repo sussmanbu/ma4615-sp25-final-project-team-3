@@ -1,0 +1,10 @@
+name: dataset
+title:
+username: yikii
+account: yikii
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14678690
+bundleId: 10226147
+url: https://yikii.shinyapps.io/dataset/
+version: 1

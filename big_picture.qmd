@@ -1,137 +1,75 @@
 ---
-title: "Big Picture"
-description: "A 538/Upshot style article about the data."
+title: "Identical Homes, Unequal Prices"
+description: "How race predicts home value in the U.S. housing market."
 toc: true
 draft: FALSE
-filters:
-  - shinylive
 ---
 
-![](images/The_Big_Picture_2.jpeg)
+![](images/identical_houses.jpg)
 
 This comes from the file `big_picture.qmd`.
 
-Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
+## Big Picture
+
+> **Imagine buying your dream home — only to find out it’s worth less than your neighbor’s nearly identical house across town. Why? Not the square footage, not the fixtures — but the people who live nearby.**
+
+Across the United States, two families might buy nearly identical houses — same size, same number of rooms, even the same amenities. Yet one of those homes may be worth significantly more than the other. The difference? Not the home itself, but the neighborhood — and more often than we’d like to admit, the race of the people living there.
+
+Our thesis is simple: In the U.S. housing market, **race remains a powerful predictor of home value**, even when you account for structure, size, and features. This is not about the house — it’s about the neighborhood’s demographics and the legacy of structural inequality.
+
+> The analysis in this article is based on data from the **2023 American Community Survey (ACS)** and a secondary dataset of U.S. housing transactions from Kaggle. You can read more about the data and how we cleaned it [here](data.html).
+
+## Race and Home Value
+
+Let’s start with the big picture. When we look at who lives where — and what those homes are worth — a clear pattern emerges:
+
+![](images/house_value_race.png)
+
+*Figure 1: Distribution of racial groups across home value tiers.  
+White residents are overrepresented in higher-value neighborhoods, while Black and Hispanic groups are more concentrated in lower-value areas.*
+
+This suggests that **the racial composition of a neighborhood** may influence home values — even when homes are similar in size or features.
 
 
+Even when the homes themselves are similar, the value attached to them changes — depending on who lives nearby.
 
----
+## Can House Features Explain the Gap?
 
+You might be thinking: maybe homes in Black or Hispanic neighborhoods are just **smaller, older**, or missing key amenities.
 
-### Interactive
+We dug into our data to test that. What we found is that **area (square footage)** and **number of bathrooms** are the most important predictors of home price. As you might expect, larger homes and those with more bathrooms tend to cost more.
 
-Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
+![](images/price_area.png)
 
+*Figure 2: Relationship between physical home features and housing value.  
+Square footage and number of bathrooms are the strongest predictors of price. Bedrooms and parking features play a smaller or inconsistent role.*
 
-
-
-```{r}
-#| eval: false
-#| standalone: true
-#| viewerHeight: 640 # You will have to adjust this to fit everything
-
-
-library(shiny)
-library(tidyverse)
-options("readr.edition" = 1) # keep this to ensure you can download the data
+But these physical features still **don’t explain the racial gap in home values** — they’re only part of the story.
 
 
-# Define UI for app that draws a histogram ----
-ui <- fluidPage(
+The relationship is clear: as **square footage increases**, so does home value. But that only explains part of the picture.
 
-  # App title ----
-  titlePanel("Hello Shiny!"),
+> Our dataset doesn't directly link features like size or bathrooms to the **racial composition** of neighborhoods.  
+> So while we can see that these features affect price, we **can’t explain racial disparities in home values** using features alone.
 
-  # Sidebar layout with input and output definitions ----
-  verticalLayout(
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
+That’s where broader research comes in. National studies have shown that even when homes are **structurally identical**, those in **majority-Black neighborhoods** are often valued lower than those in predominantly **White areas**.
 
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
+> The gap, in many cases, isn’t about the home — **it’s about the neighborhood.**
 
-  )
-)
+## Try It Yourself
 
-# Define server logic required to draw a histogram ----
-server <- function(input, output) {
-  # The URL below has to point to a dataset on your github pages website
-  # I recommend creating a small-ish rds file that has only the data relevant to 
-  # the interactive.
-  data <- read_rds("https://sussmanbu.github.io/ma4615-final-project-quarto/dataset_for_shiny/combined_regional_data.rds")
-  
-  output$distPlot <- renderPlot({
-    ggplot(data, aes(x = refusal_rate)) +
-      geom_histogram(bins = input$bins + 1)
+We’ve built a simple interactive map that lets you explore this issue in your own state.
 
-  })
+Below is the Shiny app that visualizes **average home values by race** for each state in the U.S.  
+**Select a racial group from the sidebar to see how average home values vary across states.**
 
-}
+<iframe src="https://yikii.shinyapps.io/dataset/" width="100%" height="600px" frameborder="0"></iframe>
 
-# Create Shiny app ----
-shinyApp(ui = ui, server = server)
-```
+If you have trouble viewing it here, you can also open the app in a new tab:  
+[Launch the interactive map](https://yikii.shinyapps.io/dataset/)
 
-To get the shinylive-r working.
- 
-1. Make sure your shiny app works as a regular r chunk.
-2. Make sure that the chunk is completely self-contained. Meaning all packages and data are loaded inside that chunk. It can't rely on any other chunks.
-3. For the data that you are using for shiny, copy the rds file or any other files into the scripts folder, and then publish your website.
-4. Where you load in your data, change it to use a URL to the data set which will now be on your website. Something like read_rds("https://sussmanbu.github.io/ma-4615-fa24-final-project-group-a/scripts/dataset_for_shiny.rds")
-5. Check that the chunk still works as a regular r chunk.
-6. Change it to a shinylive-r chunk.
-7. Commit and publish your work.
+## What This Means
 
-I recommend keeping the data used for the shiny interactive relatively small, though this isn't completely necessary.
+Our findings suggest that **racial disparities in home value are not fully explained by home size or amenities**. Instead, they reflect deeper patterns of inequality embedded in how neighborhoods are perceived and valued.
 
----
-
-
-
-
-## Rubric: On this page
-
-
-* Title
-  * Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.
-* Clarity of Explanation
-  * You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don't go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.
-  * Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.
-* Creativity
-  * Do your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.
-* Interactive component
-  * Quality and ease of use of the interactive components.
-Is it clear what can be explored using your interactive components?
-Does it enhance and reinforce your conclusions?
-* This page should be self-contained.
-  
-**Note**: This page should have no code visible, i.e. use `#| echo: FALSE`.  
-
-
-
-
-## Rubric: Other components
-
-### Video Recording
-
-Make a video recording (probably using Zoom) demonstrating your interactive components.
-You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA.
-This video should be no longer than 4 minutes.
-Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website.
-This can be presented by any subset of the team members.
-
-
-### Rest of the Site
-
-Finally, here are important things to keep in mind for the rest of the site. 
-
-The main title of your page is informative.
-Each post has an author/description/informative title.
-All lab required posts are present.
-Each page (including the home page) has a nice featured image associated with it.
-Your about page is up to date and clean.
-You have removed the generic posts from the initial site template.
+Even two identical homes — same layout, same condition — can be valued differently based on who lives next door. Until these systemic issues are addressed, market-based housing inequality will persist — not because of what a home is, but because of where and with whom it stands.

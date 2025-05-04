@@ -154,7 +154,8 @@ To better understand the structure of each dataset, we visualize the distributio
 
 ### Data Set 1: Distribution of Self-Reported Housing Value (IPUMS)
 The following histogram shows the distribution of housing values reported by respondents in the IPUMS ACS data. These values are self-reported and may reflect owner perception rather than market assessments.
-```{r}
+```{r echo=FALSE}
+#| warning: false
 library(ggplot2)
 
 ggplot(housing_cleaned, aes(x = VALUEH)) +
@@ -170,7 +171,8 @@ As the plot shows, most owner-reported home values cluster below $500,000. The d
 
 ### Data Set 2: Distribution of Housing Prices (Kaggle)
 This histogram displays the distribution of housing prices in the Kaggle dataset. These are actual sale prices and reflect market transactions rather than survey responses.
-```{r}
+```{r echo=FALSE}
+#| warning: false
 ggplot(second_housing_cleaned, aes(x = price)) +
   geom_histogram(bins = 50, fill = "darkgreen", color = "white") +
   labs(
