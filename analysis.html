@@ -102,6 +102,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -129,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./big_picture.html"> 
-<span class="menu-text">Big Picture</span></a>
+<span class="menu-text">Identical Homes, Unequal Prices</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./analysis.html" aria-current="page"> 
@@ -158,6 +187,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#example-of-loading-data" id="toc-example-of-loading-data" class="nav-link active" data-scroll-target="#example-of-loading-data">Example of loading data</a></li>
   <li><a href="#note-on-attribution" id="toc-note-on-attribution" class="nav-link" data-scroll-target="#note-on-attribution">Note on Attribution</a></li>
   <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#urban-vs.-rural-housing-value" id="toc-urban-vs.-rural-housing-value" class="nav-link" data-scroll-target="#urban-vs.-rural-housing-value">Urban vs.&nbsp;Rural Housing Value</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  </ul></li>
+  <li><a href="#how-does-homeownership-and-racial-demographics-interact-with-housing-prices" id="toc-how-does-homeownership-and-racial-demographics-interact-with-housing-prices" class="nav-link" data-scroll-target="#how-does-homeownership-and-racial-demographics-interact-with-housing-prices">How does homeownership and racial demographics interact with housing prices?</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#interaction-between-homeownership-race-and-housing-prices" id="toc-interaction-between-homeownership-race-and-housing-prices" class="nav-link" data-scroll-target="#interaction-between-homeownership-race-and-housing-prices">Interaction between Homeownership, Race, and Housing Prices</a></li>
+  <li><a href="#affordability-burden-by-race" id="toc-affordability-burden-by-race" class="nav-link" data-scroll-target="#affordability-burden-by-race">Affordability Burden by Race</a></li>
+  <li><a href="#overall-analysis" id="toc-overall-analysis" class="nav-link" data-scroll-target="#overall-analysis">Overall Analysis</a></li>
+  </ul></li>
+  <li><a href="#dataset-2---analysis" id="toc-dataset-2---analysis" class="nav-link" data-scroll-target="#dataset-2---analysis">Dataset 2 - Analysis</a>
+  <ul class="collapse">
+  <li><a href="#motivation-research-questions" id="toc-motivation-research-questions" class="nav-link" data-scroll-target="#motivation-research-questions">Motivation &amp; Research Questions</a></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#statistical-modeling" id="toc-statistical-modeling" class="nav-link" data-scroll-target="#statistical-modeling">Statistical Modeling</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -292,8 +342,182 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>This page should be self-contained, i.e.&nbsp;provide a description of the relevant data.</li>
 </ul></li>
 </ul>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="motivation" class="level3">
+<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+<p>The main purpose of the study is to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. By comparing the distribution between land and characteristics of homeownership, the result can help to identify the factors that are major contributors to generational wealth, therefore enhancing the understanding and influence of the racial wealth gap.</p>
+</section>
+<section id="urban-vs.-rural-housing-value" class="level3">
+<h3 class="anchored" data-anchor-id="urban-vs.-rural-housing-value">Urban vs.&nbsp;Rural Housing Value</h3>
+<p>The boxplot below illustrates housing values across racial groups, separated by urban and rural locations. It reveals that Asian households living in urban areas tend to occupy the highest-value homes, whereas American Indian and Black homeowners have more limited value ranges, especially in rural settings. This reinforces how geography and race intersect to shape home equity.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="research-questions" class="level3">
+<h3 class="anchored" data-anchor-id="research-questions">Research Questions</h3>
+<ul>
+<li>How does homeownership and racial demographics interact with housing prices?</li>
+<li>Does the association between housing quality and rent price vary by racial differences in neighborhood?</li>
+</ul>
+</section>
+</section>
+<section id="how-does-homeownership-and-racial-demographics-interact-with-housing-prices" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-homeownership-and-racial-demographics-interact-with-housing-prices">How does homeownership and racial demographics interact with housing prices?</h2>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>The stacked-share bar chart shows, for each race category, the percentage distributed of homes owned across all three house value tiers (High, Medium, and Low). Because every bar sums to 100%, the focus is on how housing-wealth mixes differ within the homeowner population of each racial group.</p>
+</section>
+<section id="interaction-between-homeownership-race-and-housing-prices" class="level3">
+<h3 class="anchored" data-anchor-id="interaction-between-homeownership-race-and-housing-prices">Interaction between Homeownership, Race, and Housing Prices</h3>
+<p>Homeownership does not reflect racial equity. Asian homeowners are concentrated in high-value homes while Black and American-Indian homeowners are clustered in the lower-value segments, reflecting the racial wealth gap.</p>
+</section>
+<section id="affordability-burden-by-race" class="level3">
+<h3 class="anchored" data-anchor-id="affordability-burden-by-race">Affordability Burden by Race</h3>
+<p>To further investigate how home value relates to income, the following boxplot shows the affordability ratio—calculated as housing value divided by household income—by race. Interestingly, although Asian households appear to own more high-value homes, they also bear the highest affordability burden, with a median ratio of 3.82. In contrast, groups such as White and American Indian households show lower ratios, reflecting different cost burdens even amid price differences.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="overall-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="overall-analysis">Overall Analysis</h3>
+<p>Within the homeowner population, the distribution of house values is uneven across racial categories. Asian sub-groups (Chinese, Japanese, Other Asian/Pacific Islander) concentrate most heavily in the high-value tier, whereas Black and American-Indian homeowners show larger proportions in medium and low tiers. Whites and the “Other Race” and “NA” categories sit in between, with roughly half of their homes in the high-value range. Thus, the chart depicts a clear range in housing value shares that aligns with the societal expectations of race, from skewed, expensive properties to a more balanced or lower-valued mix across certain racial groups.</p>
+</section>
+</section>
+<section id="dataset-2---analysis" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-2---analysis">Dataset 2 - Analysis</h2>
+<section id="motivation-research-questions" class="level3">
+<h3 class="anchored" data-anchor-id="motivation-research-questions">Motivation &amp; Research Questions</h3>
+<p>Home prices have surged, yet buyers and policymakers still debate why some properties cost millions more than others. This study investigates three broad hypotheses: - <strong>Size‐driven pricing</strong> – Larger built‑up area should raise price, but by how much? - <strong>Amenity premiums</strong> – Features such as furnishing, bathrooms, parking, and extra stories may command additional value. - <strong>Independence of effects</strong> – Do those features each add value on their own, or are some simply proxies for one another (multicollinearity)?</p>
+<p>Answering these helps buyers budget efficiently and lets developers prioritise high‑value upgrades.</p>
+</section>
+<section id="exploratory-data-analysis-eda" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</h3>
+<p><strong>Area and Price</strong><br>
+What we see: Price rises with area, but the cloud gets wider at larger sizes. That “fan‑shape” warns that area alone is far from sufficient; luxury fit‑outs and location are also at play.</p>
+<p><strong>Furnishing Status</strong><br>
+Furnished homes cluster at the top of the price spectrum, semi‑furnished sit in the middle, and unfurnished trail behind. The median gap between furnished and unfurnished units is roughly two million (local currency), hinting at a strong convenience premium.</p>
+<p><strong>Bedrooms</strong><br>
+Median price increases steadily from one to five bedrooms, but dispersion within each group is large—evidence that bedroom count alone doesn’t guarantee luxury. For example, some three‑bedroom flats fetch more than four‑bedroom houses because of high‑end finishes.</p>
+<p><strong>Parking</strong><br>
+Going from zero to one parking space lifts the median price by ≈ 15 %. A second space still adds value, but the incremental gain diminishes—suggesting diminishing marginal utility.</p>
+<p><strong>Correlation Check</strong><br>
+Correlations among predictors stay below 0.60. That is low enough to keep variance‑inflation factors (VIF) below 2, so we can include all variables in one regression without worrying about unstable coefficients.</p>
+</section>
+<section id="statistical-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
+<p><strong>Why a log‑linear model?</strong> - <strong>Heteroskedasticity</strong>: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range. - <strong>Interpretability</strong>: Coefficients on logged variables read as elasticities—handy for business decisions.</p>
+<p><strong>Model specification</strong><br>
+<span class="math display">\[
+\log(\text{price}) = \beta_0 + \beta_1 \log(\text{area}) + \beta_2 \cdot \text{bedrooms} + \beta_3 \cdot \text{bathrooms} + \beta_4 \cdot \text{stories} + \beta_5 \cdot \text{parking} + \beta_6 \cdot \text{semi-furnished} + \beta_7 \cdot \text{unfurnished} + \varepsilon
+\]</span> Baseline furnishing category = “furnished”.<br>
+Robust (Huber–White) standard errors used because the Durbin‑Watson test (DW = 1.18) flagged mild residual autocorrelation.</p>
+<p><strong>Key results (robust SEs)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 19%">
+<col style="width: 18%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>β̂</th>
+<th>% impact</th>
+<th>95 % CI</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>log(area)</td>
+<td>0.39</td>
+<td>+0.39 % per +1 %</td>
+<td>0.34–0.45</td>
+<td>Size matters, but less than proportional.</td>
+</tr>
+<tr class="even">
+<td>Bedrooms</td>
+<td>0.04</td>
+<td>+4 % per room</td>
+<td>0.01–0.07</td>
+<td>Small yet significant.</td>
+</tr>
+<tr class="odd">
+<td>Bathrooms</td>
+<td>0.18</td>
+<td>+20 % per bath</td>
+<td>0.14–0.23</td>
+<td>Largest single‑room effect.</td>
+</tr>
+<tr class="even">
+<td>Stories</td>
+<td>0.10</td>
+<td>+11 % per floor</td>
+<td>0.08–0.13</td>
+<td>Two‑storey vs.&nbsp;one‑storey ≈ 11 % uplift.</td>
+</tr>
+<tr class="odd">
+<td>Parking</td>
+<td>0.05</td>
+<td>+5 % per spot</td>
+<td>0.03–0.08</td>
+<td>Still valuable after controls.</td>
+</tr>
+<tr class="even">
+<td>Semi‑furnished</td>
+<td>–0.02</td>
+<td>–2 %</td>
+<td>–0.07–0.03</td>
+<td>Not distinguishable from furnished.</td>
+</tr>
+<tr class="odd">
+<td>Unfurnished</td>
+<td>–0.17</td>
+<td>–15 %</td>
+<td>–0.22– –0.11</td>
+<td>Clear discount.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model fit</strong>: R² = 0.60 (adj. R² = 0.60). VIF all &lt; 1.7, confirming low multicollinearity.</p>
+</section>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
+<ul>
+<li><strong>Elastic size premium</strong>: Doubling floor area (+100 %) raises price by ~ 31 % (because 1.00×0.39 = 0.39; e^0.39 ≈ 1.48). Returns to scale are therefore diminishing.</li>
+<li><strong>Quality of living spaces</strong>: One extra bathroom is worth roughly five bedrooms (20 % vs.&nbsp;4 %). Developers looking for affordable upgrades should prioritise bathroom count.</li>
+<li><strong>Furnishing’s impact</strong>: Being unfurnished strips ~15 % off value, whereas “semi‑furnished” is statistically on par with “furnished.”</li>
+<li><strong>Parking spots</strong>: Each additional space fetches about 5 % more, in line with urban planners’ estimates of parking scarcity premiums.</li>
+</ul>
+</section>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
+<ul>
+<li><strong>Location blind spot</strong> – Latitude/longitude or neighbourhood IDs are missing; coefficients may be soaking up neighbourhood quality effects.</li>
+<li><strong>Time snapshot</strong> – Dataset is cross‑sectional; market cycles are ignored. A panel would allow repeat‑sales or fixed‑effects modelling.</li>
+<li><strong>Measurement error</strong> – “Furnishing status” is categorical; within‑group variation (e.g., high‑end vs.&nbsp;IKEA furniture) is invisible.</li>
+<li><strong>Model diagnostics</strong> – DW &lt; 2 suggests some autocorrelation; robust SEs help, but a mixed model or clustering by postcode could improve inference.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

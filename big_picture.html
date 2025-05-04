@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A 538/Upshot style article about the data.">
+<meta name="description" content="How race predicts home value in the U.S. housing market.">
 
-<title>Big Picture – MA [46]15 Final Project TEAM 3</title>
+<title>Identical Homes, Unequal Prices – MA [46]15 Final Project TEAM 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,7 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./big_picture.html" aria-current="page"> 
-<span class="menu-text">Big Picture</span></a>
+<span class="menu-text">Identical Homes, Unequal Prices</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html"> 
@@ -155,13 +121,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#interactive" id="toc-interactive" class="nav-link active" data-scroll-target="#interactive">Interactive</a></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  <li><a href="#rubric-other-components" id="toc-rubric-other-components" class="nav-link" data-scroll-target="#rubric-other-components">Rubric: Other components</a>
-  <ul class="collapse">
-  <li><a href="#video-recording" id="toc-video-recording" class="nav-link" data-scroll-target="#video-recording">Video Recording</a></li>
-  <li><a href="#rest-of-the-site" id="toc-rest-of-the-site" class="nav-link" data-scroll-target="#rest-of-the-site">Rest of the Site</a></li>
-  </ul></li>
+  <li><a href="#big-picture" id="toc-big-picture" class="nav-link active" data-scroll-target="#big-picture">Big Picture</a></li>
+  <li><a href="#race-and-home-value" id="toc-race-and-home-value" class="nav-link" data-scroll-target="#race-and-home-value">Race and Home Value</a></li>
+  <li><a href="#can-house-features-explain-the-gap" id="toc-can-house-features-explain-the-gap" class="nav-link" data-scroll-target="#can-house-features-explain-the-gap">Can House Features Explain the Gap?</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try It Yourself</a></li>
+  <li><a href="#what-this-means" id="toc-what-this-means" class="nav-link" data-scroll-target="#what-this-means">What This Means</a></li>
   </ul>
 </nav>
     </div>
@@ -170,12 +134,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Big Picture</h1>
+<h1 class="title">Identical Homes, Unequal Prices</h1>
 </div>
 
 <div>
   <div class="description">
-    A 538/Upshot style article about the data.
+    How race predicts home value in the U.S. housing market.
   </div>
 </div>
 
@@ -192,108 +156,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="images/The_Big_Picture_2.jpeg" class="img-fluid"></p>
+<p><img src="images/identical_houses.jpg" class="img-fluid"></p>
 <p>This comes from the file <code>big_picture.qmd</code>.</p>
-<p>Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.</p>
-<hr>
-<section id="interactive" class="level3">
-<h3 class="anchored" data-anchor-id="interactive">Interactive</h3>
-<p>Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.</p>
-<div class="cell" data-standalone="true" data-viewerheight="640">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="st">"readr.edition"</span> <span class="ot">=</span> <span class="dv">1</span>) <span class="co"># keep this to ensure you can download the data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for app that draws a histogram ----</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># App title ----</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Hello Shiny!"</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sidebar layout with input and output definitions ----</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">verticalLayout</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Input: Slider for the number of bins ----</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="at">inputId =</span> <span class="st">"bins"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> <span class="st">"Number of bins:"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">max =</span> <span class="dv">50</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">value =</span> <span class="dv">30</span>),</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Output: Histogram ----</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="at">outputId =</span> <span class="st">"distPlot"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram ----</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The URL below has to point to a dataset on your github pages website</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I recommend creating a small-ish rds file that has only the data relevant to </span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the interactive.</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"https://sussmanbu.github.io/ma4615-final-project-quarto/dataset_for_shiny/combined_regional_data.rds"</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> refusal_rate)) <span class="sc">+</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Shiny app ----</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To get the shinylive-r working.</p>
-<ol type="1">
-<li>Make sure your shiny app works as a regular r chunk.</li>
-<li>Make sure that the chunk is completely self-contained. Meaning all packages and data are loaded inside that chunk. It can’t rely on any other chunks.</li>
-<li>For the data that you are using for shiny, copy the rds file or any other files into the scripts folder, and then publish your website.</li>
-<li>Where you load in your data, change it to use a URL to the data set which will now be on your website. Something like read_rds(“https://sussmanbu.github.io/ma-4615-fa24-final-project-group-a/scripts/dataset_for_shiny.rds”)</li>
-<li>Check that the chunk still works as a regular r chunk.</li>
-<li>Change it to a shinylive-r chunk.</li>
-<li>Commit and publish your work.</li>
-</ol>
-<p>I recommend keeping the data used for the shiny interactive relatively small, though this isn’t completely necessary.</p>
-<hr>
+<section id="big-picture" class="level2">
+<h2 class="anchored" data-anchor-id="big-picture">Big Picture</h2>
+<blockquote class="blockquote">
+<p><strong>Imagine buying your dream home — only to find out it’s worth less than your neighbor’s nearly identical house across town. Why? Not the square footage, not the fixtures — but the people who live nearby.</strong></p>
+</blockquote>
+<p>Across the United States, two families might buy nearly identical houses — same size, same number of rooms, even the same amenities. Yet one of those homes may be worth significantly more than the other. The difference? Not the home itself, but the neighborhood — and more often than we’d like to admit, the race of the people living there.</p>
+<p>Our thesis is simple: In the U.S. housing market, <strong>race remains a powerful predictor of home value</strong>, even when you account for structure, size, and features. This is not about the house — it’s about the neighborhood’s demographics and the legacy of structural inequality.</p>
+<blockquote class="blockquote">
+<p>The analysis in this article is based on data from the <strong>2023 American Community Survey (ACS)</strong> and a secondary dataset of U.S. housing transactions from Kaggle. You can read more about the data and how we cleaned it <a href="data.html">here</a>.</p>
+</blockquote>
 </section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<ul>
-<li>Title
-<ul>
-<li>Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.</li>
-</ul></li>
-<li>Clarity of Explanation
-<ul>
-<li>You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don’t go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.</li>
-<li>Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.</li>
-</ul></li>
-<li>Creativity
-<ul>
-<li>Do your best to make things interesting. Think of a how a news article or a magazine story might draw you in. Think of how each part of your analysis supports the previous part or provides a different perspective.</li>
-</ul></li>
-<li>Interactive component
-<ul>
-<li>Quality and ease of use of the interactive components. Is it clear what can be explored using your interactive components? Does it enhance and reinforce your conclusions?</li>
-</ul></li>
-<li>This page should be self-contained.</li>
-</ul>
-<p><strong>Note</strong>: This page should have no code visible, i.e.&nbsp;use <code>#| echo: FALSE</code>.</p>
+<section id="race-and-home-value" class="level2">
+<h2 class="anchored" data-anchor-id="race-and-home-value">Race and Home Value</h2>
+<p>Let’s start with the big picture. When we look at who lives where — and what those homes are worth — a clear pattern emerges:</p>
+<p><img src="images/house_value_race.png" class="img-fluid"></p>
+<p><em>Figure 1: Distribution of racial groups across home value tiers.<br>
+White residents are overrepresented in higher-value neighborhoods, while Black and Hispanic groups are more concentrated in lower-value areas.</em></p>
+<p>This suggests that <strong>the racial composition of a neighborhood</strong> may influence home values — even when homes are similar in size or features.</p>
+<p>Even when the homes themselves are similar, the value attached to them changes — depending on who lives nearby.</p>
 </section>
-<section id="rubric-other-components" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-other-components">Rubric: Other components</h2>
-<section id="video-recording" class="level3">
-<h3 class="anchored" data-anchor-id="video-recording">Video Recording</h3>
-<p>Make a video recording (probably using Zoom) demonstrating your interactive components. You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA. This video should be no longer than 4 minutes. Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website. This can be presented by any subset of the team members.</p>
+<section id="can-house-features-explain-the-gap" class="level2">
+<h2 class="anchored" data-anchor-id="can-house-features-explain-the-gap">Can House Features Explain the Gap?</h2>
+<p>You might be thinking: maybe homes in Black or Hispanic neighborhoods are just <strong>smaller, older</strong>, or missing key amenities.</p>
+<p>We dug into our data to test that. What we found is that <strong>area (square footage)</strong> and <strong>number of bathrooms</strong> are the most important predictors of home price. As you might expect, larger homes and those with more bathrooms tend to cost more.</p>
+<p><img src="images/price_area.png" class="img-fluid"></p>
+<p><em>Figure 2: Relationship between physical home features and housing value.<br>
+Square footage and number of bathrooms are the strongest predictors of price. Bedrooms and parking features play a smaller or inconsistent role.</em></p>
+<p>But these physical features still <strong>don’t explain the racial gap in home values</strong> — they’re only part of the story.</p>
+<p>The relationship is clear: as <strong>square footage increases</strong>, so does home value. But that only explains part of the picture.</p>
+<blockquote class="blockquote">
+<p>Our dataset doesn’t directly link features like size or bathrooms to the <strong>racial composition</strong> of neighborhoods.<br>
+So while we can see that these features affect price, we <strong>can’t explain racial disparities in home values</strong> using features alone.</p>
+</blockquote>
+<p>That’s where broader research comes in. National studies have shown that even when homes are <strong>structurally identical</strong>, those in <strong>majority-Black neighborhoods</strong> are often valued lower than those in predominantly <strong>White areas</strong>.</p>
+<blockquote class="blockquote">
+<p>The gap, in many cases, isn’t about the home — <strong>it’s about the neighborhood.</strong></p>
+</blockquote>
 </section>
-<section id="rest-of-the-site" class="level3">
-<h3 class="anchored" data-anchor-id="rest-of-the-site">Rest of the Site</h3>
-<p>Finally, here are important things to keep in mind for the rest of the site.</p>
-<p>The main title of your page is informative. Each post has an author/description/informative title. All lab required posts are present. Each page (including the home page) has a nice featured image associated with it. Your about page is up to date and clean. You have removed the generic posts from the initial site template.</p>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
+<p>We’ve built a simple interactive map that lets you explore this issue in your own state.</p>
+<p>Below is the Shiny app that visualizes <strong>average home values by race</strong> for each state in the U.S.<br>
+<strong>Select a racial group from the sidebar to see how average home values vary across states.</strong></p>
+<iframe src="https://yikii.shinyapps.io/dataset/" width="100%" height="600px" frameborder="0">
+</iframe>
+<p>If you have trouble viewing it here, you can also open the app in a new tab:<br>
+<a href="https://yikii.shinyapps.io/dataset/">Launch the interactive map</a></p>
+</section>
+<section id="what-this-means" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-means">What This Means</h2>
+<p>Our findings suggest that <strong>racial disparities in home value are not fully explained by home size or amenities</strong>. Instead, they reflect deeper patterns of inequality embedded in how neighborhoods are perceived and valued.</p>
+<p>Even two identical homes — same layout, same condition — can be valued differently based on who lives next door. Until these systemic issues are addressed, market-based housing inequality will persist — not because of what a home is, but because of where and with whom it stands.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
