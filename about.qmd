@@ -30,9 +30,6 @@ Vinay is an undergraduate Econ and Math student
 ## Zheng Zhang
 Zheng is an undergraduate Ecin and Math Senior
 
-## Dan Sussman
-
-Dan is a professor in the Math/Stat department and is the instructor for the course. [Github](https://github.com/dpmcsuss)
 
 <!-- Please leave in the information below -->
 
