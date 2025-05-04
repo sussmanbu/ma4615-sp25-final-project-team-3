@@ -9,41 +9,6 @@ draft: false
 
 This comes from the file `analysis.qmd`.
 
-We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
-
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
-
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
-If you want you can link back to your blog posts or create separate pages with more details.
-
-The style of this paper should aim to be that of an academic paper. 
-I don't expect this to be of publication quality but you should keep that aim in mind.
-Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
-
-### Example of loading data
-
-The code below shows an example of loading the loan refusal data set (which you should delete at some point).
-
-```{r}
-library(tidyverse)
-print(getwd())
-data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
-```
-
-## Note on Attribution
-
-In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
-
-If you are directly quoting from a source, please make that clear. You can show long quotes using `>` like this
-
-```         
-> To be or not to be.
-```
-
-> To be or not to be.
-
-------------------------------------------------------------------------
-
 ## Rubric: On this page
 
 You will
@@ -74,6 +39,10 @@ You will
 ```{r setup, include=FALSE}
 library(dplyr)
 library(ggplot2)
+library(maps)
+library(tibble)
+library(viridis)
+library(tidyr)
 
 housing_cleaned <- readRDS("dataset/housing_cleaned.rds")
 
@@ -93,10 +62,13 @@ housing_cleaned <- housing_cleaned %>%
   )
 ```
 
-## Analysis
+## Dataset 1 - Analysis
 
 ### Motivation 
 The main purpose of the study is to examine the racial disparities in land ownership. The importance of distinguishing between urban and rural residential properties provides insight for analyzing ownership patterns, housing distribution, and land usage across different demographic groups. Historically, the American segregational economic policy has confined minority groups into urban areas, limiting their ability to acquire larger sets of land. By comparing the distribution between land and characteristics of homeownership, the result can help to identify the factors that are major contributors to generational wealth, therefore enhancing the understanding and influence of the racial wealth gap.
+
+### Data Source
+This analysis is based on microdata from the IPUMS USA 2023 American Community Survey (ACS, 1-Year Sample), accessed via the IPUMS extract system. The dataset includes household-level demographic and housing characteristics, harmonized for research purposes.
 
 ### Urban vs. Rural Housing Value
 The boxplot below illustrates housing values across racial groups, separated by urban and rural locations. It reveals that Asian households living in urban areas tend to occupy the highest-value homes, whereas American Indian and Black homeowners have more limited value ranges, especially in rural settings. This reinforces how geography and race intersect to shape home equity.
@@ -117,15 +89,150 @@ ggplot(housing_cleaned, aes(x = race_group, y = VALUEH, fill = location)) +
 - Does the association between housing quality and rent price vary by racial differences in neighborhood?
 
 ## How does homeownership and racial demographics interact with housing prices?
+```{r echo=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
 
+# 创建价值等级变量
+housing_cleaned <- housing_cleaned %>%
+  mutate(
+    value_tier = case_when(
+      VALUEH <= 100000 ~ "Low (≤$100K)",
+      VALUEH <= 300000 ~ "Medium ($100K–$300K)",
+      VALUEH >  300000 ~ "High (>$300K)",
+      TRUE ~ NA_character_
+    )
+  )
+
+# 计算每个种族在每个价值区间的占比
+share_data <- housing_cleaned %>%
+  filter(!is.na(race_group), !is.na(value_tier)) %>%
+  group_by(race_group, value_tier) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  group_by(race_group) %>%
+  mutate(share = count / sum(count))  # 转换为百分比
+
+# 设定顺序
+share_data$value_tier <- factor(
+  share_data$value_tier,
+  levels = c("Low (≤$100K)", "Medium ($100K–$300K)", "High (>$300K)")
+)
+
+# 绘图
+ggplot(share_data, aes(x = race_group, y = share, fill = value_tier)) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  scale_fill_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb")) +
+  labs(
+    title = "House Value Share by Race",
+    x = NULL,
+    y = "Share of Homeowners",
+    fill = "House Value Tier"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
 ### Overview
-The stacked-share bar chart shows, for each race category, the percentage distributed of homes owned across all three house value tiers (High, Medium, and Low). Because every bar sums to 100%, the focus is on how housing-wealth mixes differ within the homeowner population of each racial group. 
+The stacked bar chart displays, for each racial group, the percentage distribution of owned homes across three housing value tiers: Low (≤$100K), Medium ($100K–$300K), and High (>$300K). Each bar adds up to 100%, emphasizing how the composition of housing wealth differs within each racial category of homeowners. This visualization highlights disparities in access to high-value housing across racial lines.
+
+### Geographic Disparities in Housing Value
+The housing market varies not only by race and income but also by geography. To visualize spatial inequality, we present maps of average housing value and racial disparities across U.S. states.
+
+#### Average Housing Value by State
+```{r echo=FALSE, warning=FALSE}
+state_name_map <- tibble::tibble(
+  STATEICP = c(
+    1, 2, 3, 4, 5, 6, 11, 12, 13, 14,
+    21, 22, 23, 24, 25, 31, 32, 33, 34, 35,
+    36, 37, 40, 41, 42, 43, 44, 45, 46, 47,
+    48, 49, 51, 52, 53, 54, 56, 61, 62, 63,
+    64, 65, 66, 67, 68, 71, 72, 73, 81, 82
+  ),
+  state_name = tolower(c(
+    "connecticut", "maine", "massachusetts", "new hampshire", "rhode island", "vermont",
+    "delaware", "new jersey", "new york", "pennsylvania", "illinois", "indiana", "michigan",
+    "ohio", "wisconsin", "iowa", "kansas", "minnesota", "missouri", "nebraska",
+    "north dakota", "south dakota", "virginia", "alabama", "arkansas", "florida",
+    "georgia", "louisiana", "mississippi", "north carolina", "south carolina", "texas",
+    "kentucky", "maryland", "oklahoma", "tennessee", "west virginia", "arizona",
+    "colorado", "idaho", "montana", "nevada", "new mexico", "utah", "wyoming",
+    "california", "oregon", "washington", "alaska", "hawaii"
+  ))
+)
+
+state_summary <- housing_cleaned %>%
+  group_by(STATEICP) %>%
+  summarise(mean_value = mean(VALUEH, na.rm = TRUE)) %>%
+  left_join(state_name_map, by = "STATEICP") %>%
+  rename(region = state_name)
+
+map_data_joined <- map_data("state") %>%
+  inner_join(state_summary, by = "region")
+
+ggplot(map_data_joined, aes(x = long, y = lat, group = group, fill = mean_value)) +
+  geom_polygon(color = "white") +
+  scale_fill_viridis_c(option = "plasma", name = "Avg. Value") +
+  labs(title = "Average Housing Value by State") +
+  theme_void()
+
+```
+This choropleth map shows the average housing value by state. We observe that housing values are generally higher in coastal regions—particularly in California and parts of the Northeast. In contrast, much of the Midwest and South exhibit lower average home values, reflecting broader geographic disparities in real estate markets.
+
+
+#### Racial Gap in Average Housing Value
+```{r echo=FALSE, warning=FALSE}
+state_name_map <- tibble::tibble(
+  STATEICP = c(
+    1, 2, 3, 4, 5, 6, 11, 12, 13, 14,
+    21, 22, 23, 24, 25, 31, 32, 33, 34, 35,
+    36, 37, 40, 41, 42, 43, 44, 45, 46, 47,
+    48, 49, 51, 52, 53, 54, 56, 61, 62, 63,
+    64, 65, 66, 67, 68, 71, 72, 73, 81, 82
+  ),
+  state_name = tolower(c(
+    "connecticut", "maine", "massachusetts", "new hampshire", "rhode island", "vermont",
+    "delaware", "new jersey", "new york", "pennsylvania", "illinois", "indiana", "michigan",
+    "ohio", "wisconsin", "iowa", "kansas", "minnesota", "missouri", "nebraska",
+    "north dakota", "south dakota", "virginia", "alabama", "arkansas", "florida",
+    "georgia", "louisiana", "mississippi", "north carolina", "south carolina", "texas",
+    "kentucky", "maryland", "oklahoma", "tennessee", "west virginia", "arizona",
+    "colorado", "idaho", "montana", "nevada", "new mexico", "utah", "wyoming",
+    "california", "oregon", "washington", "alaska", "hawaii"
+  ))
+)
+
+race_gap <- housing_cleaned %>%
+  filter(RACE %in% c(1, 2)) %>%
+  group_by(STATEICP, RACE) %>%
+  summarise(mean_value = mean(VALUEH, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = RACE, values_from = mean_value, names_prefix = "race_") %>%
+  mutate(gap = race_1 - race_2) %>%
+  left_join(state_name_map, by = "STATEICP") %>%
+  rename(region = state_name)
+
+map_data_joined <- map_data("state") %>%
+  inner_join(race_gap, by = "region")
+
+ggplot(map_data_joined, aes(x = long, y = lat, group = group, fill = gap)) +
+  geom_polygon(color = "white") +
+  scale_fill_viridis_c(
+    option = "plasma",
+    name = "Value Gap\nWhite - Black"
+  ) +
+  labs(title = "Racial Gap in Average Housing Value by State") +
+  theme_void()
+
+```
+This map shows the average difference in housing values between White and Black homeowners across U.S. states. Positive values (shaded in yellow and orange) indicate that homes owned by White individuals are more valuable on average than those owned by Black individuals. States like Texas and Florida exhibit large positive gaps, while a few Northeastern states show small negative gaps. The variation highlights persistent racial disparities in housing wealth shaped by historical, geographic, and socioeconomic factors.
+
+Comparing the two maps reveals that high average housing values do not necessarily correlate with large racial disparities. For example, California stands out with the highest average housing value, yet its racial value gap is also among the largest. In contrast, some Midwestern states have moderate home values but relatively small racial differences. 
 
 ### Interaction between Homeownership, Race, and Housing Prices
 Homeownership does not reflect racial equity. Asian homeowners are concentrated in high-value homes while Black and American-Indian homeowners are clustered in the lower-value segments, reflecting the racial wealth gap.
 
 ### Affordability Burden by Race
-To further investigate how home value relates to income, the following boxplot shows the affordability ratio—calculated as housing value divided by household income—by race. Interestingly, although Asian households appear to own more high-value homes, they also bear the highest affordability burden, with a median ratio of 3.82. In contrast, groups such as White and American Indian households show lower ratios, reflecting different cost burdens even amid price differences.
+To further examine the relationship between home value and income, the boxplot below presents the affordability ratio—calculated as housing value divided by household income—by racial group. Notably, Asian homeowners exhibit the highest median affordability ratio (3.82), suggesting they carry the greatest relative cost burden despite owning more high-value homes. In contrast, White and American Indian households show lower median ratios, indicating relatively lower cost pressure even when housing prices vary across groups.
 
 ```{r echo=FALSE, warning=FALSE}
 median_ratios <- housing_cleaned %>%
@@ -144,8 +251,108 @@ ggplot(housing_cleaned, aes(x = race_group, y = afford_ratio)) +
   theme_minimal()
 ```
 
+### Modeling and Inference
+
+To examine how income, race, and location affect home values, we fit a **multiple log-linear regression model** using `VALUEH` (housing value) as the dependent variable. The key explanatory variables include logged income (`log(FTOTINC)`), race (`factor(RACE)`), and location type (factor(ACREHOUS), >10 acres indicator).
+
+#### Key Predictors
+
+In addition to log household income, we include two categorical variables: race and house acreage. The race variable captures demographic differences across racial groups using dummy indicators. The `ACREHOUS` variable indicates whether the property has **more than 10 acres of land**, which may reflect rural-style housing or large-lot ownership, potentially influencing home value independently of income.
+
+
+#### Model Specification
+
+We estimate the following log-log model:
+
+$$
+\log(\text{VALUEH}_i) = \beta_0 + \beta_1 \log(\text{FTOTINC}_i) + \gamma \cdot \text{RACE}_i + \delta \cdot \text{ACREHOUS}_i + \varepsilon_i
+$$
+
+This specification captures the elasticity of income, racial differences, and the premium (or discount) associated with owning more than 10 acres of land.
+
+#### Key Results
+
+| Variable                                | Estimate | Interpretation                                                                 |
+|-----------------------------------------|----------|--------------------------------------------------------------------------------|
+| log(FTOTINC)                            | 0.438    | A 1% increase in income is associated with a **0.44%** increase in housing value. |
+| Black/African American                  | -0.158   | Homes owned by Black households are on average **~15.8% less valuable** than those of White households. |
+| American Indian or Alaska Native        | -0.423   | Homes owned by American Indian/Alaska Native households are **~34.4% less valuable** than White households. |
+| Chinese                                 | 0.702    | Chinese households own homes that are **~101% more valuable** than White households. |
+| Japanese                                | 0.732    | Japanese households own homes **~109% more valuable** than White households. |
+| Other Asian or Pacific Islander         | 0.421    | These households own homes **~52.3% more valuable** than White households. |
+| Other race, nec                         | 0.017    | Slightly higher, but economically negligible difference vs. White households. |
+| Two major races                         | 0.059    | Homes owned by two-race households are **~6.1% more valuable** than those of White households. |
+| Three or more major races               | 0.261    | Households identifying with three or more races own homes **~29.8% more valuable**. |
+| Acreage > 10 acres (vs ≤10 acres)       | -0.031   | Homes on large plots (>10 acres) are about **3.1% less valuable**, holding other factors constant. |
+|
+
+**Model fit**: R² = 0.1673 (adj. R² = 0.1672). Although income, race, and land size significantly predict housing value, the modest R² indicates that important housing features and geographic context—such as neighborhood characteristics or housing quality—are likely needed to better explain variation in home values.
+
+To interpret the coefficients as percent changes:
+$$
+\% \text{Change} = (e^{\beta} - 1) \times 100
+$$
+
+#### Interpretation
+
+Income remains a strong predictor of housing value, but racial differences persist even after adjusting for financial status. For instance, Black and American Indian households own significantly lower-valued homes than Whites with the same income. Conversely, several Asian subgroups show significantly higher valuations.
+
+This reinforces the idea that **systemic disparities** in housing markets are not merely economic, but also tied to **demographic and geographic inequities**.
+
+
+### Model Diagnostics
+
+#### Residuals vs Fitted (Hexbin)
+
+```{r echo=FALSE, warning=FALSE}
+library(ggplot2)
+library(viridis)
+library(dplyr)
+
+housing_filtered <- housing_cleaned %>%
+  filter(FTOTINC > 0)
+
+model_multi <- lm(log(VALUEH) ~ log(FTOTINC) + factor(RACE) + factor(ACREHOUS), data = housing_filtered)
+
+df_resid <- data.frame(
+  fitted_vals = fitted(model_multi),
+  resids = resid(model_multi)
+)
+
+ggplot(df_resid, aes(x = fitted_vals, y = resids)) +
+  geom_hex(bins = 50) +
+  scale_fill_viridis_c() +
+  labs(
+    title = "Residuals vs Fitted (hexbin)",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  theme_minimal()
+
+```
+
+The residual plot using hexbin visualization shows a dense cluster of observations centered near zero residuals, particularly concentrated around fitted values between 12 and 13. This pattern suggests that the model is reasonably well specified for the bulk of the data. Although no strong curvature is observed, there is some mild funneling—wider spread at lower fitted values—which may hint at mild heteroskedasticity. Nonetheless, the overall structure supports the assumptions of linearity and approximate constant variance for most observations.
+
+
+
+#### Limitations and Assumptions
+
+While the multiple regression model includes income, race, and land acreage, it still has several **limitations**:
+
+- **Omitted Variable Bias**: Important housing characteristics (e.g., square footage, number of bedrooms, building age, location quality) are not included in the model. These unobserved factors could influence housing value and may confound the effects of income or race.
+- **Measurement Error**: Income and housing value variables may be subject to reporting errors or top-coding, especially at high values, which can bias the estimated coefficients.
+- **Simplified Land Classification**: The `ACREHOUS` variable distinguishes only whether the property exceeds 10 acres, which is an imperfect proxy for urban versus rural housing. More detailed geographic data (e.g., census tract or ZIP code) could improve location-based modeling.
+
+
+#### Future Extensions
+
+A more complete model would include controls for **amenities**, **race**, **urbanicity**, and **region** to better capture the determinants of housing value. In future work, it may also be useful to explore **interaction terms**, such as **income × race**, to examine whether the effect of income on housing value differs across racial groups. Additionally, panel data or time-series data would allow researchers to better identify **causal** (rather than purely associative) effects.
+
+
 ### Overall Analysis
-Within the homeowner population, the distribution of house values is uneven across racial categories. Asian sub-groups (Chinese, Japanese, Other Asian/Pacific Islander) concentrate most heavily in the high-value tier, whereas Black and American-Indian homeowners show larger proportions in medium and low tiers. Whites and the “Other Race” and “NA” categories sit in between, with roughly half of their homes in the high-value range. Thus, the chart depicts a clear range in housing value shares that aligns with the societal expectations of race, from skewed, expensive properties to a more balanced or lower-valued mix across certain racial groups.
+This study reveals a clear racial divide in homeownership patterns across the U.S. While Asian homeowners are disproportionately represented in the high-value tier, Black and American Indian homeowners are more often found in the lower or medium tiers. These disparities persist geographically, with some states showing both high average home values and large racial gaps. Affordability burdens further highlight inequality, as groups with higher-valued homes also bear heavier income-to-value ratios. 
+
+Although the model shows that income, race, and land acreage significantly affect housing values, these variables explain only part of the variation. The regression results suggest that deeper structural differences—such as housing quality, local amenities, neighborhood segregation, or zoning policy—are likely at play. Future models incorporating additional housing attributes and interaction terms (e.g., income × race, income × region) will be essential for a more comprehensive understanding of equity in housing wealth.
 
 
 
@@ -164,6 +371,19 @@ Answering these helps buyers budget efficiently and lets developers prioritise h
 
 **Area and Price**  
 What we see: Price rises with area, but the cloud gets wider at larger sizes. That “fan‑shape” warns that area alone is far from sufficient; luxury fit‑outs and location are also at play.
+```{r echo=FALSE, warning=FALSE}
+library(ggplot2)
+second_housing_cleaned <- readRDS("dataset/second_housing_cleaned.rds")
+ggplot(second_housing_cleaned, aes(x = area, y = price)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", size = 1) +
+  labs(
+    title = "House Price vs Area",
+    x = "Area (sq ft)",
+    y = "Price"
+  ) +
+  theme_minimal()
+```
 
 **Furnishing Status**  
 Furnished homes cluster at the top of the price spectrum, semi‑furnished sit in the middle, and unfurnished trail behind. The median gap between furnished and unfurnished units is roughly two million (local currency), hinting at a strong convenience premium.
@@ -177,18 +397,68 @@ Going from zero to one parking space lifts the median price by ≈ 15 %. A s
 **Correlation Check**  
 Correlations among predictors stay below 0.60. That is low enough to keep variance‑inflation factors (VIF) below 2, so we can include all variables in one regression without worrying about unstable coefficients.
 
+
 ### Statistical Modeling
 
-**Why a log‑linear model?**
+**Why a log‑log model?**
 - **Heteroskedasticity**: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range.
 - **Interpretability**: Coefficients on logged variables read as elasticities—handy for business decisions.
+
+```{r echo=FALSE, warning=FALSE}
+ggplot(second_housing_cleaned, aes(x = log(area), y = log(price))) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", size = 1) +
+  labs(
+    title = "Log-Log Relationship Between Area and Price",
+    x = "Log(Area)",
+    y = "Log(Price)"
+  ) +
+  theme_minimal()
+```
+The log-log transformation reveals a near-linear trend, suggesting that a constant elasticity model is appropriate for capturing the relationship between area and price.
+
+### Model Diagnostics
+#### Residuals vs Fitted Plot
+```{r echo=FALSE, warning=FALSE}
+model <- lm(
+  log(price) ~ log(area) + bedrooms + bathrooms + stories + parking +
+    relevel(furnishingstatus, ref = "furnished"),
+  data = second_housing_cleaned
+)
+
+
+fitted_vals <- fitted(model)
+resids <- resid(model)
+
+plot(fitted_vals, resids,
+     xlab = "Fitted values",
+     ylab = "Residuals",
+     main = "Residuals vs Fitted (custom)",
+     ylim = c(-1, 1),
+     pch = 20, col = "gray40")
+abline(h = 0, col = "red", lty = 2)
+```
+The residuals are roughly symmetrically distributed around zero, with no visible curvature or fan-shaped patterns. This supports the assumption of linearity and homoskedasticity. A small spread (within ±1) indicates a tight fit between predicted and observed log-prices.
+
+#### Q-Q Plot
+```{r echo=FALSE, warning=FALSE}
+qqnorm(resids,
+       main = "Q-Q Plot of Residuals",
+       pch = 20, col = "gray40")
+qqline(resids, col = "red", lty = 2)
+
+```
+The Q-Q plot of residuals shows that most residuals lie along the 45-degree reference line, indicating approximate normality. Minor deviation at the tails is expected and does not severely violate model assumptions.
+
+Overall, these diagnostics suggest that the multiple linear regression model is well-specified and suitable for inference.
 
 **Model specification**  
 $$
 \log(\text{price}) = \beta_0 + \beta_1 \log(\text{area}) + \beta_2 \cdot \text{bedrooms} + \beta_3 \cdot \text{bathrooms} + \beta_4 \cdot \text{stories} + \beta_5 \cdot \text{parking} + \beta_6 \cdot \text{semi-furnished} + \beta_7 \cdot \text{unfurnished} + \varepsilon
 $$
 Baseline furnishing category = “furnished”.  
-Robust (Huber–White) standard errors used because the Durbin‑Watson test (DW = 1.18) flagged mild residual autocorrelation.
+Robust (Huber–White) standard errors are used to guard against possible heteroskedasticity. A Durbin–Watson statistic of 1.18 suggests mild residual autocorrelation, although the model is not time-series in nature.
+
 
 **Key results (robust SEs)**
 
