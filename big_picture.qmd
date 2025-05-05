@@ -6,6 +6,7 @@ draft: FALSE
 ---
 
 ![](images/identical_houses.jpg)
+[Click here to watch a brief video overview of our project!](https://drive.google.com/file/d/19npwppAaDM-yuzH48KNmD4TmwQZccgup/view?usp=share_link)
 
 This comes from the file `big_picture.qmd`.
 

@@ -364,7 +364,7 @@ Answering these helps buyers budget efficiently and lets developers prioritise h
 
 **Area and Price**  
 What we see: Price rises with area, but the cloud gets wider at larger sizes. That “fan‑shape” warns that area alone is far from sufficient; luxury fit‑outs and location are also at play.
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
 second_housing_cleaned <- readRDS("dataset/second_housing_cleaned.rds")
 ggplot(second_housing_cleaned, aes(x = area, y = price)) +
@@ -438,7 +438,7 @@ Correlations among predictors stay below 0.60. That is low enough to keep varian
 - **Heteroskedasticity**: Raw prices show larger spread at higher values. Logging price and area pulls variances into roughly constant range.
 - **Interpretability**: Coefficients on logged variables read as elasticities—handy for business decisions.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 ggplot(second_housing_cleaned, aes(x = log(area), y = log(price))) +
   geom_point(alpha = 0.5, color = "steelblue") +
   geom_smooth(method = "lm", se = FALSE, color = "darkgreen", size = 1) +
@@ -541,14 +541,41 @@ Finally, if panel data becomes available, **fixed-effects models** could be used
 
 This project used two complementary datasets to examine determinants of housing value in the United States.
 
-- The **IPUMS housing dataset** highlighted *sociodemographic disparities* in homeownership and property value. Even after controlling for income, racial differences in housing value remained substantial. Asian subgroups (particularly Chinese and Japanese) owned significantly higher-valued homes, while Black and American Indian households lagged behind, reflecting persistent structural inequalities.
+### IPUMS: Sociodemographic Disparities
 
-- The **Kaggle housing dataset**, on the other hand, emphasized *property-specific features* like square footage, number of bedrooms, bathrooms, and parking capacity. The correlation heatmap revealed that **area** and **number of bathrooms** are most strongly associated with price, suggesting that functional space and comfort play a key role in housing valuation.
+The **IPUMS housing dataset** highlighted sociodemographic disparities in homeownership and property value. Even after controlling for income, racial differences in housing value remained substantial. Asian subgroups (particularly Chinese and Japanese) owned significantly higher-valued homes, while Black and American Indian households lagged behind, reflecting persistent structural inequalities.
 
-Together, these datasets reveal two sides of the housing market:  
-1. **Who** owns valuable homes is shaped by race, income, and geography.  
-2. **Why** homes are valued differently is largely explained by their structural features.
+### Kaggle: Physical Property Characteristics
 
-Future work can combine both types of variables to create richer predictive models and more comprehensive policy insights.
+The **Kaggle housing dataset**, on the other hand, emphasized property-specific features like square footage, number of bedrooms, bathrooms, and parking capacity. The correlation heatmap revealed that **area** and **number of bathrooms** are most strongly associated with price, suggesting that functional space and comfort play a key role in housing valuation.
 
+### Two Sides of the Housing Market
 
+Together, these datasets reveal two sides of the housing market:
+
+1. In **IPUMS**, social identity (race, income) plays a dominant role. It focuses on **who** owns valuable homes is shaped by race, income, and geography.  
+2. In **Kaggle**, material characteristics (space, amenities) dominate. It focuses on **why** homes are valued differently is largely explained by their structural features.
+
+### Integrated Interpretation and Future Direction
+
+This side-by-side analysis demonstrates that both **who** owns valuable homes and **why** those homes are valued are influenced by distinct yet intersecting factors. Future work could benefit from integrating sociodemographic and physical property data to develop more accurate predictive models and inform equity-driven housing policy.
+
+Although the IPUMS and Kaggle datasets cannot be directly merged due to different structures and identifiers, we were able to conduct a comparative analysis by aligning them through a common outcome variable: **housing value**.
+
+### Key Observations from Each Dataset
+
+In the IPUMS dataset, we found that race significantly influences housing value even after controlling for income—highlighting persistent disparities, with Black and American Indian households typically owning lower-valued homes, and Chinese and Japanese households owning higher-valued ones.
+
+In the Kaggle dataset, housing value was most strongly predicted by **physical characteristics**, such as total area and number of bathrooms.
+
+### Bridging the Datasets
+
+By observing that race affects housing value in one dataset and that housing value is closely tied to home size in the other, we establish an **indirect bridge**:  
+**racial disparities in housing value may, in part, reflect differences in the size and quality of homes owned across racial groups**.
+This cross-dataset insight suggests that structural inequalities manifest not only in homeownership access but also in the physical conditions of owned properties.
+
+### Conclusion
+
+Future studies combining both sociodemographic and structural variables could offer more complete models and inform policies addressing housing equity.
+
+All in all, future work can combine both types of variables to create richer predictive models and more comprehensive policy insights.
