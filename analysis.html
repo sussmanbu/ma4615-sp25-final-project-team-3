@@ -179,7 +179,16 @@ window.Quarto = {
   <li><a href="#limitations-and-assumptions-1" id="toc-limitations-and-assumptions-1" class="nav-link" data-scroll-target="#limitations-and-assumptions-1">Limitations and Assumptions</a></li>
   <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions">Future Directions</a></li>
   </ul></li>
-  <li><a href="#cross-dataset-summary" id="toc-cross-dataset-summary" class="nav-link" data-scroll-target="#cross-dataset-summary">Cross-Dataset Summary</a></li>
+  <li><a href="#cross-dataset-summary" id="toc-cross-dataset-summary" class="nav-link" data-scroll-target="#cross-dataset-summary">Cross-Dataset Summary</a>
+  <ul class="collapse">
+  <li><a href="#ipums-sociodemographic-disparities" id="toc-ipums-sociodemographic-disparities" class="nav-link" data-scroll-target="#ipums-sociodemographic-disparities">IPUMS: Sociodemographic Disparities</a></li>
+  <li><a href="#kaggle-physical-property-characteristics" id="toc-kaggle-physical-property-characteristics" class="nav-link" data-scroll-target="#kaggle-physical-property-characteristics">Kaggle: Physical Property Characteristics</a></li>
+  <li><a href="#two-sides-of-the-housing-market" id="toc-two-sides-of-the-housing-market" class="nav-link" data-scroll-target="#two-sides-of-the-housing-market">Two Sides of the Housing Market</a></li>
+  <li><a href="#integrated-interpretation-and-future-direction" id="toc-integrated-interpretation-and-future-direction" class="nav-link" data-scroll-target="#integrated-interpretation-and-future-direction">Integrated Interpretation and Future Direction</a></li>
+  <li><a href="#key-observations-from-each-dataset" id="toc-key-observations-from-each-dataset" class="nav-link" data-scroll-target="#key-observations-from-each-dataset">Key Observations from Each Dataset</a></li>
+  <li><a href="#bridging-the-datasets" id="toc-bridging-the-datasets" class="nav-link" data-scroll-target="#bridging-the-datasets">Bridging the Datasets</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -465,9 +474,6 @@ window.Quarto = {
 <p><strong>Area and Price</strong><br>
 What we see: Price rises with area, but the cloud gets wider at larger sizes. That “fan‑shape” warns that area alone is far from sufficient; luxury fit‑outs and location are also at play.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -530,9 +536,6 @@ What we see: Price rises with area, but the cloud gets wider at larger sizes. Th
 <li><strong>Interpretability</strong>: Coefficients on logged variables read as elasticities—handy for business decisions.</li>
 </ul>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -678,16 +681,45 @@ Robust (Huber–White) standard errors are used to guard against possible hetero
 <section id="cross-dataset-summary" class="level2">
 <h2 class="anchored" data-anchor-id="cross-dataset-summary">Cross-Dataset Summary</h2>
 <p>This project used two complementary datasets to examine determinants of housing value in the United States.</p>
-<ul>
-<li><p>The <strong>IPUMS housing dataset</strong> highlighted <em>sociodemographic disparities</em> in homeownership and property value. Even after controlling for income, racial differences in housing value remained substantial. Asian subgroups (particularly Chinese and Japanese) owned significantly higher-valued homes, while Black and American Indian households lagged behind, reflecting persistent structural inequalities.</p></li>
-<li><p>The <strong>Kaggle housing dataset</strong>, on the other hand, emphasized <em>property-specific features</em> like square footage, number of bedrooms, bathrooms, and parking capacity. The correlation heatmap revealed that <strong>area</strong> and <strong>number of bathrooms</strong> are most strongly associated with price, suggesting that functional space and comfort play a key role in housing valuation.</p></li>
-</ul>
-<p>Together, these datasets reveal two sides of the housing market:<br>
-1. <strong>Who</strong> owns valuable homes is shaped by race, income, and geography.<br>
-2. <strong>Why</strong> homes are valued differently is largely explained by their structural features.</p>
-<p>Future work can combine both types of variables to create richer predictive models and more comprehensive policy insights.</p>
+<section id="ipums-sociodemographic-disparities" class="level3">
+<h3 class="anchored" data-anchor-id="ipums-sociodemographic-disparities">IPUMS: Sociodemographic Disparities</h3>
+<p>The <strong>IPUMS housing dataset</strong> highlighted sociodemographic disparities in homeownership and property value. Even after controlling for income, racial differences in housing value remained substantial. Asian subgroups (particularly Chinese and Japanese) owned significantly higher-valued homes, while Black and American Indian households lagged behind, reflecting persistent structural inequalities.</p>
+</section>
+<section id="kaggle-physical-property-characteristics" class="level3">
+<h3 class="anchored" data-anchor-id="kaggle-physical-property-characteristics">Kaggle: Physical Property Characteristics</h3>
+<p>The <strong>Kaggle housing dataset</strong>, on the other hand, emphasized property-specific features like square footage, number of bedrooms, bathrooms, and parking capacity. The correlation heatmap revealed that <strong>area</strong> and <strong>number of bathrooms</strong> are most strongly associated with price, suggesting that functional space and comfort play a key role in housing valuation.</p>
+</section>
+<section id="two-sides-of-the-housing-market" class="level3">
+<h3 class="anchored" data-anchor-id="two-sides-of-the-housing-market">Two Sides of the Housing Market</h3>
+<p>Together, these datasets reveal two sides of the housing market:</p>
+<ol type="1">
+<li>In <strong>IPUMS</strong>, social identity (race, income) plays a dominant role. It focuses on <strong>who</strong> owns valuable homes is shaped by race, income, and geography.<br>
+</li>
+<li>In <strong>Kaggle</strong>, material characteristics (space, amenities) dominate. It focuses on <strong>why</strong> homes are valued differently is largely explained by their structural features.</li>
+</ol>
+</section>
+<section id="integrated-interpretation-and-future-direction" class="level3">
+<h3 class="anchored" data-anchor-id="integrated-interpretation-and-future-direction">Integrated Interpretation and Future Direction</h3>
+<p>This side-by-side analysis demonstrates that both <strong>who</strong> owns valuable homes and <strong>why</strong> those homes are valued are influenced by distinct yet intersecting factors. Future work could benefit from integrating sociodemographic and physical property data to develop more accurate predictive models and inform equity-driven housing policy.</p>
+<p>Although the IPUMS and Kaggle datasets cannot be directly merged due to different structures and identifiers, we were able to conduct a comparative analysis by aligning them through a common outcome variable: <strong>housing value</strong>.</p>
+</section>
+<section id="key-observations-from-each-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="key-observations-from-each-dataset">Key Observations from Each Dataset</h3>
+<p>In the IPUMS dataset, we found that race significantly influences housing value even after controlling for income—highlighting persistent disparities, with Black and American Indian households typically owning lower-valued homes, and Chinese and Japanese households owning higher-valued ones.</p>
+<p>In the Kaggle dataset, housing value was most strongly predicted by <strong>physical characteristics</strong>, such as total area and number of bathrooms.</p>
+</section>
+<section id="bridging-the-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="bridging-the-datasets">Bridging the Datasets</h3>
+<p>By observing that race affects housing value in one dataset and that housing value is closely tied to home size in the other, we establish an <strong>indirect bridge</strong>:<br>
+<strong>racial disparities in housing value may, in part, reflect differences in the size and quality of homes owned across racial groups</strong>. This cross-dataset insight suggests that structural inequalities manifest not only in homeownership access but also in the physical conditions of owned properties.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Future studies combining both sociodemographic and structural variables could offer more complete models and inform policies addressing housing equity.</p>
+<p>All in all, future work can combine both types of variables to create richer predictive models and more comprehensive policy insights.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
